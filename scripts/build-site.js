@@ -132,7 +132,6 @@ fs.mkdirSync(dist, { recursive: true });
   "robots.txt",
   "sitemap.xml",
   "_headers",
-  "_redirects",
   "admin",
   "assets",
   "content",

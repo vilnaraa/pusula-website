@@ -9,6 +9,7 @@ Bu site için önerilen kurulum:
 5. Build command olarak `npm run build` gir.
 6. Build output directory için `dist` kullan.
 7. Domain olarak `pusulamobil.com.tr` ve `www.pusulamobil.com.tr` bağlı kalmalı.
+8. `www` -> apex domain yönlendirmesi `_redirects` dosyasıyla değil, Cloudflare Redirect Rule ile yapılmalı.
 
 ## Workers Builds ile bağlandıysa
 

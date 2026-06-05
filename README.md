@@ -18,7 +18,7 @@ Bu klasör Pusula için statik tanıtım ve public changelog sitesidir.
 - `robots.txt`: Arama motoru tarama yönergesi.
 - `sitemap.xml`: `pusulamobil.com.tr` için temel sitemap.
 - `_headers`: Cloudflare Pages güvenlik ve cache header'ları.
-- `_redirects`: `www` adresini ana domaine yönlendirme kuralı.
+- `wrangler.toml`: Workers Builds kullanıldığında sadece `dist/` assetlerini deploy eder.
 
 ## Yönetim paneli
 
@@ -88,6 +88,10 @@ npx wrangler deploy
 ```
 
 `wrangler.toml` içindeki `[assets]` ayarı Cloudflare'a sadece `dist/` klasörünü deploy etmesini söyler.
+
+`www.pusulamobil.com.tr` -> `pusulamobil.com.tr` yönlendirmesi `_redirects` dosyasına yazılmamalı.
+Workers static assets yalnızca relative redirect kabul eder. Host bazlı yönlendirme Cloudflare Dashboard'da
+Redirect Rule olarak kurulmalıdır.
 
 ## GitHub güvenliği
 
