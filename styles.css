@@ -831,7 +831,7 @@ p {
 }
 
 .product-highlights {
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .phone-shell {
@@ -860,12 +860,132 @@ p {
   padding: 24px;
 }
 
+.product-highlights article {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 232px;
+  border-radius: 22px;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(210, 165, 58, 0.16), transparent 34%),
+    linear-gradient(140deg, rgba(255, 250, 241, 0.94), rgba(248, 241, 230, 0.74) 72%),
+    var(--surface);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.product-highlights article::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(360px 220px at 18% 8%, rgba(47, 102, 88, 0.2), transparent 58%),
+    radial-gradient(280px 180px at 86% 82%, rgba(185, 100, 79, 0.14), transparent 62%);
+  content: "";
+  opacity: 0.34;
+  transition: opacity 220ms ease;
+}
+
+.product-highlights article::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.54) 42%, transparent 62%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-120%);
+}
+
+.product-highlights article:nth-child(2)::before {
+  background:
+    radial-gradient(360px 220px at 18% 8%, rgba(210, 165, 58, 0.24), transparent 58%),
+    radial-gradient(280px 180px at 86% 82%, rgba(47, 102, 88, 0.12), transparent 62%);
+}
+
+.product-highlights article:nth-child(3)::before {
+  background:
+    radial-gradient(360px 220px at 18% 8%, rgba(111, 99, 121, 0.18), transparent 58%),
+    radial-gradient(280px 180px at 86% 82%, rgba(210, 165, 58, 0.18), transparent 62%);
+}
+
+.product-highlights article:nth-child(4)::before {
+  background:
+    radial-gradient(360px 220px at 18% 8%, rgba(185, 100, 79, 0.16), transparent 58%),
+    radial-gradient(280px 180px at 86% 82%, rgba(47, 102, 88, 0.18), transparent 62%);
+}
+
+.product-highlights article:hover,
+.product-highlights article:focus-within {
+  border-color: rgba(47, 102, 88, 0.34);
+  box-shadow:
+    0 24px 62px rgba(34, 29, 20, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.58) inset;
+  transform: translateY(-6px);
+}
+
+.product-highlights article:hover::before,
+.product-highlights article:focus-within::before {
+  opacity: 0.86;
+}
+
+.product-highlights article:hover::after,
+.product-highlights article:focus-within::after {
+  animation: cardShine 900ms ease;
+}
+
 .flow-list span,
 .principles-grid span {
   display: inline-flex;
   margin-bottom: 26px;
   color: var(--green);
   font-weight: 950;
+}
+
+.product-highlights span {
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 34px;
+  border: 1px solid rgba(47, 102, 88, 0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(244, 237, 222, 0.62));
+  box-shadow: 0 10px 26px rgba(47, 102, 88, 0.08);
+  font-size: 0.86rem;
+  letter-spacing: 0;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.product-highlights article:hover span,
+.product-highlights article:focus-within span {
+  border-color: rgba(210, 165, 58, 0.46);
+  background: var(--green);
+  color: var(--surface);
+  transform: scale(1.04);
+}
+
+.product-highlights h3 {
+  max-width: 620px;
+  margin-bottom: 12px;
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  line-height: 1.08;
+}
+
+.product-highlights p {
+  max-width: 660px;
+  font-size: 1.05rem;
 }
 
 .flow-list p,
@@ -1146,6 +1266,20 @@ p {
   }
 }
 
+@keyframes cardShine {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
 @media (max-width: 1040px) {
   .hero-section {
     min-height: 600px;
@@ -1400,6 +1534,24 @@ p {
     min-height: auto;
   }
 
+  .product-highlights article {
+    padding: 22px;
+  }
+
+  .product-highlights span {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 24px;
+  }
+
+  .product-highlights h3 {
+    font-size: 1.48rem;
+  }
+
+  .product-highlights p {
+    font-size: 1rem;
+  }
+
   .card-gallery {
     grid-template-columns: 1fr;
     grid-auto-rows: 320px;
@@ -1439,5 +1591,15 @@ p {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .product-highlights article:hover,
+  .product-highlights article:focus-within {
+    transform: none;
+  }
+
+  .product-highlights article:hover::after,
+  .product-highlights article:focus-within::after {
+    animation: none;
   }
 }
