@@ -10,6 +10,26 @@ Bu site için önerilen kurulum:
 6. Build output directory için `dist` kullan.
 7. Domain olarak `pusulamobil.com.tr` ve `www.pusulamobil.com.tr` bağlı kalmalı.
 
+## Workers Builds ile bağlandıysa
+
+Cloudflare ekranında `Deploy command` alanı görünüyorsa proje Pages değil, Workers Builds olarak bağlanmıştır.
+Bu durumda ayarlar:
+
+```text
+Build command: npm run build
+Deploy command: npx wrangler deploy
+Non-production branch deploy command: boş bırak
+Path: /
+```
+
+Asset klasörü komutta değil, `wrangler.toml` içinde tanımlıdır:
+
+```toml
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
+```
+
 ## Decap CMS Auth
 
 `/admin` panelinin GitHub'a kayıt yazabilmesi için GitHub OAuth kurulumu gerekir.

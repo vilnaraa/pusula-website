@@ -81,6 +81,14 @@ Build output directory:
 dist
 ```
 
+Cloudflare Workers Builds kullanılıyorsa deploy command sade kalmalı:
+
+```bash
+npx wrangler deploy
+```
+
+`wrangler.toml` içindeki `[assets]` ayarı Cloudflare'a sadece `dist/` klasörünü deploy etmesini söyler.
+
 ## GitHub güvenliği
 
 Bu klasör ayrı bir website reposu olarak GitHub'a yüklenmeli. Mobil uygulama kodu, API key, token,
