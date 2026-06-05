@@ -401,6 +401,15 @@ p {
   font-size: 1.2rem;
 }
 
+.faq-hero {
+  padding-bottom: 8px;
+}
+
+.faq-hero h1 {
+  max-width: 760px;
+  font-size: clamp(3rem, 6vw, 5rem);
+}
+
 .section-heading {
   display: grid;
   gap: 0;
@@ -476,6 +485,150 @@ p {
   max-width: 760px;
   color: var(--muted);
   font-size: 1.08rem;
+}
+
+.faq-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.faq-intro-card,
+.faq-item {
+  border: 1px solid rgba(222, 207, 183, 0.92);
+  background: rgba(255, 250, 241, 0.82);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-intro-card {
+  position: sticky;
+  top: 98px;
+  border-radius: 26px;
+  padding: 26px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(226, 182, 56, 0.2), transparent 36%),
+    linear-gradient(150deg, rgba(47, 102, 88, 0.12), transparent 58%),
+    rgba(255, 250, 241, 0.9);
+}
+
+.faq-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(222, 207, 183, 0.92);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.faq-intro-card h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.04;
+}
+
+.faq-intro-card p {
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: var(--green);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.text-link::after {
+  margin-left: 8px;
+  content: "→";
+  transition: transform 180ms ease;
+}
+
+.text-link:hover::after,
+.text-link:focus-visible::after {
+  transform: translateX(3px);
+}
+
+.faq-accordion {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  overflow: hidden;
+  border-radius: 22px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.faq-item:hover,
+.faq-item:focus-within {
+  border-color: rgba(47, 102, 88, 0.34);
+  box-shadow: 0 18px 42px rgba(29, 33, 42, 0.1);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 72px;
+  padding: 20px 22px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: clamp(1.12rem, 2vw, 1.36rem);
+  font-weight: 850;
+  line-height: 1.2;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  display: grid;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(222, 207, 183, 0.95);
+  border-radius: 999px;
+  background: rgba(244, 237, 222, 0.76);
+  color: var(--green);
+  content: "+";
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.faq-item[open] summary::after {
+  background: var(--green);
+  color: var(--cream);
+  content: "−";
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 22px 22px;
+}
+
+.faq-answer p {
+  max-width: 760px;
+  border-top: 1px solid rgba(222, 207, 183, 0.72);
+  margin: 0;
+  padding-top: 16px;
+  color: var(--muted);
+  font-size: 1.02rem;
 }
 
 .featured-card {
@@ -1027,6 +1180,14 @@ p {
   .card-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .faq-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-intro-card {
+    position: static;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1136,6 +1297,41 @@ p {
 
   .page-hero h1 {
     font-size: 3rem;
+  }
+
+  .faq-hero h1 {
+    font-size: 2.72rem;
+  }
+
+  .faq-shell {
+    gap: 14px;
+  }
+
+  .faq-intro-card {
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .faq-intro-card h2 {
+    font-size: 1.85rem;
+  }
+
+  .faq-item {
+    border-radius: 18px;
+  }
+
+  .faq-item summary {
+    min-height: 64px;
+    padding: 18px;
+    font-size: 1.08rem;
+  }
+
+  .faq-answer {
+    padding: 0 18px 18px;
+  }
+
+  .faq-answer p {
+    font-size: 0.98rem;
   }
 
   .trust-bar div {
