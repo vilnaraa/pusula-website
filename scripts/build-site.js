@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
+const dist = path.join(root, "dist");
 
 const readJson = (relativePath) => {
   const fullPath = path.join(root, relativePath);
@@ -28,6 +29,21 @@ const replaceOrFail = (source, pattern, replacement, label) => {
     throw new Error(`Could not update ${label}`);
   }
   return source.replace(pattern, replacement);
+};
+
+const copyRecursive = (source, destination) => {
+  const stat = fs.statSync(source);
+
+  if (stat.isDirectory()) {
+    fs.mkdirSync(destination, { recursive: true });
+    for (const entry of fs.readdirSync(source)) {
+      copyRecursive(path.join(source, entry), path.join(destination, entry));
+    }
+    return;
+  }
+
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.copyFileSync(source, destination);
 };
 
 const site = readJson("content/site.json");
@@ -106,4 +122,23 @@ if (fs.existsSync(sitemapPath) && seo.canonicalUrl) {
   fs.writeFileSync(sitemapPath, sitemap);
 }
 
-console.log("Pusula website content generated.");
+fs.rmSync(dist, { recursive: true, force: true });
+fs.mkdirSync(dist, { recursive: true });
+
+[
+  "index.html",
+  "styles.css",
+  "main.js",
+  "robots.txt",
+  "sitemap.xml",
+  "_headers",
+  "_redirects",
+  "admin",
+  "assets",
+  "content",
+  "data"
+].forEach((relativePath) => {
+  copyRecursive(path.join(root, relativePath), path.join(dist, relativePath));
+});
+
+console.log("Pusula website content generated in dist/.");

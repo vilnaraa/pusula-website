@@ -7,7 +7,7 @@ Bu site için önerilen kurulum:
 3. `admin/config.yml` içinde repo değeri `vilnaraa/pusula-website` olmalı.
 4. Cloudflare Pages içinde bu repo'yu bağla.
 5. Build command olarak `npm run build` gir.
-6. Build output directory için `/` kullan.
+6. Build output directory için `dist` kullan.
 7. Domain olarak `pusulamobil.com.tr` ve `www.pusulamobil.com.tr` bağlı kalmalı.
 
 ## Decap CMS Auth

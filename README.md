@@ -78,7 +78,7 @@ npm run build
 Build output directory:
 
 ```text
-/
+dist
 ```
 
 ## GitHub güvenliği
