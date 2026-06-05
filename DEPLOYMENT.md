@@ -2,9 +2,9 @@
 
 Bu site için önerilen kurulum:
 
-1. GitHub'da sadece website dosyalarını içeren ayrı bir repo aç.
+1. GitHub'da sadece website dosyalarını içeren ayrı repo hazır olmalı: `vilnaraa/pusula-website`.
 2. Bu klasörün içeriğini repo köküne yükle.
-3. `admin/config.yml` içindeki `repo: CHANGE_ME/pusula-website` değerini gerçek repo adıyla değiştir.
+3. `admin/config.yml` içinde repo değeri `vilnaraa/pusula-website` olmalı.
 4. Cloudflare Pages içinde bu repo'yu bağla.
 5. Build command olarak `npm run build` gir.
 6. Build output directory için `/` kullan.
