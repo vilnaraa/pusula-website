@@ -31,6 +31,36 @@ const replaceOrFail = (source, pattern, replacement, label) => {
   return source.replace(pattern, replacement);
 };
 
+const buildStructuredData = (seo) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${seo.canonicalUrl || "https://pusulamobil.com.tr/"}#website`,
+      url: seo.canonicalUrl || "https://pusulamobil.com.tr/",
+      name: seo.ogTitle || "Pusula",
+      inLanguage: "tr-TR",
+      description: seo.description || ""
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${seo.canonicalUrl || "https://pusulamobil.com.tr/"}#app`,
+      name: seo.ogTitle || "Pusula",
+      applicationCategory: "LifestyleApplication",
+      operatingSystem: "iOS",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "TRY"
+      },
+      description:
+        seo.ogDescription ||
+        "Günün ruh hali ve ihtiyacına göre kişisel Pusula kartı, günlük ritim ve destek araçları sunan mobil uygulama.",
+      url: seo.canonicalUrl || "https://pusulamobil.com.tr/"
+    }
+  ]
+});
+
 const copyRecursive = (source, destination) => {
   const stat = fs.statSync(source);
 
@@ -109,9 +139,37 @@ indexHtml = replaceOrFail(
 
 indexHtml = replaceOrFail(
   indexHtml,
+  /<meta\s+name="twitter:title"\s+content="[^"]*"\s*>/,
+  `<meta name="twitter:title" content="${escapeAttr(seo.ogTitle || seo.title || "Pusula")}">`,
+  "twitter title"
+);
+
+indexHtml = replaceOrFail(
+  indexHtml,
+  /<meta\s+name="twitter:description"\s+content="[^"]*"\s*>/,
+  `<meta name="twitter:description" content="${escapeAttr(seo.ogDescription || seo.description || "")}">`,
+  "twitter description"
+);
+
+indexHtml = replaceOrFail(
+  indexHtml,
+  /<meta\s+name="twitter:image"\s+content="[^"]*"\s*>/,
+  `<meta name="twitter:image" content="${escapeAttr(seo.ogImage || "")}">`,
+  "twitter image"
+);
+
+indexHtml = replaceOrFail(
+  indexHtml,
   /<link\s+rel="canonical"\s+href="[^"]*"\s*>/,
   `<link rel="canonical" href="${escapeAttr(seo.canonicalUrl || "https://pusulamobil.com.tr/")}">`,
   "canonical"
+);
+
+indexHtml = replaceOrFail(
+  indexHtml,
+  /<script id="structured-data" type="application\/ld\+json">[\s\S]*?<\/script>/,
+  `<script id="structured-data" type="application/ld+json">\n${JSON.stringify(buildStructuredData(seo), null, 2)}\n    </script>`,
+  "structured data"
 );
 
 fs.writeFileSync(indexPath, indexHtml);
