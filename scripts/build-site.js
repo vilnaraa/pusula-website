@@ -79,6 +79,15 @@ const copyRecursive = (source, destination) => {
 const site = readJson("content/site.json");
 const gallery = readJson("content/gallery.json");
 const changelog = readJson("data/changelog.json");
+const sitemapPages = [
+  { path: "", priority: "1.0", changefreq: "weekly" },
+  { path: "app-store/", priority: "0.8", changefreq: "weekly" },
+  { path: "changelog/", priority: "0.8", changefreq: "weekly" },
+  { path: "faq/", priority: "0.7", changefreq: "monthly" },
+  { path: "privacy/", priority: "0.5", changefreq: "monthly" },
+  { path: "kvkk/", priority: "0.5", changefreq: "monthly" },
+  { path: "terms/", priority: "0.5", changefreq: "monthly" }
+];
 
 writeWindowData("data/site.js", "PUSULA_SITE", site);
 writeWindowData("data/gallery.js", "PUSULA_GALLERY", gallery);
@@ -176,7 +185,15 @@ fs.writeFileSync(indexPath, indexHtml);
 
 const sitemapPath = path.join(root, "sitemap.xml");
 if (fs.existsSync(sitemapPath) && seo.canonicalUrl) {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${escapeAttr(seo.canonicalUrl)}</loc>\n    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n`;
+  const baseUrl = seo.canonicalUrl || "https://pusulamobil.com.tr/";
+  const today = new Date().toISOString().slice(0, 10);
+  const sitemapUrls = sitemapPages
+    .map((page) => {
+      const loc = new URL(page.path, baseUrl).toString();
+      return `  <url>\n    <loc>${escapeAttr(loc)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>`;
+    })
+    .join("\n");
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls}\n</urlset>\n`;
   fs.writeFileSync(sitemapPath, sitemap);
 }
 
@@ -191,9 +208,15 @@ fs.mkdirSync(dist, { recursive: true });
   "sitemap.xml",
   "_headers",
   "admin",
+  "app-store",
   "assets",
+  "changelog",
   "content",
-  "data"
+  "data",
+  "faq",
+  "kvkk",
+  "privacy",
+  "terms"
 ].forEach((relativePath) => {
   copyRecursive(path.join(root, relativePath), path.join(dist, relativePath));
 });

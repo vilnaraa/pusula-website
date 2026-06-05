@@ -1,6 +1,27 @@
 window.PUSULA_CHANGELOG = {
-  "updatedAt": "2026-06-04",
+  "updatedAt": "2026-06-05",
   "entries": [
+    {
+      "version": "1.1",
+      "date": "2026-06-05",
+      "title": "Website SEO ve içerik sayfaları genişletildi",
+      "type": "Yeni",
+      "summary": "Pusula web sitesi tek sayfa tanıtımdan daha zengin, indekslenebilir ürün ve yasal bilgi yapısına genişletildi.",
+      "added": [
+        "Yakında App Store'da alanı",
+        "App Store hazırlık sayfası",
+        "FAQ sayfası",
+        "Gizlilik, KVKK ve kullanım koşulları sayfaları",
+        "Ayrı public changelog sayfası",
+        "Çok URL'li sitemap yapısı"
+      ],
+      "changed": [
+        "Ana hero daha kompakt hale getirildi",
+        "SEO meta ve structured data kapsamı genişletildi",
+        "Footer navigasyonu yeni sayfalara göre güncellendi"
+      ],
+      "removed": []
+    },
     {
       "version": "1.0",
       "date": "2026-06-04",
