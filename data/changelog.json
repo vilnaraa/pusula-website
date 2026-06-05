@@ -1,0 +1,166 @@
+{
+  "updatedAt": "2026-06-04",
+  "entries": [
+    {
+      "version": "1.0",
+      "date": "2026-06-04",
+      "title": "Release foundation tamamlandı",
+      "type": "Mimari",
+      "summary": "TestFlight ve App Store hazırlığı için temel paketleme, launch screen, metadata ve release checklist düzeni hazırlandı.",
+      "added": [
+        "Launch screen için LaunchBackground ve LaunchLogo assetleri",
+        "App Store metadata taslağı",
+        "Release checklist dosyası",
+        "Provider API build setting alanları"
+      ],
+      "changed": [
+        "Release ve generic iOS device build doğrulaması yapıldı",
+        "Google OAuth ayarlarının Release build içinde çözümlendiği kontrol edildi",
+        "Provider anahtarlarının Release configuration içinde ayrıca doldurulması gerektiği dokümante edildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.9",
+      "date": "2026-06-03",
+      "title": "OAuth, hesap alanı ve içerik motoru polish",
+      "type": "Geliştirme",
+      "summary": "Opsiyonel Apple/Google giriş akışı güçlendirildi; Destek ekranına hesap yönetimi ve senkronizasyon kapsamı eklendi.",
+      "added": [
+        "Destek ekranında Hesabım kartı",
+        "Hesap bağlantısını kaldırma onayı",
+        "Senkronizasyon kapsamı açıklaması",
+        "20 yeni özgün Pusula kartı"
+      ],
+      "changed": [
+        "Kart motoru destek tarzı ve gün temposu tercihlerine göre metinleri daha belirgin kişiselleştiriyor",
+        "Planım etkinlik ve spor fallback mesajları hata hissi vermeyecek şekilde güncellendi",
+        "Spor yayın/kısayol sağlayıcıları için yönlendirme mantığı iyileştirildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.8",
+      "date": "2026-06-02",
+      "title": "Pusula kart motoru genişletildi",
+      "type": "Geliştirme",
+      "summary": "Kart motoru artık ruh hali, ton ve ihtiyaç alanına göre daha zengin içerik üretiyor; yakın tekrarlar cihazda tutulan geçmiş ile engelleniyor.",
+      "added": [
+        "25 özgün Pusula görselinden oluşan kart havuzu",
+        "135 kartlık içerik kütüphanesi",
+        "60 ruh hali, ton ve ihtiyaç kombinasyonu için otomatik coverage kontrolü",
+        "Yakın geçmiş kart hafızası"
+      ],
+      "changed": [
+        "Astro ton doğum tarihi profilinden çıkan burç bilgisine göre kişiselleştirildi",
+        "Kart görselleri ana kart ve popup alanlarında daha doğru kırpılacak şekilde ayarlandı"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.7",
+      "date": "2026-05-31",
+      "title": "Planım alanı eklendi",
+      "type": "Yeni",
+      "summary": "Kullanıcıların günlerini kahve, yemek, etkinlik ve ev modu seçenekleriyle planlaması için yeni alt menü hazırlandı.",
+      "added": [
+        "Planım alt menüsü",
+        "Yakın mekan önerileri için konum tabanlı akış",
+        "Dizi ve film için TMDB tabanlı yeni içerik listeleri",
+        "Doğum günü özel plan alanı"
+      ],
+      "changed": [
+        "Alt menü dört ana alana genişletildi",
+        "Platform butonları izleme servislerine doğrudan yönlenecek şekilde ele alındı"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.6",
+      "date": "2026-05-28",
+      "title": "Bugünüm ve günlük ritim",
+      "type": "Geliştirme",
+      "summary": "Kullanıcıların her gün kısa bir check-in yapması ve günlük ritmini takip etmesi için temel akış kuruldu.",
+      "added": [
+        "Bugünüm ruh hali seçimi",
+        "Günlük ritim ve seri takibi",
+        "Ruh hali seçimine göre kart yenileme",
+        "Bildirim saatini cihazda saklama"
+      ],
+      "changed": [
+        "Uzun journal yaklaşımı yerine tek dokunuşlu günlük check-in akışına geçildi"
+      ],
+      "removed": [
+        "Uzun günlük yazma beklentisi"
+      ]
+    },
+    {
+      "version": "0.5",
+      "date": "2026-05-25",
+      "title": "Güvenli sınırlar ve destek alanı",
+      "type": "Güvenlik",
+      "summary": "Uygulamanın terapi iddiası taşımaması ve kriz anlarında resmi kaynaklara yönlendirmesi için destek akışları netleştirildi.",
+      "added": [
+        "Kriz destek kaynakları",
+        "112 araması öncesi onay popup'i",
+        "3 dakikalık sakinleşme alanı",
+        "Yakındaki acil servis yönlendirmesi"
+      ],
+      "changed": [
+        "Ruh hali içerikleri klinik destek değil, refleksiyon diliyle sunuluyor"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.4",
+      "date": "2026-05-23",
+      "title": "Local-first ürün omurgası",
+      "type": "Mimari",
+      "summary": "Uygulama hesap zorunluluğu olmadan çalışacak şekilde local-first yapı üzerine kuruldu.",
+      "added": [
+        "Onboarding cevaplarının cihazda saklanması",
+        "Apple ve Google girişinin sadece opsiyonel senkronizasyon fikrine ayrılması",
+        "Doğum tarihinden burç ve yaş aralığı hesaplama"
+      ],
+      "changed": [
+        "Zorunlu giriş akışı kaldırıldı"
+      ],
+      "removed": [
+        "Gereksiz veri toplama yaklaşımı"
+      ]
+    },
+    {
+      "version": "0.3",
+      "date": "2026-05-21",
+      "title": "Motion ve görsel sistem ilk pass",
+      "type": "Tasarım",
+      "summary": "Pusula metaforu için özgün görsel dil, kart davranışları ve giriş ekranı hareketleri çalışıldı.",
+      "added": [
+        "Pusula hero görseli",
+        "Kart detay popup yapısı",
+        "Custom tab shell",
+        "Pusula kartı metaforuna bağlı görsel setler"
+      ],
+      "changed": [
+        "Standart tab geçişleri custom motion shell ile değiştirildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "0.2",
+      "date": "2026-05-19",
+      "title": "Onboarding akışı sadeleştirildi",
+      "type": "Geliştirme",
+      "summary": "Uygulamanın ilk açılışında kullanıcıya hesap zorunluluğu olmayan, kısa ve anlaşılır bir giriş akışı sunuldu.",
+      "added": [
+        "Ücretsiz ve giriş zorunlu değil mesajı",
+        "Cihazda kalır vurgusu",
+        "Kişiyi tanıma soruları için temel akış"
+      ],
+      "changed": [
+        "Onboarding ekranları farklı iPhone boyutlarına daha uyumlu hale getirildi"
+      ],
+      "removed": []
+    }
+  ]
+}

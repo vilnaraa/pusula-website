@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pusula, günün tonuna göre kişisel yön veren local-first mobil uygulama.">
+    <meta name="theme-color" content="#101622">
+    <meta property="og:title" content="Pusula">
+    <meta property="og:description" content="Günün tonuna göre küçük, kişisel bir yön.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pusulamobil.com.tr/">
+    <meta property="og:image" content="https://pusulamobil.com.tr/assets/hero-pusula.png">
+    <link rel="canonical" href="https://pusulamobil.com.tr/">
+    <title>Pusula | Günün tonuna göre kişisel yön</title>
+    <link rel="icon" href="assets/app-icon.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Ana navigasyon">
+        <a class="brand" href="#top" aria-label="Pusula ana sayfa">
+          <img src="assets/app-icon.png" width="40" height="40" alt="">
+          <span>Pusula</span>
+        </a>
+        <div class="nav-links">
+          <a href="#product">Ürün</a>
+          <a href="#cards">Kartlar</a>
+          <a href="#changelog">Changelog</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero-section">
+        <img class="hero-image" src="assets/hero-pusula.png" width="1024" height="1024" alt="Pusula konsept görseli">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow" data-site="hero-eyebrow">Local-first mobil rehber</p>
+          <h1 data-site="hero-title">Pusula</h1>
+          <p class="hero-tagline" data-site="hero-tagline">Günün tonuna göre küçük, kişisel bir yön.</p>
+          <p class="hero-lead" data-site="hero-lead">
+            Pusula; ruh halini, günün ritmini ve ihtiyacını kısa seçimlerle anlar.
+            Sana stoik, astrolojik, sosyal veya kariyer odaklı uygulanabilir bir kart verir.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#changelog" data-site="hero-primary-cta">Changelog'a bak</a>
+            <a class="button secondary" href="#product" data-site="hero-secondary-cta">Ürün akışını gör</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-bar" aria-label="Pusula ilkeleri">
+        <div>
+          <span>Ücret</span>
+          <strong>Tamamen ücretsiz</strong>
+        </div>
+        <div>
+          <span>Giriş</span>
+          <strong>Zorunlu değil</strong>
+        </div>
+        <div>
+          <span>Veri</span>
+          <strong>Cihazda kalır</strong>
+        </div>
+        <div>
+          <span>Durum</span>
+          <strong>MVP geliştiriliyor</strong>
+        </div>
+      </section>
+
+      <section id="product" class="section product-section">
+        <div class="section-heading">
+          <p class="eyebrow dark" data-site="product-eyebrow">Ürün omurgası</p>
+          <h2 data-site="product-title">Kişisel rehberlik hissini sade, güvenli ve tekrar edilebilir bir mobil deneyime çeviriyoruz.</h2>
+          <p data-site="product-description">
+            Pusula; günlük ruh hali sinyalini, kişisel kart üretimini, gün planını ve destek araçlarını tek bir sakin ürün ritminde toplar.
+            Amaç kullanıcıyı analiz etmek değil, o gün için uygulanabilir, kişisel ve yormayan bir yön vermektir.
+          </p>
+        </div>
+
+        <div class="product-gallery-shell">
+          <article class="gallery-copy" aria-live="polite">
+            <span class="live-badge" data-site="product-badge">MVP v1.0</span>
+            <h3 id="gallery-title">İlk temas: güven veren bir başlangıç</h3>
+            <p id="gallery-description">
+              Pusula, kullanıcıyı ilk ekranda kayıt baskısıyla karşılamaz. Ücretsiz olduğunu, hesap açmanın zorunlu olmadığını ve kişisel cevapların cihazda kaldığını açıkça anlatır.
+            </p>
+            <ul id="gallery-points">
+              <li>Apple ve Google girişi yalnızca kullanıcı isterse devreye girer.</li>
+              <li>Kişisel cevaplar ürünün varsayılan çalışma biçimi olarak cihazda kalır.</li>
+              <li>Onboarding, hesap açtırmaya değil kullanıcının gününü anlamaya odaklanır.</li>
+            </ul>
+          </article>
+
+          <article class="product-slider" aria-label="Pusula ürün ekranları">
+            <div class="slider-frame">
+              <button class="slider-arrow" type="button" data-slider-prev aria-label="Önceki ekran">
+                <span aria-hidden="true">‹</span>
+              </button>
+              <div class="phone-shell gallery-phone">
+                <img
+                  id="gallery-image"
+                  src="assets/screens/pusula-current-01.png"
+                  width="1320"
+                  height="2868"
+                  alt="Pusula onboarding ekranı"
+                >
+              </div>
+              <button class="slider-arrow" type="button" data-slider-next aria-label="Sonraki ekran">
+                <span aria-hidden="true">›</span>
+              </button>
+            </div>
+
+            <div class="slider-footer">
+              <span id="gallery-count">01 / 06</span>
+              <div class="slider-dots" id="gallery-dots" aria-label="Galeri ekran seçimi"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="flow-list product-highlights" aria-label="Pusula deneyim adımları">
+          <article>
+            <span>01</span>
+            <h3>Bugünün tonunu seç.</h3>
+            <p>Uzun günlük yazmadan, tek dokunuşla mod ve ihtiyaç sinyali verilir.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Pusula kartın yenilenir.</h3>
+            <p>Kart motoru ruh hali, ton, tercih ve yakın geçmişe göre tekrarları azaltır.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Planım günü somutlaştırır.</h3>
+            <p>Kahve, restoran, etkinlik, ev modu ve spor akışları tek bölümde toplanır.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Destek sınırı net kalır.</h3>
+            <p>Pusula terapi iddiası taşımaz; kriz halinde resmi kaynaklara yönlendirir.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cards" class="section cards-section">
+        <div class="section-heading compact">
+          <p class="eyebrow dark" data-site="cards-eyebrow">Görsel dil</p>
+          <h2 data-site="cards-title">Kartlar sakin, kişisel ve bize ait bir görsel evrenden geliyor.</h2>
+        </div>
+
+        <div class="card-gallery">
+          <article class="visual-card featured">
+            <img src="assets/card-calm.png" width="640" height="640" alt="Sakin Pusula kart görseli" loading="lazy">
+            <div>
+              <span>Stoik lens</span>
+              <h3>Ağır geleni küçült.</h3>
+            </div>
+          </article>
+          <article class="visual-card">
+            <img src="assets/card-career.png" width="640" height="640" alt="Kariyer Pusula kart görseli" loading="lazy">
+            <div>
+              <span>Kariyer</span>
+              <h3>Yönünü tek cümleye indir.</h3>
+            </div>
+          </article>
+          <article class="visual-card">
+            <img src="assets/card-social.png" width="640" height="640" alt="Sosyalleşme Pusula kart görseli" loading="lazy">
+            <div>
+              <span>Sosyalleşme</span>
+              <h3>Küçük bir temas yeter.</h3>
+            </div>
+          </article>
+          <article class="visual-card">
+            <img src="assets/card-plan.png" width="640" height="640" alt="Planım Pusula kart görseli" loading="lazy">
+            <div>
+              <span>Planım</span>
+              <h3>Bugüne iyi gelecek bir rota.</h3>
+            </div>
+          </article>
+          <article class="visual-card">
+            <img src="assets/card-support.png" width="640" height="640" alt="Destek Pusula kart görseli" loading="lazy">
+            <div>
+              <span>Destek</span>
+              <h3>Önce güvenli alan.</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section principles-section">
+        <div class="principles-grid">
+          <article>
+            <span>01</span>
+            <h3>Local-first</h3>
+            <p>Onboarding cevapları ve günlük seçimler cihazda tutulur. Giriş sadece ileride senkronizasyon için opsiyonel olur.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Klinik iddia yok</h3>
+            <p>Pusula terapi yerine refleksiyon ve küçük adım dili kullanır. Kriz durumlarında resmi kaynaklara yönlendirir.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Özgün içerik</h3>
+            <p>Görseller bize ait üretilir. Stoik ve astrolojik metinler kopya çeviri yerine dikkatli, özgün yorum olarak yazılır.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="changelog" class="section changelog-section">
+        <div class="section-heading changelog-heading">
+          <div>
+            <p class="eyebrow dark" data-site="changelog-eyebrow">Public changelog</p>
+            <h2 data-site="changelog-title">Uygulamada neler değişti?</h2>
+            <p data-site="changelog-description">
+              Eklenen, değişen ve kaldırılan parçaları burada ürün günlüğü gibi tutuyoruz.
+              Domain yayına alındığında kullanıcılar bu alanı görebilecek.
+            </p>
+          </div>
+          <aside class="release-summary" aria-live="polite">
+            <span>Son güncelleme</span>
+            <strong id="last-updated">-</strong>
+          </aside>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Changelog filtreleri">
+          <button class="filter-button active" type="button" data-filter="Tumu">Tümü</button>
+          <button class="filter-button" type="button" data-filter="Yeni">Yeni</button>
+          <button class="filter-button" type="button" data-filter="Geliştirme">Geliştirme</button>
+          <button class="filter-button" type="button" data-filter="Tasarım">Tasarım</button>
+          <button class="filter-button" type="button" data-filter="Güvenlik">Güvenlik</button>
+          <button class="filter-button" type="button" data-filter="Mimari">Mimari</button>
+        </div>
+
+        <div id="changelog-list" class="timeline" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong data-site="footer-title">Pusula</strong>
+        <span data-site="footer-description">Günün tonuna göre küçük, kişisel bir yön.</span>
+      </div>
+      <a href="#top" data-site="footer-back-to-top">Yukarı dön</a>
+    </footer>
+
+    <script src="data/site.js"></script>
+    <script src="data/gallery.js"></script>
+    <script src="data/changelog.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

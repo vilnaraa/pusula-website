@@ -1,0 +1,9 @@
+{
+  "name": "pusula-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-site.js",
+    "check": "node --check main.js && node --check data/site.js && node --check data/gallery.js && node --check data/changelog.js && node --check scripts/build-site.js"
+  }
+}

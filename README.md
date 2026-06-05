@@ -1,0 +1,91 @@
+# Pusula Website
+
+Bu klasör Pusula için statik tanıtım ve public changelog sitesidir.
+
+## Dosyalar
+
+- `index.html`: Sayfa yapısı.
+- `styles.css`: Responsive tasarım ve motion ayarları.
+- `main.js`: Site içeriği, ürün galerisi ve changelog render logic.
+- `content/site.json`: Yönetilebilir SEO, hero, ürün, ilke ve footer metinleri.
+- `content/gallery.json`: Yönetilebilir ürün galerisi slaytları.
+- `data/changelog.json`: Yönetilebilir changelog kayıtları.
+- `data/site.js`, `data/gallery.js`, `data/changelog.js`: Build script tarafından üretilen tarayıcı data dosyaları.
+- `admin/`: Decap CMS yönetim paneli.
+- `assets/`: Uygulama için üretilen bize ait görseller.
+- `assets/uploads/`: CMS üzerinden yüklenen görseller.
+- `scripts/build-site.js`: JSON içerikten JS data dosyaları ve SEO meta etiketleri üretir.
+- `robots.txt`: Arama motoru tarama yönergesi.
+- `sitemap.xml`: `pusulamobil.com.tr` için temel sitemap.
+- `_headers`: Cloudflare Pages güvenlik ve cache header'ları.
+- `_redirects`: `www` adresini ana domaine yönlendirme kuralı.
+
+## Yönetim paneli
+
+WordPress kullanılmıyor. Site, Decap CMS ile yönetilecek şekilde hazırlandı.
+
+Canlı ortamda yönetim paneli:
+
+```text
+https://pusulamobil.com.tr/admin/
+```
+
+Panelden düzenlenebilecek alanlar:
+
+- SEO title, description, canonical URL ve Open Graph bilgileri
+- Hero metinleri ve CTA butonları
+- Ürün galerisi başlıkları, açıklamaları, maddeleri ve görselleri
+- Ürün adımları, ilkeler ve footer metinleri
+- Changelog kayıtları
+
+## Changelog nasıl güncellenir?
+
+Tercih edilen yöntem: `/admin` panelinden `Changelog` bölümünü düzenlemek.
+
+Manuel yöntem: `data/changelog.json` içindeki `entries` listesine yeni kayıt ekle.
+En yeni kaydı listenin en üstüne koy ve `updatedAt` tarihini güncelle.
+
+Desteklenen `type` değerleri:
+
+- `Yeni`
+- `Geliştirme`
+- `Tasarım`
+- `Güvenlik`
+- `Mimari`
+
+## Build
+
+İçerik JSON dosyaları değiştikten sonra:
+
+```bash
+node scripts/build-site.js
+```
+
+Bu komut:
+
+- `data/site.js` üretir
+- `data/gallery.js` üretir
+- `data/changelog.js` üretir
+- `index.html` içindeki SEO meta etiketlerini günceller
+- `sitemap.xml` tarihini günceller
+
+Cloudflare Pages için build command:
+
+```bash
+npm run build
+```
+
+Build output directory:
+
+```text
+/
+```
+
+## GitHub güvenliği
+
+Bu klasör ayrı bir website reposu olarak GitHub'a yüklenmeli. Mobil uygulama kodu, API key, token,
+`.xcconfig` dosyaları veya kullanıcı verisi bu repoya eklenmemeli.
+
+Public repo kullanılırsa site içeriği herkes tarafından görülebilir. Bu normaldir; web sitesinde zaten public
+olması gereken metinler ve görseller tutulur. Hassas veri gerekiyorsa repo private kalmalı veya secret olarak
+Cloudflare/GitHub environment alanlarına girilmelidir.
