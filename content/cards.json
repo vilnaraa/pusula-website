@@ -1,0 +1,226 @@
+{
+  "cards": [
+    {
+      "slug": "stoik-lens",
+      "navLabel": "Stoik lens",
+      "tag": "Stoik lens",
+      "title": "Stoik lens",
+      "headline": "Ağır geleni küçült.",
+      "subtitle": "Kontrol edebildiğin alanı ayırır, gerisini büyütmeden taşımanı sağlar.",
+      "description": "Stoik lens kartı, kullanıcının zor bir günü tek bir sakin ayrımla okumasına yardım eder: bugün ne benim elimde, ne değil? Amaç büyük bir hayat dersi vermek değil; o an uygulanabilir, kısa ve gerçekçi bir düşünce alanı açmaktır.",
+      "image": "/assets/card-calm.png",
+      "alt": "Stoik lens Pusula kart görseli",
+      "metaDescription": "Pusula Stoik lens kartı, ağır gelen günlerde kontrol edilebilir küçük adımları ayıran kişisel refleksiyon kartıdır.",
+      "whatTitle": "Stoik lens nedir?",
+      "whatText": "Stoik felsefeden ilham alan ama modern çeviri kopyalamayan özgün bir refleksiyon katmanıdır. Kullanıcıya kesin öğütler vermek yerine, duyguyu bastırmadan karar alanını netleştiren kısa cümleler üretir.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Zor günlerde problem çoğu zaman yalnızca olayın kendisi değil, olayın zihinde kapladığı yerdir. Stoik lens bu alanı küçültür; kullanıcının bugünkü gerçek etki alanına dönmesini sağlar.",
+      "benefits": [
+        "Kontrol edilebilen ve edilemeyen alanı ayırır.",
+        "Duyguyu yok saymadan kararı sadeleştirir.",
+        "Büyük cümleler yerine uygulanabilir küçük adım verir.",
+        "Kart geçmişi sayesinde aynı tonun yakın tekrarını azaltır."
+      ],
+      "useCases": [
+        "Gün ağır, dağınık veya haksız hissettirdiğinde.",
+        "Kullanıcı bir kararı fazla büyüttüğünü fark ettiğinde.",
+        "Kısa ama ciddi bir iç denge cümlesi gerektiğinde."
+      ],
+      "signals": [
+        "Ruh hali: kötü, baskı altında, kararsız.",
+        "Tempo: dengeli veya derin.",
+        "Destek tarzı: net yön ver veya soru sordur."
+      ],
+      "productNotes": [
+        "Kart motoru ruh hali, gün temposu ve son gösterilen kartları birlikte değerlendirir.",
+        "Stoik lens, klinik destek iddiası taşımaz; refleksiyon ve küçük adım diliyle kalır.",
+        "Uygulama içinde kart görseli, başlık, açıklama ve küçük adım birlikte yenilenir."
+      ]
+    },
+    {
+      "slug": "astro-ton",
+      "navLabel": "Astro ton",
+      "tag": "Astro refleksiyon",
+      "title": "Astro ton",
+      "headline": "Ritmini yumuşat.",
+      "subtitle": "Burç bilgisini kesin hüküm gibi değil, günün dilini yumuşatan eğlenceli bir refleksiyon tonu olarak kullanır.",
+      "description": "Astro ton kartı, doğum tarihinden çıkan burç bilgisini kişisel farkındalık diline çevirir. Kullanıcıya kehanet veya kesin yönlendirme sunmaz; o günün enerjisini daha hafif, oyunlu ve düşük baskılı bir cümleyle okumasına yardım eder.",
+      "image": "/assets/card-night.png",
+      "alt": "Astro ton Pusula kart görseli",
+      "metaDescription": "Pusula Astro ton kartı, burç bilgisini eğlenceli ve güvenli bir refleksiyon diline çeviren kişisel karttır.",
+      "whatTitle": "Astro ton nedir?",
+      "whatText": "Astroloji ilgisini kesin öneri veya öngörüye dönüştürmeden kullanan bir atmosfer katmanıdır. Kartlar, kullanıcının burcunu ve günün seçili tonunu dikkate alarak daha sezgisel, yumuşak ve kişisel bir ifade üretir.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Bazı kullanıcılar kendini kuru tavsiyelerle değil, sembolik ve sezgisel bir dille daha rahat açar. Astro ton bu ihtiyacı güvenli sınır içinde karşılar: eğlenceli, kişisel, ama hüküm verici değil.",
+      "benefits": [
+        "Günün dilini daha hafif ve sezgisel hale getirir.",
+        "Burç bilgisini kişisel farkındalık için kullanır.",
+        "Kesin gelecek iddiası yerine eğlenceli refleksiyon sunar.",
+        "Astro modu kapalıysa kart motorundan bilinçli şekilde çıkar."
+      ],
+      "useCases": [
+        "Kullanıcı karar vermek yerine ritmini dinlemek istediğinde.",
+        "Günün enerjisini daha oyunlu bir dille okumak istediğinde.",
+        "Stoik ton fazla ciddi hissettirdiğinde."
+      ],
+      "signals": [
+        "Ruh hali: kararsız, sakin, normal.",
+        "Tempo: çok hafif veya dengeli.",
+        "Profil: doğum tarihi ve burç bilgisi."
+      ],
+      "productNotes": [
+        "Astro ton, uygulama ayarından kapatılabilir.",
+        "Kapalı olduğunda astro kartları ve astro dili kart motorundan çıkar.",
+        "Metinler kopya fal değil, Pusula için yazılmış özgün refleksiyon cümleleridir."
+      ]
+    },
+    {
+      "slug": "kariyer",
+      "navLabel": "Kariyer",
+      "tag": "Kariyer",
+      "title": "Kariyer",
+      "headline": "Yönünü tek cümleye indir.",
+      "subtitle": "İş, okul veya yön arayışında büyük resmi tek küçük kanıta, tek görüşmeye veya tek net adıma indirir.",
+      "description": "Kariyer kartı, kullanıcının belirsiz iş ve okul düşüncelerini uygulanabilir bir sonraki adıma çevirir. Motivasyon sloganı vermek yerine, bugünden yapılabilecek küçük bir hareket, konuşma veya kanıt önerir.",
+      "image": "/assets/card-career.png",
+      "alt": "Kariyer Pusula kart görseli",
+      "metaDescription": "Pusula Kariyer kartı, iş ve okul belirsizliğini küçük, uygulanabilir adımlara indiren kişisel karttır.",
+      "whatTitle": "Kariyer kartı nedir?",
+      "whatText": "Kariyer kartı, kullanıcının meslek, okul, iş arama veya yön değiştirme gibi alanlarda yaşadığı belirsizliği daha küçük parçalara bölen bir karar yardımcısıdır. Tek hedefi büyük resmi çözmek değil; bugünkü net hareketi görünür hale getirmektir.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Kariyer kaygısı çoğu zaman büyük ve soyut olduğu için hareketsizlik üretir. Kart, kullanıcının kontrol edebileceği bir kanıt toplama davranışına veya küçük bir görüşmeye dönmesini sağlar.",
+      "benefits": [
+        "Bulanık hedefi ölçülebilir küçük adıma indirir.",
+        "Motivasyon yerine kanıt ve hareket odağı verir.",
+        "İş, okul ve ara dönem profilini farklı tonlarda yorumlar.",
+        "Kullanıcının kendi ritmine uygun destek tarzıyla konuşur."
+      ],
+      "useCases": [
+        "Ne yapacağını bilmediği ama bir yerden başlamak istediği günlerde.",
+        "CV, görüşme, okul veya yön değişimi düşüncesi ağır geldiğinde.",
+        "Küçük ama gerçekçi bir üretim adımı gerektiğinde."
+      ],
+      "signals": [
+        "İhtiyaç alanı: kariyer yönü veya odak.",
+        "Yaşam durumu: öğrenci, çalışıyor, ara dönem, keşif.",
+        "Destek tarzı: net yön ver veya cesaretlendir."
+      ],
+      "productNotes": [
+        "Kart motoru kariyer seçimini gördüğünde iş/okul dili yüksek kartlara öncelik verir.",
+        "Kart görselleri yol, pusula, taş ve ışık metaforlarıyla yön arayışını anlatır.",
+        "Planım alanı, günün somut aktivitesine geçiş için ikinci katman sağlar."
+      ]
+    },
+    {
+      "slug": "sosyallesme",
+      "navLabel": "Sosyalleşme",
+      "tag": "Sosyalleşme",
+      "title": "Sosyalleşme",
+      "headline": "Küçük bir temas yeter.",
+      "subtitle": "Sosyal baskıyı büyütmeden, bir mesaj, kısa buluşma veya nazik temas önerir.",
+      "description": "Sosyalleşme kartı, kullanıcının insanlarla bağ kurma ihtiyacını küçük ve düşük baskılı bir adıma dönüştürür. Amaç sosyal performans yaratmak değil; yalnızlık, çekingenlik veya kopukluk hissini yumuşatacak güvenli bir temas fikri vermektir.",
+      "image": "/assets/card-social.png",
+      "alt": "Sosyalleşme Pusula kart görseli",
+      "metaDescription": "Pusula Sosyalleşme kartı, sosyal baskıyı büyütmeden küçük temas önerileri veren kişisel karttır.",
+      "whatTitle": "Sosyalleşme kartı nedir?",
+      "whatText": "Kullanıcının sosyal temas ihtiyacını büyük planlara çevirmeden, kısa ve uygulanabilir bir bağlantı önerisine indirir. Bir mesaj atmak, bir kahve planlamak veya güvenilen bir kişiye haber vermek gibi küçük temaslar önceliklidir.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Sosyal ihtiyaçlar çoğu zaman ya ertelenir ya da fazla büyük planlara dönüştürülür. Bu kart, bağlantıyı daha erişilebilir hale getirir ve kullanıcının kendi temposunu korur.",
+      "benefits": [
+        "Sosyal baskıyı düşük tutar.",
+        "Kısa mesaj, küçük buluşma ve güvenli temas önerir.",
+        "Yalnızlık hissini dramatize etmeden ele alır.",
+        "Planım ekranındaki kahve ve etkinlik akışlarıyla birleşebilir."
+      ],
+      "useCases": [
+        "Kullanıcı sosyalleşmek istiyor ama nereden başlayacağını bilmiyorsa.",
+        "Arkadaşlık, iş çevresi veya aile temasında küçük bir adım gerekiyorsa.",
+        "Evde kalma isteğiyle bağlantı ihtiyacı arasında kalındığında."
+      ],
+      "signals": [
+        "İhtiyaç alanı: duygusal denge veya sosyalleşme.",
+        "Ruh hali: canım sıkkın, normal, yorgun.",
+        "Tempo: çok hafif veya dengeli."
+      ],
+      "productNotes": [
+        "Kart motoru sosyal önerilerde baskısız ve nazik dili korur.",
+        "Öneriler kullanıcıyı tek başına büyük etkinliklere zorlamaz.",
+        "Planım sayfası sosyal temas için dış dünya seçenekleri sunabilir."
+      ]
+    },
+    {
+      "slug": "planim",
+      "navLabel": "Planım",
+      "tag": "Planım",
+      "title": "Planım",
+      "headline": "Bugüne iyi gelecek bir rota.",
+      "subtitle": "Ruh halinden gerçek bir güne geçer: kahve, yemek, etkinlik veya ev modu.",
+      "description": "Planım kartı, Pusula’nın iç refleksiyonunu günlük hayata bağlayan köprüdür. Kullanıcı bugün kendisine neyin iyi gelebileceğini seçer; uygulama bunu mekan, etkinlik veya evde izleme planı gibi daha somut seçeneklere çevirir.",
+      "image": "/assets/card-plan.png",
+      "alt": "Planım Pusula kart görseli",
+      "metaDescription": "Pusula Planım kartı, ruh halini kahve, yemek, etkinlik veya ev modu gibi günlük planlara dönüştüren karttır.",
+      "whatTitle": "Planım kartı nedir?",
+      "whatText": "Planım kartı, kullanıcının bugün neye ihtiyacı olduğunu gerçek bir küçük plana dönüştürür. Kahve, restoran, etkinlik ve ev modu gibi seçenekler aracılığıyla içsel sinyali dış dünyada yapılabilir bir harekete bağlar.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "İyi hissetmek bazen yalnızca doğru cümleyi değil, doğru küçük planı da gerektirir. Planım, kullanıcının gününü somutlaştırır ve seçenek yorgunluğunu azaltır.",
+      "benefits": [
+        "Ruh hali sinyalini günlük plana bağlar.",
+        "Konum destekli kahve ve restoran önerileri sunabilir.",
+        "Etkinlik ve ev modu seçeneklerini tek yerde toplar.",
+        "Kullanıcıya dışarı çıkma veya evde kalma arasında baskısız seçim verir."
+      ],
+      "useCases": [
+        "Kullanıcı kendine küçük bir ödül vermek istediğinde.",
+        "Doğum günü gibi özel günlerde plan fikri gerektiğinde.",
+        "Evde kalmak, kahve içmek veya etkinliğe gitmek arasında seçim yapılırken."
+      ],
+      "signals": [
+        "Günün tonu: iyi, çok iyi, normal veya canım sıkkın.",
+        "Konum izni: mekan önerileri için.",
+        "Kullanıcı tercihi: ev modu, kahve, yemek, etkinlik."
+      ],
+      "productNotes": [
+        "Planım, kart motorunun öneri dilini gerçek aksiyon seçenekleriyle tamamlar.",
+        "Canlı veri sınırlıysa kullanıcıya hata hissi vermeyen alternatif yönlendirme gösterilir.",
+        "Uygulama, mekan ve medya önerilerini kullanıcı izni ve API uygunluğuna göre genişletir."
+      ]
+    },
+    {
+      "slug": "destek",
+      "navLabel": "Destek",
+      "tag": "Destek",
+      "title": "Destek",
+      "headline": "Önce güvenli alan.",
+      "subtitle": "Sakinleşme, resmi kriz kaynakları ve kişisel sınırları tek güvenli bölümde toplar.",
+      "description": "Destek kartı, Pusula’nın sınırını net tutar: uygulama terapi, tanı veya klinik destek iddiası taşımaz. Bunun yerine sakinleşme araçları, resmi kriz kaynakları, acil servis yönlendirmesi ve güvenilen kişiye ulaşma gibi güvenli aksiyonlar sunar.",
+      "image": "/assets/card-support.png",
+      "alt": "Destek Pusula kart görseli",
+      "metaDescription": "Pusula Destek kartı, sakinleşme araçları ve resmi kriz kaynaklarıyla güvenli destek sınırını anlatır.",
+      "whatTitle": "Destek kartı nedir?",
+      "whatText": "Destek kartı, kullanıcının zorlandığı anlarda hızlı ve güvenli seçenekleri bulmasını sağlar. İçerik dili sakin kalır; kriz riski varsa resmi kaynaklar ve acil destek yolları görünür şekilde sunulur.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Ruh haliyle çalışan her ürün net sınırlar taşımalıdır. Destek kartı, Pusula’nın iyi hissettirme iddiasını sorumlu bir güvenlik çerçevesiyle dengeler.",
+      "benefits": [
+        "3 dakikalık sakinleşme alanını görünür kılar.",
+        "112 ve resmi kriz kaynaklarına net yönlendirir.",
+        "Yanlış dokunmaları azaltmak için kritik aksiyonlarda onay ister.",
+        "Uygulamanın terapi iddiası taşımadığını açıkça korur."
+      ],
+      "useCases": [
+        "Kullanıcı sakinleşmek için kısa bir seansa ihtiyaç duyduğunda.",
+        "Acil risk veya resmi destek ihtimali doğduğunda.",
+        "Güvenilen bir kişiye ulaşmak veya acil servis aramak gerektiğinde."
+      ],
+      "signals": [
+        "Ruh hali: kötü, canım sıkkın, baskı altında.",
+        "Destek ihtiyacı: duygusal denge.",
+        "Kriz metinleri: resmi kaynaklara yönlendirme."
+      ],
+      "productNotes": [
+        "Destek alanı ürünün günlük kart akışından daha ciddi bir hiyerarşiyle sunulur.",
+        "Sakinleşme sesleri telifsiz procedural ses olarak üretilir.",
+        "Acil destek akışları ürün önerisi değil, resmi kaynak yönlendirmesidir."
+      ]
+    }
+  ]
+}

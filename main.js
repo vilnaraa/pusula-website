@@ -1,5 +1,6 @@
 (function () {
   const siteData = window.PUSULA_SITE || {};
+  const cardData = window.PUSULA_CARDS || { cards: [] };
   const fallbackGallerySlides = [
     {
       title: "İlk temas: güven veren bir başlangıç",
@@ -196,6 +197,38 @@
 
     setText("[data-site='cards-eyebrow']", cards.eyebrow);
     setText("[data-site='cards-title']", cards.title);
+
+    if (Array.isArray(cardData.cards) && cardData.cards.length > 0) {
+      const cardGallery = document.querySelector(".card-gallery");
+      const cardMenu = document.querySelectorAll(".nav-dropdown-menu");
+      const cardLinks = cardData.cards
+        .map(
+          (card) => `
+            <a role="menuitem" href="/kartlar/${escapeHtml(card.slug)}/">${escapeHtml(card.navLabel || card.title)}</a>
+          `
+        )
+        .join("");
+
+      cardMenu.forEach((menu) => {
+        menu.innerHTML = cardLinks;
+      });
+
+      if (cardGallery) {
+        cardGallery.innerHTML = cardData.cards
+          .map(
+            (card) => `
+              <a class="visual-card" href="/kartlar/${escapeHtml(card.slug)}/" aria-label="${escapeHtml(card.title)} kart sayfası">
+                <img src="${escapeHtml(card.image || "/assets/card-calm.png")}" width="640" height="640" alt="${escapeHtml(card.alt || `${card.title} Pusula kart görseli`)}">
+                <div>
+                  <span>${escapeHtml(card.tag || card.navLabel || card.title)}</span>
+                  <h3>${escapeHtml(card.headline || card.title)}</h3>
+                </div>
+              </a>
+            `
+          )
+          .join("");
+      }
+    }
 
     if (Array.isArray(siteData.principles) && siteData.principles.length > 0) {
       const principlesGrid = document.querySelector(".principles-grid");

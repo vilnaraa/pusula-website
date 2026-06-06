@@ -1,6 +1,6 @@
 # Pusula Website İçerik Yönetimi
 
-Bu site WordPress kullanmaz. İçerikler JSON dosyalarından yönetilir ve build script bu dosyalardan site datası üretir.
+Bu site WordPress kullanmaz. İçerikler Pusula Admin panelinden form olarak yönetilir; panel değişiklikleri arkada JSON dosyalarına doğru formatta yazar ve GitHub'a commit olarak gönderir.
 
 ## Hızlı Özet
 
@@ -8,8 +8,23 @@ Değiştirmek istediğin şeye göre dosya:
 
 - SEO, hero, ürün başlığı, ilkeler, footer: `content/site.json`
 - Ürün slider yazıları ve görselleri: `content/gallery.json`
+- Kart sayfaları ve ürün anlatıları: `content/cards.json`
 - Changelog kayıtları: `data/changelog.json`
-- Görseller: `assets/` veya CMS yüklemeleri için `assets/uploads/`
+- Görseller: `assets/` veya admin yüklemeleri için `assets/uploads/`
+
+Canlı panel:
+
+```text
+https://pusulamobil.com.tr/admin/
+```
+
+Paneldeki tablar:
+
+- `Site ayarları`: SEO, hero, ürün metinleri, footer.
+- `Ürün galerisi`: slider ekranları, açıklamalar, görsel yolları.
+- `Changelog`: public sürüm kayıtları.
+- `Kart sayfaları`: `/kartlar/...` altındaki ürün sayfaları.
+- `Medya kütüphanesi`: görsel upload, yol kopyalama ve ilgili alana yapıştırma.
 
 Değişiklikten sonra çalıştır:
 
@@ -54,7 +69,9 @@ Cloudflare Pages GitHub'a bağlıysa push sonrası site otomatik güncellenir.
 
 ## Ürün Slider Nasıl Güncellenir?
 
-`content/gallery.json` içindeki `slides` listesini düzenle.
+Admin panelde `Ürün galerisi` tabını aç. Yeni slide ekleyebilir, mevcut slide'ların başlık, açıklama, görsel yolu ve madde listesini düzenleyebilirsin.
+
+Elle düzenleme gerekiyorsa `content/gallery.json` içindeki `slides` listesini düzenle.
 
 Her slayt:
 
@@ -78,9 +95,22 @@ Yeni görsel ekleyeceksen:
 2. `image` alanına dosya yolunu yaz.
 3. `alt` alanını boş bırakma; SEO ve erişilebilirlik için gerekli.
 
+## Kart Sayfaları Nasıl Güncellenir?
+
+Admin panelde `Kart sayfaları` tabını aç. Her kart için şu alanları formdan düzenleyebilirsin:
+
+- URL slug: ör. `kariyer`; sayfa `/kartlar/kariyer/` olur.
+- Başlık, alt başlık ve ürün açıklaması.
+- `Nedir?`, `Neden önemli?`, `Ne sağlar?`, kullanım durumları ve ürün notları.
+- Görsel yolu ve SEO açıklaması.
+
+Önemli: İngilizce `/cards/...` adresleri artık canonical değildir. Eski adresler Worker üzerinden `/kartlar/...` adreslerine yönlenir.
+
 ## Changelog Nasıl Güncellenir?
 
-`data/changelog.json` içinde:
+Admin panelde `Changelog` tabını aç. Yeni kayıt ekleyebilir; eklenen, değişen ve kaldırılan maddeleri ayrı satırlar olarak yazabilirsin.
+
+Elle düzenleme gerekiyorsa `data/changelog.json` içinde:
 
 - `updatedAt` tarihini güncelle.
 - Yeni kaydı `entries` listesinin en üstüne ekle.
@@ -108,16 +138,18 @@ Desteklenen türler:
 }
 ```
 
-## CMS Paneli
+## Medya Kütüphanesi
 
-Canlı panel:
+Admin panelde `Medya kütüphanesi` tabından görsel yükleyebilirsin.
 
-```text
-https://pusulamobil.com.tr/admin/
-```
+Akış:
 
-Panel şu an dosya yapısı olarak hazır. Canlıda kaydetme yapabilmesi için GitHub OAuth bağlantısı gerekir.
-OAuth bağlanana kadar içerikleri lokal dosyalardan düzenleyip GitHub'a push etmek en güvenli yoldur.
+1. Görseli yükle.
+2. Panel sana `/assets/uploads/...` yolunu gösterir.
+3. `Yolu kopyala` ile kopyala.
+4. Bu yolu ürün galerisi veya kart sayfasındaki görsel alanına yapıştır.
+
+Bu yöntem formatı bozmaz; panel dosya yolunu JSON içinde doğru alana yazar.
 
 ## Güvenlik
 

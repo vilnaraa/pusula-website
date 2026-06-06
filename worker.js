@@ -43,6 +43,15 @@ export default {
       return Response.redirect(`${url.origin}/admin/`, 301);
     }
 
+    if (url.pathname === "/cards" || url.pathname === "/cards/") {
+      return Response.redirect(`${url.origin}/#cards`, 301);
+    }
+
+    if (url.pathname.startsWith("/cards/")) {
+      const nextPath = url.pathname.replace(/^\/cards\//, "/kartlar/");
+      return Response.redirect(`${url.origin}${nextPath}${url.search}`, 301);
+    }
+
     if (url.pathname === "/api/auth") {
       if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
         return missingEnv();

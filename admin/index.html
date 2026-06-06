@@ -41,6 +41,7 @@
             <li>Site ana metinleri</li>
             <li>Ürün galerisi açıklamaları</li>
             <li>Public changelog kayıtları</li>
+            <li>Kart sayfaları ve medya kütüphanesi</li>
           </ul>
         </div>
       </section>
@@ -61,7 +62,15 @@
           </button>
           <button class="file-tab" type="button" data-file="changelog">
             <strong>Changelog</strong>
-            <span>Sürüm kayıtları</span>
+            <span>Sürüm kayıtları ve listeler</span>
+          </button>
+          <button class="file-tab" type="button" data-file="cards">
+            <strong>Kart sayfaları</strong>
+            <span>Ürün kartı anlatıları</span>
+          </button>
+          <button class="file-tab" type="button" data-file="media">
+            <strong>Medya kütüphanesi</strong>
+            <span>Upload, kopyala, kullan</span>
           </button>
         </aside>
 
@@ -79,6 +88,27 @@
           </div>
 
           <form id="site-form" class="structured-form" autocomplete="off"></form>
+
+          <div id="repeater-editor" class="repeater-editor" hidden></div>
+
+          <div id="media-library" class="media-library" hidden>
+            <div class="media-upload-card">
+              <div>
+                <p class="eyebrow">Upload</p>
+                <h3>Yeni görsel yükle</h3>
+                <p>PNG, JPG, JPEG, WebP ve GIF dosyaları <strong>assets/uploads/</strong> içine commit edilir.</p>
+              </div>
+              <label class="media-upload-button">
+                Dosya seç
+                <input id="media-file-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+              </label>
+            </div>
+            <div class="media-toolbar">
+              <button id="refresh-media-button" class="admin-button ghost" type="button">Medya listesini yenile</button>
+              <span id="media-state" class="save-state">Hazır</span>
+            </div>
+            <div id="media-grid" class="media-grid" aria-live="polite"></div>
+          </div>
 
           <div id="json-editor" class="json-editor" hidden>
             <div class="json-editor-head">
