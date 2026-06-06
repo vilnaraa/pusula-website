@@ -845,6 +845,133 @@ p {
   font-weight: 850;
 }
 
+.card-compact-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+  align-items: center;
+  gap: clamp(22px, 4vw, 44px);
+  width: calc(100% - var(--page-gap));
+  max-width: var(--container);
+  border: 1px solid rgba(222, 207, 183, 0.72);
+  border-radius: 34px;
+  margin: 82px auto 28px;
+  padding: clamp(22px, 4vw, 42px);
+  background:
+    radial-gradient(circle at 14% 12%, rgba(210, 165, 58, 0.16), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(47, 102, 88, 0.14), transparent 34%),
+    linear-gradient(145deg, rgba(255, 250, 241, 0.94), rgba(241, 232, 214, 0.76));
+  box-shadow: 0 28px 82px rgba(34, 29, 20, 0.12);
+}
+
+.card-compact-copy h1 {
+  font-size: clamp(3.4rem, 6.8vw, 6.2rem);
+  letter-spacing: 0;
+}
+
+.card-quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.card-quick-facts span {
+  display: grid;
+  gap: 8px;
+  min-height: 112px;
+  border: 1px solid rgba(222, 207, 183, 0.82);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 250, 241, 0.9), rgba(246, 239, 226, 0.66)),
+    var(--cream);
+  color: var(--ink-soft);
+  font-weight: 760;
+  line-height: 1.35;
+  padding: 15px;
+}
+
+.card-quick-facts strong {
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.07em;
+}
+
+.card-mosaic {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  grid-template-rows: repeat(2, minmax(190px, 1fr));
+  gap: 12px;
+  min-height: 430px;
+}
+
+.mosaic-tile {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(222, 207, 183, 0.8);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 250, 241, 0.88), transparent 58%),
+    rgba(255, 250, 241, 0.48);
+  box-shadow: 0 18px 52px rgba(34, 29, 20, 0.12);
+  isolation: isolate;
+}
+
+.mosaic-tile.primary {
+  grid-row: span 2;
+}
+
+.mosaic-tile::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 44%;
+  background: linear-gradient(0deg, rgba(17, 23, 34, 0.7), transparent);
+  content: "";
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mosaic-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.03) contrast(1.02);
+  transform: scale(1.01);
+  transition: transform 520ms ease, filter 520ms ease;
+}
+
+.mosaic-tile:hover img,
+.mosaic-tile:focus-within img {
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.045);
+}
+
+.mosaic-tile div {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2;
+  display: grid;
+  gap: 5px;
+  color: var(--cream);
+}
+
+.mosaic-tile span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mosaic-tile strong {
+  max-width: 420px;
+  font-size: clamp(1.1rem, 1.8vw, 1.85rem);
+  line-height: 1.06;
+}
+
 .card-hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -864,7 +991,7 @@ p {
 .product-story-card {
   position: relative;
   overflow: hidden;
-  min-height: 340px;
+  min-height: 260px;
   border: 1px solid rgba(222, 207, 183, 0.86);
   border-radius: 28px;
   background:
@@ -883,7 +1010,7 @@ p {
 .product-story-card h2 {
   max-width: 720px;
   margin-bottom: 18px;
-  font-size: clamp(2.1rem, 4.5vw, 4rem);
+  font-size: clamp(1.9rem, 3.4vw, 3.15rem);
 }
 
 .product-story-card p:not(.eyebrow) {
@@ -941,6 +1068,51 @@ p {
   color: var(--ink-soft);
   font-size: 1.04rem;
   font-weight: 760;
+}
+
+.card-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card-feature-tile {
+  display: grid;
+  gap: 18px;
+}
+
+.card-feature-tile img {
+  width: 100%;
+  aspect-ratio: 1.32 / 1;
+  border: 1px solid rgba(222, 207, 183, 0.82);
+  border-radius: 24px;
+  background: rgba(255, 250, 241, 0.56);
+  box-shadow: 0 18px 44px rgba(34, 29, 20, 0.1);
+  object-fit: cover;
+}
+
+.card-feature-tile div {
+  display: grid;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.card-feature-tile span {
+  color: var(--green);
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.card-feature-tile h3 {
+  max-width: 360px;
+  font-size: clamp(1.62rem, 2.6vw, 2.55rem);
+  line-height: 1.04;
+}
+
+.card-feature-tile p {
+  max-width: 360px;
+  color: var(--muted);
+  font-size: 1.02rem;
 }
 
 .card-product-columns {
@@ -1895,11 +2067,25 @@ p {
   }
 
   .policy-shell,
+  .card-compact-hero,
   .card-detail-hero,
   .card-product-story,
   .card-benefit-grid,
+  .card-feature-grid,
   .card-product-columns {
     grid-template-columns: 1fr;
+  }
+
+  .card-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    min-height: auto;
+  }
+
+  .mosaic-tile,
+  .mosaic-tile.primary {
+    grid-row: auto;
+    aspect-ratio: 1 / 1;
   }
 
   .faq-intro-card {
@@ -2014,6 +2200,7 @@ p {
   .section,
   .site-footer,
   .page-hero,
+  .card-compact-hero,
   .card-detail-hero {
     width: auto;
     max-width: none;
@@ -2028,6 +2215,49 @@ p {
   .card-detail-hero {
     margin-top: 74px;
     padding: 22px;
+  }
+
+  .card-compact-hero {
+    margin-top: 74px;
+    padding: 18px;
+  }
+
+  .card-compact-copy h1 {
+    font-size: 3.1rem;
+  }
+
+  .card-quick-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .card-quick-facts span {
+    min-height: auto;
+  }
+
+  .card-mosaic {
+    gap: 10px;
+  }
+
+  .mosaic-tile {
+    border-radius: 18px;
+  }
+
+  .mosaic-tile div {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .mosaic-tile strong {
+    font-size: 1rem;
+  }
+
+  .card-feature-grid {
+    gap: 26px;
+  }
+
+  .card-feature-tile img {
+    border-radius: 20px;
   }
 
   .page-hero h1 {

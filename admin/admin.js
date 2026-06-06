@@ -8,6 +8,9 @@
   const files = {
     site: {
       title: "Site ayarları",
+      kicker: "Genel site",
+      description: "Hero, SEO ve ürün metinleri burada düzenlenir. Yayına giden ana sayfa metinleri bu dosyadan beslenir.",
+      stats: ["SEO", "Hero", "Ürün metinleri"],
       path: "content/site.json",
       mode: "form",
       fields: [
@@ -26,21 +29,33 @@
     },
     gallery: {
       title: "Ürün galerisi",
+      kicker: "Galeri",
+      description: "Ana sayfadaki ürün akışı slider'ını yönetir. Görsel yolu için Medya bölümünde upload yapıp yolu kopyalayabilirsin.",
+      stats: ["Slider", "Ekran görseli", "Açıklama"],
       path: "content/gallery.json",
       mode: "gallery"
     },
     changelog: {
       title: "Changelog",
+      kicker: "Public kayıtlar",
+      description: "Kullanıcıların gördüğü ürün değişikliklerini form alanlarıyla ekle. Format JSON'a otomatik yazılır.",
+      stats: ["Versiyon", "Eklenenler", "Değişenler"],
       path: "data/changelog.json",
       mode: "changelog"
     },
     cards: {
       title: "Kart sayfaları",
+      kicker: "Kart ürün sayfaları",
+      description: "Her Pusula kartının /kartlar/... sayfasındaki başlık, görsel, fayda ve kullanım metinlerini yönetir.",
+      stats: ["Kart sayfası", "Fayda listesi", "SEO"],
       path: "content/cards.json",
       mode: "cards"
     },
     media: {
       title: "Medya kütüphanesi",
+      kicker: "Görsel arşivi",
+      description: "Yeni görsel yükle, public yolu kopyala ve galeri/kart/site alanlarında kullan. Bu bölüm doğrudan medya yönetimine açılır.",
+      stats: ["Upload", "Kopyala", "Kullan"],
       mode: "media"
     }
   };
@@ -58,6 +73,7 @@
   const dashboard = document.getElementById("dashboard");
   const userLabel = document.getElementById("user-label");
   const editorTitle = document.getElementById("editor-title");
+  const editorSummary = document.getElementById("editor-summary");
   const saveState = document.getElementById("save-state");
   const saveButton = document.getElementById("save-button");
   const reloadButton = document.getElementById("reload-button");
@@ -197,6 +213,18 @@
         return textField({ label, value, field: path, type, wide: type === "textarea" });
       })
       .join("");
+  };
+
+  const renderSummary = (config) => {
+    editorSummary.innerHTML = `
+      <div>
+        <p class="eyebrow">${escapeHtml(config.kicker || "İçerik")}</p>
+        <strong>${escapeHtml(config.description || "")}</strong>
+      </div>
+      <div class="summary-pills">
+        ${(config.stats || []).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
+      </div>
+    `;
   };
 
   const renderGalleryEditor = (json) => {
@@ -414,6 +442,7 @@
     const config = files[key];
 
     editorTitle.textContent = config.title;
+    renderSummary(config);
     fileTabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.file === key));
     siteForm.hidden = true;
     jsonEditor.hidden = true;
@@ -690,6 +719,7 @@
     tab.addEventListener("click", async () => {
       state.activeFile = tab.dataset.file;
       await renderEditor();
+      dashboard.scrollIntoView({ block: "start", behavior: "smooth" });
     });
   });
   repeaterEditor.addEventListener("click", handleRepeaterAction);

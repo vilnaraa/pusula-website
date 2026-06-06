@@ -33,7 +33,7 @@ input {
 }
 
 .admin-app {
-  width: min(1180px, calc(100% - 36px));
+  width: min(1320px, calc(100% - 36px));
   margin: 0 auto;
   padding: 26px 0 46px;
 }
@@ -41,7 +41,7 @@ input {
 .admin-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr) auto;
   align-items: center;
   gap: 22px;
   overflow: hidden;
@@ -51,7 +51,7 @@ input {
     linear-gradient(145deg, rgba(255, 250, 241, 0.94), rgba(245, 237, 222, 0.72)),
     var(--cream);
   box-shadow: var(--shadow);
-  padding: 22px;
+  padding: 18px 20px;
 }
 
 .admin-hero::after {
@@ -102,8 +102,8 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 10px;
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  line-height: 0.96;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1;
 }
 
 h2 {
@@ -203,8 +203,9 @@ p {
 }
 
 .dashboard {
-  grid-template-columns: 290px minmax(0, 1fr);
+  grid-template-columns: 286px minmax(0, 1fr);
   gap: 18px;
+  align-items: start;
 }
 
 .dashboard:not([hidden]) {
@@ -220,6 +221,8 @@ p {
 }
 
 .file-sidebar {
+  position: sticky;
+  top: 18px;
   display: grid;
   align-content: start;
   gap: 10px;
@@ -244,8 +247,11 @@ p {
 }
 
 .file-tab {
+  position: relative;
   display: grid;
-  gap: 5px;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
   width: 100%;
   border: 1px solid transparent;
   border-radius: 18px;
@@ -256,8 +262,44 @@ p {
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
+.file-tab::before {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(47, 102, 88, 0.09);
+  color: var(--green-dark);
+  font-weight: 950;
+}
+
+.file-tab[data-file="site"]::before {
+  content: "S";
+}
+
+.file-tab[data-file="gallery"]::before {
+  content: "G";
+}
+
+.file-tab[data-file="changelog"]::before {
+  content: "C";
+}
+
+.file-tab[data-file="cards"]::before {
+  content: "K";
+}
+
+.file-tab[data-file="media"]::before {
+  content: "M";
+}
+
 .file-tab strong {
   color: var(--ink);
+}
+
+.file-tab strong,
+.file-tab span {
+  grid-column: 2;
 }
 
 .file-tab.active,
@@ -295,6 +337,43 @@ p {
   padding: 10px 13px;
   font-size: 0.92rem;
   font-weight: 900;
+}
+
+.editor-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(222, 207, 183, 0.64);
+  background:
+    radial-gradient(circle at 92% 18%, rgba(210, 165, 58, 0.14), transparent 34%),
+    rgba(245, 237, 222, 0.42);
+  padding: 18px 20px;
+}
+
+.editor-summary strong {
+  display: block;
+  max-width: 760px;
+  color: var(--ink-soft, #343a46);
+  font-size: 1rem;
+  line-height: 1.48;
+}
+
+.summary-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.summary-pills span {
+  border: 1px solid rgba(222, 207, 183, 0.82);
+  border-radius: 999px;
+  background: rgba(255, 250, 241, 0.84);
+  color: var(--green-dark);
+  padding: 9px 12px;
+  font-size: 0.86rem;
+  font-weight: 920;
 }
 
 .structured-form {
@@ -462,7 +541,7 @@ p {
 
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -536,6 +615,7 @@ p {
 
   .admin-hero,
   .dashboard:not([hidden]),
+  .editor-summary,
   .structured-form,
   .repeat-grid,
   .media-grid {
@@ -545,6 +625,7 @@ p {
   .admin-actions,
   .toolbar-actions,
   .editor-toolbar,
+  .editor-summary,
   .editor-intro,
   .media-upload-card,
   .media-toolbar,
@@ -555,6 +636,14 @@ p {
 
   .admin-button {
     width: 100%;
+  }
+
+  .file-sidebar {
+    position: static;
+  }
+
+  .summary-pills {
+    justify-content: flex-start;
   }
 }
 

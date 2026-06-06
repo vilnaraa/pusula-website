@@ -130,8 +130,30 @@ const buildFooter = () => `
 
 const listItems = (items) => (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 
+const cardVisuals = (card, cards) => {
+  const ordered = [card, ...cards.filter((item) => item.slug !== card.slug)];
+  return ordered.slice(0, 4).map((item, index) => ({
+    image: item.image || "/assets/card-calm.png",
+    alt: item.alt || `${item.title || "Pusula"} kart görseli`,
+    label: index === 0 ? item.tag || "Pusula kartı" : item.navLabel || item.title || "Kart",
+    title: index === 0 ? item.headline || item.title || "Pusula kartı" : item.title || "Kart"
+  }));
+};
+
+const cardFeatureTiles = (card, visuals) => {
+  const supportingText = [...(card.useCases || []), ...(card.signals || []), ...(card.productNotes || [])];
+  return (card.benefits || []).slice(0, 4).map((benefit, index) => ({
+    title: benefit.replace(/\.$/, ""),
+    text: supportingText[index] || card.subtitle || card.description || "",
+    image: visuals[index % visuals.length]?.image || "/assets/card-calm.png",
+    alt: visuals[index % visuals.length]?.alt || "Pusula kart görseli"
+  }));
+};
+
 const renderCardPage = (card, cards) => {
   const canonical = `https://pusulamobil.com.tr/kartlar/${card.slug}/`;
+  const visuals = cardVisuals(card, cards);
+  const featureTiles = cardFeatureTiles(card, visuals);
   return `<!doctype html>
 <html lang="tr">
   <head>
@@ -154,19 +176,35 @@ const renderCardPage = (card, cards) => {
     <a class="skip-link" href="#main">İçeriğe geç</a>
 ${buildNav(cards)}
     <main id="main" class="subpage-main">
-      <section class="card-detail-hero card-product-hero">
-        <div class="card-detail-art">
-          <img src="${escapeAttr(card.image || "/assets/card-calm.png")}" width="1024" height="1024" alt="${escapeAttr(card.alt || `${card.title} kart görseli`)}">
-        </div>
-        <div class="card-detail-copy">
+      <section class="card-compact-hero">
+        <div class="card-detail-copy card-compact-copy">
           <p class="eyebrow dark">${escapeHtml(card.tag || "Pusula kartı")}</p>
           <h1>${escapeHtml(card.title)}</h1>
           <p class="card-product-subtitle">${escapeHtml(card.subtitle || "")}</p>
           <p>${escapeHtml(card.description || "")}</p>
+          <div class="card-quick-facts" aria-label="${escapeAttr(card.title)} kartı kısa özellikleri">
+            ${(card.benefits || [])
+              .slice(0, 3)
+              .map((benefit, index) => `<span><strong>${String(index + 1).padStart(2, "0")}</strong>${escapeHtml(benefit)}</span>`)
+              .join("")}
+          </div>
           <div class="card-hero-actions">
             <a class="button primary dark-button" href="/#cards">Tüm kartlara dön</a>
             <a class="text-link" href="#nasil-calisir">Nasıl çalışır?</a>
           </div>
+        </div>
+        <div class="card-mosaic" aria-label="${escapeAttr(card.title)} görsel anlatımı">
+          ${visuals
+            .map(
+              (visual, index) => `<article class="mosaic-tile ${index === 0 ? "primary" : ""}">
+            <img src="${escapeAttr(visual.image)}" width="1024" height="1024" alt="${escapeAttr(visual.alt)}">
+            <div>
+              <span>${escapeHtml(visual.label)}</span>
+              <strong>${escapeHtml(visual.title)}</strong>
+            </div>
+          </article>`
+            )
+            .join("")}
         </div>
       </section>
 
@@ -188,12 +226,16 @@ ${buildNav(cards)}
           <p class="eyebrow dark">Ürün değeri</p>
           <h2>${escapeHtml(card.headline || card.title)}</h2>
         </div>
-        <div class="card-benefit-grid">
-          ${(card.benefits || [])
+        <div class="card-feature-grid">
+          ${featureTiles
             .map(
-              (benefit, index) => `<article>
-            <span>${String(index + 1).padStart(2, "0")}</span>
-            <p>${escapeHtml(benefit)}</p>
+              (tile, index) => `<article class="card-feature-tile">
+            <img src="${escapeAttr(tile.image)}" width="1024" height="1024" alt="${escapeAttr(tile.alt)}">
+            <div>
+              <span>${String(index + 1).padStart(2, "0")}</span>
+              <h3>${escapeHtml(tile.title)}</h3>
+              <p>${escapeHtml(tile.text)}</p>
+            </div>
           </article>`
             )
             .join("")}
