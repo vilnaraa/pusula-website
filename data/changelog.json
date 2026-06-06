@@ -55,10 +55,12 @@
       ],
       "changed": [
         "Kart motoru destek tarzı ve gün temposu tercihlerine göre metinleri daha belirgin kişiselleştiriyor",
-        "Planım etkinlik ve spor fallback mesajları hata hissi vermeyecek şekilde güncellendi",
-        "Spor yayın/kısayol sağlayıcıları için yönlendirme mantığı iyileştirildi"
+        "Planım etkinlik fallback mesajları hata hissi vermeyecek şekilde güncellendi",
+        "Ev modu odağı dizi ve film seçimlerine sadeleştirildi"
       ],
-      "removed": []
+      "removed": [
+        "Spor sekmesi ve SportsDB entegrasyonu ürün kapsamından çıkarıldı"
+      ]
     },
     {
       "version": "0.8",

@@ -59,7 +59,7 @@ window.PUSULA_SITE = {
       {
         "number": "03",
         "title": "Planım günü somutlaştırır.",
-        "description": "Kahve, restoran, etkinlik, ev modu ve spor akışları tek bölümde toplanır."
+        "description": "Kahve, restoran, etkinlik ve ev modu akışları tek bölümde toplanır."
       },
       {
         "number": "04",

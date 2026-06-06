@@ -2,6 +2,8 @@ backend:
   name: github
   repo: vilnaraa/pusula-website
   branch: main
+  base_url: https://pusulamobil.com.tr
+  auth_endpoint: api/auth
 
 local_backend: true
 media_folder: assets/uploads

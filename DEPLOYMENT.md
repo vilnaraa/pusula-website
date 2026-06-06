@@ -26,8 +26,11 @@ Path: /
 Asset klasörü komutta değil, `wrangler.toml` içinde tanımlıdır:
 
 ```toml
+main = "worker.js"
+
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "404-page"
 ```
 
@@ -35,20 +38,22 @@ not_found_handling = "404-page"
 
 `/admin` panelinin GitHub'a kayıt yazabilmesi için GitHub OAuth kurulumu gerekir.
 
+Bu repo artık Cloudflare Worker içinde küçük bir OAuth proxy içerir:
+
+- Auth endpoint: `https://pusulamobil.com.tr/api/auth`
+- Callback URL: `https://pusulamobil.com.tr/api/callback`
+
 Minimum pratik akış:
 
 1. GitHub hesabında bir OAuth App oluştur.
 2. Homepage URL: `https://pusulamobil.com.tr`
-3. Authorization callback URL: Decap/GitHub OAuth sağlayıcısı olarak kullanılacak endpoint.
-4. OAuth secret repo içine yazılmamalı.
+3. Authorization callback URL: `https://pusulamobil.com.tr/api/callback`
+4. Cloudflare Worker variables/secrets içine şunları gir:
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`
+5. OAuth secret repo içine yazılmamalı.
 
-Cloudflare Pages tek başına Decap için hazır OAuth endpoint sağlamaz. Bu yüzden canlı admin için iki seçenek var:
-
-- Harici Decap OAuth provider kullanmak.
-- GitHub repo değişikliklerini şimdilik lokal edit + commit ile yapmak.
-
-İlk canlı sürüm için güvenli ve basit öneri: repo ve Cloudflare deploy kurulsun, içerikler önce lokalden
-güncellensin. Admin auth kısmı ayrı küçük bir pass olarak Cloudflare Worker veya uygun OAuth provider ile bağlansın.
+Bu değerler eksikse `/admin/` açılır, fakat GitHub login eksik konfigürasyon mesajı gösterir.
 
 ## Güvenlik notu
 

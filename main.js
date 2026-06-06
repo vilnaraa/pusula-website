@@ -90,6 +90,43 @@
   const galleryNext = document.querySelector("[data-slider-next]");
   let galleryIndex = 0;
 
+  const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
+  navDropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector(".nav-dropdown-trigger");
+    if (!(trigger instanceof HTMLButtonElement)) return;
+
+    trigger.addEventListener("click", () => {
+      const isOpen = dropdown.classList.toggle("open");
+      trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+
+    navDropdowns.forEach((dropdown) => {
+      if (dropdown.contains(target)) return;
+      dropdown.classList.remove("open");
+      dropdown.querySelector(".nav-dropdown-trigger")?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const accordions = Array.from(document.querySelectorAll(".faq-accordion, .policy-accordion"));
+  accordions.forEach((accordion) => {
+    accordion.querySelectorAll("details").forEach((details) => {
+      details.addEventListener("toggle", () => {
+        if (!details.open) return;
+
+        accordion.querySelectorAll("details[open]").forEach((candidate) => {
+          if (candidate !== details) {
+            candidate.removeAttribute("open");
+          }
+        });
+      });
+    });
+  });
+
   const setText = (selector, value) => {
     const element = document.querySelector(selector);
     if (element && value) {

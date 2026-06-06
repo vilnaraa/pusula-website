@@ -19,6 +19,18 @@
           <span>Pusula</span>
         </a>
         <div class="nav-links">
+          <a href="/#product">Ürün</a>
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Kartlar</button>
+            <div class="nav-dropdown-menu" role="menu" aria-label="Pusula kartları">
+              <a role="menuitem" href="/cards/stoik-lens/">Stoik lens</a>
+              <a role="menuitem" href="/cards/astro-ton/">Astro ton</a>
+              <a role="menuitem" href="/cards/kariyer/">Kariyer</a>
+              <a role="menuitem" href="/cards/sosyallesme/">Sosyalleşme</a>
+              <a role="menuitem" href="/cards/planim/">Planım</a>
+              <a role="menuitem" href="/cards/destek/">Destek</a>
+            </div>
+          </div>
           <a href="/privacy/">Gizlilik</a>
           <a href="/terms/">Kullanım</a>
           <a href="/faq/">FAQ</a>
@@ -31,23 +43,39 @@
         <h1>KVKK Aydınlatma Metni</h1>
         <p>Bu metin yayın öncesi bilgilendirme taslağıdır. Uygulama yayına alınmadan önce hukuki inceleme ile son hale getirilmelidir.</p>
       </section>
-      <section class="section legal-content">
-        <article class="content-card">
-          <h2>Veri sorumlusu</h2>
-          <p>Pusula projesinin nihai yayın ve şirketleşme yapısına göre veri sorumlusu bilgileri bu alanda güncellenecektir.</p>
-        </article>
-        <article class="content-card">
-          <h2>İşlenebilecek kişisel veriler</h2>
-          <p>Doğum tarihi, günlük ruh hali seçimi, kullanıcı tercihleri, bildirim saati, hesap bağlantısı bilgileri ve konum izni kapsamında elde edilen sınırlı bilgiler işlenebilir.</p>
-        </article>
-        <article class="content-card">
-          <h2>İşleme amaçları</h2>
-          <p>Uygulama deneyimini kişiselleştirmek, günlük kart üretmek, bildirim ayarlarını yönetmek ve kullanıcının seçtiği plan önerilerini sunmak.</p>
-        </article>
-        <article class="content-card">
-          <h2>Kullanıcı hakları</h2>
-          <p>Kullanıcılar ilgili mevzuat kapsamında bilgi talep etme, düzeltme, silme ve işleme faaliyetlerine itiraz etme haklarına sahiptir. İletişim yöntemi yayın öncesinde netleştirilecektir.</p>
-        </article>
+      <section class="section policy-shell" aria-label="KVKK başlıkları">
+        <aside class="faq-intro-card">
+          <span class="faq-kicker">KVKK taslağı</span>
+          <h2>Yayın öncesi aydınlatma metni, sade ve izlenebilir.</h2>
+          <p>Şirketleşme ve App Store yayın süreci netleştiğinde veri sorumlusu ve iletişim alanları son hale getirilecektir.</p>
+          <a class="text-link" href="/privacy/">Gizlilik politikasını oku</a>
+        </aside>
+        <div class="policy-accordion">
+          <details class="faq-item" open>
+            <summary>Veri sorumlusu</summary>
+            <div class="faq-answer">
+              <p>Pusula projesinin nihai yayın ve şirketleşme yapısına göre veri sorumlusu bilgileri bu alanda güncellenecektir.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>İşlenebilecek kişisel veriler</summary>
+            <div class="faq-answer">
+              <p>Doğum tarihi, günlük ruh hali seçimi, kullanıcı tercihleri, bildirim saati, hesap bağlantısı bilgileri ve konum izni kapsamında elde edilen sınırlı bilgiler işlenebilir.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>İşleme amaçları</summary>
+            <div class="faq-answer">
+              <p>Uygulama deneyimini kişiselleştirmek, günlük kart üretmek, bildirim ayarlarını yönetmek ve kullanıcının seçtiği plan önerilerini sunmak.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Kullanıcı hakları</summary>
+            <div class="faq-answer">
+              <p>Kullanıcılar ilgili mevzuat kapsamında bilgi talep etme, düzeltme, silme ve işleme faaliyetlerine itiraz etme haklarına sahiptir. İletişim yöntemi yayın öncesinde netleştirilecektir.</p>
+            </div>
+          </details>
+        </div>
       </section>
     </main>
     <footer class="site-footer">
@@ -60,8 +88,8 @@
           <p>Günün tonuna göre küçük, kişisel bir yön. Local-first, ücretsiz ve hesap açmadan kullanılabilecek şekilde tasarlanıyor.</p>
           <span class="footer-status">Yakında App Store'da</span>
         </section>
-        <nav class="footer-column" aria-label="Site haritası">
-          <strong>Site haritası</strong>
+        <nav class="footer-column" aria-label="Ürün bağlantıları">
+          <strong>Ürün</strong>
           <a href="/#product">Ürün</a>
           <a href="/#cards">Kartlar</a>
           <a href="/app-store/">App Store</a>
@@ -73,7 +101,6 @@
           <a href="/privacy/">Gizlilik</a>
           <a href="/kvkk/">KVKK</a>
           <a href="/terms/">Kullanım</a>
-          <a href="/sitemap.xml">sitemap.xml</a>
         </nav>
       </div>
       <div class="footer-bottom">
@@ -81,5 +108,6 @@
         <a href="#main">Yukarı dön</a>
       </div>
     </footer>
+    <script src="/main.js"></script>
   </body>
 </html>
