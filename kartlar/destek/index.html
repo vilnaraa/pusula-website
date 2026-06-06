@@ -42,13 +42,13 @@
       </nav>
     </header>
     <main id="main" class="subpage-main">
-      <section class="card-compact-hero">
+      <section class="card-compact-hero" data-card-detail data-active-card="destek">
         <div class="card-detail-copy card-compact-copy">
-          <p class="eyebrow dark">Destek</p>
-          <h1>Destek</h1>
-          <p class="card-product-subtitle">Sakinleşme, resmi kriz kaynakları ve kişisel sınırları tek güvenli bölümde toplar.</p>
-          <p>Destek kartı, Pusula’nın sınırını net tutar: uygulama terapi, tanı veya klinik destek iddiası taşımaz. Bunun yerine sakinleşme araçları, resmi kriz kaynakları, acil servis yönlendirmesi ve güvenilen kişiye ulaşma gibi güvenli aksiyonlar sunar.</p>
-          <div class="card-quick-facts" aria-label="Destek kartı kısa özellikleri">
+          <p class="eyebrow dark" data-card-tag>Destek</p>
+          <h1 data-card-title>Destek</h1>
+          <p class="card-product-subtitle" data-card-subtitle>Sakinleşme, resmi kriz kaynakları ve kişisel sınırları tek güvenli bölümde toplar.</p>
+          <p data-card-description>Destek kartı, Pusula’nın sınırını net tutar: uygulama terapi, tanı veya klinik destek iddiası taşımaz. Bunun yerine sakinleşme araçları, resmi kriz kaynakları, acil servis yönlendirmesi ve güvenilen kişiye ulaşma gibi güvenli aksiyonlar sunar.</p>
+          <div class="card-quick-facts" data-card-facts aria-label="Destek kartı kısa özellikleri">
             <span><strong>01</strong>3 dakikalık sakinleşme alanını görünür kılar.</span><span><strong>02</strong>112 ve resmi kriz kaynaklarına net yönlendirir.</span><span><strong>03</strong>Yanlış dokunmaları azaltmak için kritik aksiyonlarda onay ister.</span>
           </div>
           <div class="card-hero-actions">
@@ -56,54 +56,57 @@
             <a class="text-link" href="#nasil-calisir">Nasıl çalışır?</a>
           </div>
         </div>
-        <div class="card-mosaic" aria-label="Destek görsel anlatımı">
-          <article class="mosaic-tile primary">
+        <div class="card-mosaic" data-card-mosaic aria-label="Destek görsel anlatımı">
+          <a class="mosaic-tile primary active" href="/kartlar/destek/" data-card-switch="destek" aria-current="page">
             <img src="/assets/card-support.png" width="1024" height="1024" alt="Destek Pusula kart görseli">
             <div>
               <span>Destek</span>
               <strong>Önce güvenli alan.</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a>
+          <div class="mosaic-options">
+          <a class="mosaic-tile" href="/kartlar/stoik-lens/" data-card-switch="stoik-lens">
             <img src="/assets/card-calm.png" width="1024" height="1024" alt="Stoik lens Pusula kart görseli">
             <div>
               <span>Stoik lens</span>
               <strong>Stoik lens</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a><a class="mosaic-tile" href="/kartlar/astro-ton/" data-card-switch="astro-ton">
             <img src="/assets/card-night.png" width="1024" height="1024" alt="Astro ton Pusula kart görseli">
             <div>
               <span>Astro ton</span>
               <strong>Astro ton</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a><a class="mosaic-tile" href="/kartlar/kariyer/" data-card-switch="kariyer">
             <img src="/assets/card-career.png" width="1024" height="1024" alt="Kariyer Pusula kart görseli">
             <div>
               <span>Kariyer</span>
               <strong>Kariyer</strong>
             </div>
-          </article>
+          </a>
+          </div>
         </div>
       </section>
 
       <section class="section card-product-story">
         <article class="product-story-card">
           <p class="eyebrow dark">Kartın özü</p>
-          <h2>Destek kartı nedir?</h2>
-          <p>Destek kartı, kullanıcının zorlandığı anlarda hızlı ve güvenli seçenekleri bulmasını sağlar. İçerik dili sakin kalır; kriz riski varsa resmi kaynaklar ve acil destek yolları görünür şekilde sunulur.</p>
+          <h2 data-card-what-title>Destek kartı nedir?</h2>
+          <p data-card-what-text>Destek kartı, kullanıcının zorlandığı anlarda hızlı ve güvenli seçenekleri bulmasını sağlar. İçerik dili sakin kalır; kriz riski varsa resmi kaynaklar ve acil destek yolları görünür şekilde sunulur.</p>
         </article>
         <article class="product-story-card accent">
           <p class="eyebrow dark">Neden kullanılır?</p>
-          <h2>Neden önemli?</h2>
-          <p>Ruh haliyle çalışan her ürün net sınırlar taşımalıdır. Destek kartı, Pusula’nın iyi hissettirme iddiasını sorumlu bir güvenlik çerçevesiyle dengeler.</p>
+          <h2 data-card-why-title>Neden önemli?</h2>
+          <p data-card-why-text>Ruh haliyle çalışan her ürün net sınırlar taşımalıdır. Destek kartı, Pusula’nın iyi hissettirme iddiasını sorumlu bir güvenlik çerçevesiyle dengeler.</p>
         </article>
       </section>
 
       <section id="nasil-calisir" class="section card-benefit-section">
         <div class="section-heading compact">
           <p class="eyebrow dark">Ürün değeri</p>
-          <h2>Önce güvenli alan.</h2>
+          <h2 data-card-feature-title>Önce güvenli alan.</h2>
         </div>
-        <div class="card-feature-grid">
+        <div class="card-feature-grid" data-card-features>
           <article class="card-feature-tile">
             <img src="/assets/card-support.png" width="1024" height="1024" alt="Destek Pusula kart görseli">
             <div>
@@ -139,15 +142,15 @@
       <section class="section card-product-columns">
         <article class="content-card card-product-list">
           <h3>Ne zaman iyi gelir?</h3>
-          <ul><li>Kullanıcı sakinleşmek için kısa bir seansa ihtiyaç duyduğunda.</li><li>Acil risk veya resmi destek ihtimali doğduğunda.</li><li>Güvenilen bir kişiye ulaşmak veya acil servis aramak gerektiğinde.</li></ul>
+          <ul data-card-usecases><li>Kullanıcı sakinleşmek için kısa bir seansa ihtiyaç duyduğunda.</li><li>Acil risk veya resmi destek ihtimali doğduğunda.</li><li>Güvenilen bir kişiye ulaşmak veya acil servis aramak gerektiğinde.</li></ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Hangi sinyallerle çalışır?</h3>
-          <ul><li>Ruh hali: kötü, canım sıkkın, baskı altında.</li><li>Destek ihtiyacı: duygusal denge.</li><li>Kriz metinleri: resmi kaynaklara yönlendirme.</li></ul>
+          <ul data-card-signals><li>Ruh hali: kötü, canım sıkkın, baskı altında.</li><li>Destek ihtiyacı: duygusal denge.</li><li>Kriz metinleri: resmi kaynaklara yönlendirme.</li></ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Uygulamada nasıl davranır?</h3>
-          <ul><li>Destek alanı ürünün günlük kart akışından daha ciddi bir hiyerarşiyle sunulur.</li><li>Sakinleşme sesleri telifsiz procedural ses olarak üretilir.</li><li>Acil destek akışları ürün önerisi değil, resmi kaynak yönlendirmesidir.</li></ul>
+          <ul data-card-notes><li>Destek alanı ürünün günlük kart akışından daha ciddi bir hiyerarşiyle sunulur.</li><li>Sakinleşme sesleri telifsiz procedural ses olarak üretilir.</li><li>Acil destek akışları ürün önerisi değil, resmi kaynak yönlendirmesidir.</li></ul>
         </article>
       </section>
     </main>
@@ -182,6 +185,7 @@
         <a href="#main">Yukarı dön</a>
       </div>
     </footer>
+    <script src="/data/cards.js"></script>
     <script src="/main.js"></script>
   </body>
 </html>

@@ -857,6 +857,7 @@ p {
   border-radius: 34px;
   margin: 82px auto 28px;
   padding: clamp(22px, 4vw, 42px);
+  scroll-margin-top: 92px;
   background:
     radial-gradient(circle at 14% 12%, rgba(210, 165, 58, 0.16), transparent 32%),
     radial-gradient(circle at 88% 82%, rgba(47, 102, 88, 0.14), transparent 34%),
@@ -865,7 +866,8 @@ p {
 }
 
 .card-compact-copy h1 {
-  font-size: clamp(3.4rem, 6.8vw, 6.2rem);
+  font-size: clamp(3.05rem, 5.35vw, 5rem);
+  line-height: 0.93;
   letter-spacing: 0;
 }
 
@@ -899,15 +901,16 @@ p {
 }
 
 .card-mosaic {
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-  grid-template-rows: repeat(2, minmax(190px, 1fr));
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 12px;
-  min-height: 430px;
+  min-height: auto;
 }
 
 .mosaic-tile {
   position: relative;
+  display: block;
   overflow: hidden;
   border: 1px solid rgba(222, 207, 183, 0.8);
   border-radius: 24px;
@@ -916,10 +919,26 @@ p {
     rgba(255, 250, 241, 0.48);
   box-shadow: 0 18px 52px rgba(34, 29, 20, 0.12);
   isolation: isolate;
+  text-decoration: none;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .mosaic-tile.primary {
-  grid-row: span 2;
+  flex: 1 1 430px;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+}
+
+.mosaic-options {
+  display: grid;
+  flex: 0 0 min(22vw, 136px);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mosaic-options .mosaic-tile {
+  aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 .mosaic-tile::after {
@@ -947,6 +966,20 @@ p {
   transform: scale(1.045);
 }
 
+.mosaic-tile:hover,
+.mosaic-tile:focus-visible {
+  border-color: rgba(210, 165, 58, 0.72);
+  box-shadow:
+    0 22px 58px rgba(34, 29, 20, 0.16),
+    0 0 0 4px rgba(210, 165, 58, 0.16);
+  outline: 0;
+  transform: translateY(-2px);
+}
+
+.mosaic-tile.active {
+  border-color: rgba(210, 165, 58, 0.82);
+}
+
 .mosaic-tile div {
   position: absolute;
   right: 16px;
@@ -970,6 +1003,20 @@ p {
   max-width: 420px;
   font-size: clamp(1.1rem, 1.8vw, 1.85rem);
   line-height: 1.06;
+}
+
+.mosaic-options .mosaic-tile div {
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+}
+
+.mosaic-options .mosaic-tile span {
+  font-size: 0.64rem;
+}
+
+.mosaic-options .mosaic-tile strong {
+  font-size: 0.96rem;
 }
 
 .card-hero-actions {
@@ -1082,8 +1129,10 @@ p {
 }
 
 .card-feature-tile img {
+  display: block;
   width: 100%;
-  aspect-ratio: 1.32 / 1;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border: 1px solid rgba(222, 207, 183, 0.82);
   border-radius: 24px;
   background: rgba(255, 250, 241, 0.56);
@@ -2077,15 +2126,15 @@ p {
   }
 
   .card-mosaic {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto;
-    min-height: auto;
+    justify-content: stretch;
   }
 
-  .mosaic-tile,
   .mosaic-tile.primary {
-    grid-row: auto;
-    aspect-ratio: 1 / 1;
+    max-width: none;
+  }
+
+  .mosaic-options {
+    flex-basis: min(28vw, 180px);
   }
 
   .faq-intro-card {
@@ -2235,7 +2284,18 @@ p {
   }
 
   .card-mosaic {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+  }
+
+  .mosaic-tile.primary {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .mosaic-options {
+    display: contents;
   }
 
   .mosaic-tile {

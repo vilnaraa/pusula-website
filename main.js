@@ -312,6 +312,115 @@
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
+  const cardUrl = (slug) => `/kartlar/${slug}/`;
+
+  const listHtml = (items) => (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+
+  const getOrderedCards = (activeSlug) => {
+    const cards = Array.isArray(cardData.cards) ? cardData.cards : [];
+    const activeCard = cards.find((card) => card.slug === activeSlug) || cards[0];
+    if (!activeCard) return [];
+    return [activeCard, ...cards.filter((card) => card.slug !== activeCard.slug)].slice(0, 4);
+  };
+
+  const getFeatureTiles = (card, orderedCards) => {
+    const supportingText = [...(card.useCases || []), ...(card.signals || []), ...(card.productNotes || [])];
+    return (card.benefits || []).slice(0, 4).map((benefit, index) => {
+      const visual = orderedCards[index % orderedCards.length] || card;
+      return {
+        title: String(benefit || "").replace(/\.$/, ""),
+        text: supportingText[index] || card.subtitle || card.description || "",
+        image: visual.image || "/assets/card-calm.png",
+        alt: visual.alt || `${visual.title || "Pusula"} kart görseli`
+      };
+    });
+  };
+
+  const renderMosaicTile = (card, isPrimary = false) => `
+    <a
+      class="mosaic-tile${isPrimary ? " primary active" : ""}"
+      href="${cardUrl(card.slug)}"
+      data-card-switch="${escapeHtml(card.slug)}"
+      ${isPrimary ? 'aria-current="page"' : ""}
+    >
+      <img src="${escapeHtml(card.image || "/assets/card-calm.png")}" width="1024" height="1024" alt="${escapeHtml(card.alt || `${card.title} kart görseli`)}">
+      <div>
+        <span>${escapeHtml(card.tag || card.navLabel || card.title)}</span>
+        <strong>${escapeHtml(isPrimary ? card.headline || card.title : card.title)}</strong>
+      </div>
+    </a>
+  `;
+
+  const renderCardMosaic = (orderedCards) => {
+    const [activeCard, ...otherCards] = orderedCards;
+    if (!activeCard) return "";
+    return `
+      ${renderMosaicTile(activeCard, true)}
+      <div class="mosaic-options">
+        ${otherCards.map((card) => renderMosaicTile(card)).join("")}
+      </div>
+    `;
+  };
+
+  const renderCardFacts = (card) =>
+    (card.benefits || [])
+      .slice(0, 3)
+      .map((benefit, index) => `<span><strong>${String(index + 1).padStart(2, "0")}</strong>${escapeHtml(benefit)}</span>`)
+      .join("");
+
+  const renderCardFeatures = (card, orderedCards) =>
+    getFeatureTiles(card, orderedCards)
+      .map(
+        (tile, index) => `
+          <article class="card-feature-tile">
+            <img src="${escapeHtml(tile.image)}" width="1024" height="1024" alt="${escapeHtml(tile.alt)}">
+            <div>
+              <span>${String(index + 1).padStart(2, "0")}</span>
+              <h3>${escapeHtml(tile.title)}</h3>
+              <p>${escapeHtml(tile.text)}</p>
+            </div>
+          </article>
+        `
+      )
+      .join("");
+
+  const renderCardDetail = (slug, options = {}) => {
+    const detail = document.querySelector("[data-card-detail]");
+    if (!detail) return;
+
+    const orderedCards = getOrderedCards(slug);
+    const card = orderedCards[0];
+    if (!card) return;
+
+    detail.dataset.activeCard = card.slug;
+    detail.querySelector("[data-card-tag]").textContent = card.tag || "Pusula kartı";
+    detail.querySelector("[data-card-title]").textContent = card.title || "";
+    detail.querySelector("[data-card-subtitle]").textContent = card.subtitle || "";
+    detail.querySelector("[data-card-description]").textContent = card.description || "";
+    detail.querySelector("[data-card-facts]").innerHTML = renderCardFacts(card);
+    detail.querySelector("[data-card-mosaic]").innerHTML = renderCardMosaic(orderedCards);
+
+    document.querySelector("[data-card-what-title]").textContent = card.whatTitle || `${card.title} nedir?`;
+    document.querySelector("[data-card-what-text]").textContent = card.whatText || "";
+    document.querySelector("[data-card-why-title]").textContent = card.whyTitle || "Neden önemli?";
+    document.querySelector("[data-card-why-text]").textContent = card.whyText || "";
+    document.querySelector("[data-card-feature-title]").textContent = card.headline || card.title || "";
+    document.querySelector("[data-card-features]").innerHTML = renderCardFeatures(card, orderedCards);
+    document.querySelector("[data-card-usecases]").innerHTML = listHtml(card.useCases);
+    document.querySelector("[data-card-signals]").innerHTML = listHtml(card.signals);
+    document.querySelector("[data-card-notes]").innerHTML = listHtml(card.productNotes);
+
+    document.title = `${card.title} Kartı | Pusula`;
+
+    if (options.pushState !== false && window.location.pathname !== cardUrl(card.slug)) {
+      window.history.pushState({ cardSlug: card.slug }, "", cardUrl(card.slug));
+    }
+
+    if (options.scroll !== false) {
+      detail.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+  };
+
   galleryPrev?.addEventListener("click", () => setGalleryIndex(galleryIndex - 1));
   galleryNext?.addEventListener("click", () => setGalleryIndex(galleryIndex + 1));
   galleryDots?.addEventListener("click", (event) => {
@@ -396,7 +505,28 @@
     );
   });
 
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const switcher = target.closest("[data-card-switch]");
+    if (!switcher || !document.querySelector("[data-card-detail]")) return;
+
+    event.preventDefault();
+    renderCardDetail(switcher.dataset.cardSwitch, { pushState: true, scroll: true });
+  });
+
+  window.addEventListener("popstate", () => {
+    const match = window.location.pathname.match(/^\/kartlar\/([^/]+)\/?$/);
+    if (match) {
+      renderCardDetail(match[1], { pushState: false, scroll: false });
+    }
+  });
+
   renderSiteContent();
   renderGallery();
+  if (document.querySelector("[data-card-detail]")) {
+    const activeSlug = document.querySelector("[data-card-detail]")?.dataset.activeCard;
+    renderCardDetail(activeSlug, { pushState: false, scroll: false });
+  }
   renderEntries("Tumu");
 })();

@@ -133,6 +133,7 @@ const listItems = (items) => (items || []).map((item) => `<li>${escapeHtml(item)
 const cardVisuals = (card, cards) => {
   const ordered = [card, ...cards.filter((item) => item.slug !== card.slug)];
   return ordered.slice(0, 4).map((item, index) => ({
+    slug: item.slug || "",
     image: item.image || "/assets/card-calm.png",
     alt: item.alt || `${item.title || "Pusula"} kart görseli`,
     label: index === 0 ? item.tag || "Pusula kartı" : item.navLabel || item.title || "Kart",
@@ -153,6 +154,8 @@ const cardFeatureTiles = (card, visuals) => {
 const renderCardPage = (card, cards) => {
   const canonical = `https://pusulamobil.com.tr/kartlar/${card.slug}/`;
   const visuals = cardVisuals(card, cards);
+  const primaryVisual = visuals[0];
+  const secondaryVisuals = visuals.slice(1);
   const featureTiles = cardFeatureTiles(card, visuals);
   return `<!doctype html>
 <html lang="tr">
@@ -176,13 +179,13 @@ const renderCardPage = (card, cards) => {
     <a class="skip-link" href="#main">İçeriğe geç</a>
 ${buildNav(cards)}
     <main id="main" class="subpage-main">
-      <section class="card-compact-hero">
+      <section class="card-compact-hero" data-card-detail data-active-card="${escapeAttr(card.slug)}">
         <div class="card-detail-copy card-compact-copy">
-          <p class="eyebrow dark">${escapeHtml(card.tag || "Pusula kartı")}</p>
-          <h1>${escapeHtml(card.title)}</h1>
-          <p class="card-product-subtitle">${escapeHtml(card.subtitle || "")}</p>
-          <p>${escapeHtml(card.description || "")}</p>
-          <div class="card-quick-facts" aria-label="${escapeAttr(card.title)} kartı kısa özellikleri">
+          <p class="eyebrow dark" data-card-tag>${escapeHtml(card.tag || "Pusula kartı")}</p>
+          <h1 data-card-title>${escapeHtml(card.title)}</h1>
+          <p class="card-product-subtitle" data-card-subtitle>${escapeHtml(card.subtitle || "")}</p>
+          <p data-card-description>${escapeHtml(card.description || "")}</p>
+          <div class="card-quick-facts" data-card-facts aria-label="${escapeAttr(card.title)} kartı kısa özellikleri">
             ${(card.benefits || [])
               .slice(0, 3)
               .map((benefit, index) => `<span><strong>${String(index + 1).padStart(2, "0")}</strong>${escapeHtml(benefit)}</span>`)
@@ -193,40 +196,49 @@ ${buildNav(cards)}
             <a class="text-link" href="#nasil-calisir">Nasıl çalışır?</a>
           </div>
         </div>
-        <div class="card-mosaic" aria-label="${escapeAttr(card.title)} görsel anlatımı">
-          ${visuals
+        <div class="card-mosaic" data-card-mosaic aria-label="${escapeAttr(card.title)} görsel anlatımı">
+          <a class="mosaic-tile primary active" href="/kartlar/${escapeAttr(primaryVisual.slug)}/" data-card-switch="${escapeAttr(primaryVisual.slug)}" aria-current="page">
+            <img src="${escapeAttr(primaryVisual.image)}" width="1024" height="1024" alt="${escapeAttr(primaryVisual.alt)}">
+            <div>
+              <span>${escapeHtml(primaryVisual.label)}</span>
+              <strong>${escapeHtml(primaryVisual.title)}</strong>
+            </div>
+          </a>
+          <div class="mosaic-options">
+          ${secondaryVisuals
             .map(
-              (visual, index) => `<article class="mosaic-tile ${index === 0 ? "primary" : ""}">
+              (visual) => `<a class="mosaic-tile" href="/kartlar/${escapeAttr(visual.slug)}/" data-card-switch="${escapeAttr(visual.slug)}">
             <img src="${escapeAttr(visual.image)}" width="1024" height="1024" alt="${escapeAttr(visual.alt)}">
             <div>
               <span>${escapeHtml(visual.label)}</span>
               <strong>${escapeHtml(visual.title)}</strong>
             </div>
-          </article>`
+          </a>`
             )
             .join("")}
+          </div>
         </div>
       </section>
 
       <section class="section card-product-story">
         <article class="product-story-card">
           <p class="eyebrow dark">Kartın özü</p>
-          <h2>${escapeHtml(card.whatTitle || `${card.title} nedir?`)}</h2>
-          <p>${escapeHtml(card.whatText || "")}</p>
+          <h2 data-card-what-title>${escapeHtml(card.whatTitle || `${card.title} nedir?`)}</h2>
+          <p data-card-what-text>${escapeHtml(card.whatText || "")}</p>
         </article>
         <article class="product-story-card accent">
           <p class="eyebrow dark">Neden kullanılır?</p>
-          <h2>${escapeHtml(card.whyTitle || "Neden önemli?")}</h2>
-          <p>${escapeHtml(card.whyText || "")}</p>
+          <h2 data-card-why-title>${escapeHtml(card.whyTitle || "Neden önemli?")}</h2>
+          <p data-card-why-text>${escapeHtml(card.whyText || "")}</p>
         </article>
       </section>
 
       <section id="nasil-calisir" class="section card-benefit-section">
         <div class="section-heading compact">
           <p class="eyebrow dark">Ürün değeri</p>
-          <h2>${escapeHtml(card.headline || card.title)}</h2>
+          <h2 data-card-feature-title>${escapeHtml(card.headline || card.title)}</h2>
         </div>
-        <div class="card-feature-grid">
+        <div class="card-feature-grid" data-card-features>
           ${featureTiles
             .map(
               (tile, index) => `<article class="card-feature-tile">
@@ -245,19 +257,20 @@ ${buildNav(cards)}
       <section class="section card-product-columns">
         <article class="content-card card-product-list">
           <h3>Ne zaman iyi gelir?</h3>
-          <ul>${listItems(card.useCases)}</ul>
+          <ul data-card-usecases>${listItems(card.useCases)}</ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Hangi sinyallerle çalışır?</h3>
-          <ul>${listItems(card.signals)}</ul>
+          <ul data-card-signals>${listItems(card.signals)}</ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Uygulamada nasıl davranır?</h3>
-          <ul>${listItems(card.productNotes)}</ul>
+          <ul data-card-notes>${listItems(card.productNotes)}</ul>
         </article>
       </section>
     </main>
 ${buildFooter()}
+    <script src="/data/cards.js"></script>
     <script src="/main.js"></script>
   </body>
 </html>

@@ -42,13 +42,13 @@
       </nav>
     </header>
     <main id="main" class="subpage-main">
-      <section class="card-compact-hero">
+      <section class="card-compact-hero" data-card-detail data-active-card="astro-ton">
         <div class="card-detail-copy card-compact-copy">
-          <p class="eyebrow dark">Astro refleksiyon</p>
-          <h1>Astro ton</h1>
-          <p class="card-product-subtitle">Burç bilgisini kesin hüküm gibi değil, günün dilini yumuşatan eğlenceli bir refleksiyon tonu olarak kullanır.</p>
-          <p>Astro ton kartı, doğum tarihinden çıkan burç bilgisini kişisel farkındalık diline çevirir. Kullanıcıya kehanet veya kesin yönlendirme sunmaz; o günün enerjisini daha hafif, oyunlu ve düşük baskılı bir cümleyle okumasına yardım eder.</p>
-          <div class="card-quick-facts" aria-label="Astro ton kartı kısa özellikleri">
+          <p class="eyebrow dark" data-card-tag>Astro refleksiyon</p>
+          <h1 data-card-title>Astro ton</h1>
+          <p class="card-product-subtitle" data-card-subtitle>Burç bilgisini kesin hüküm gibi değil, günün dilini yumuşatan eğlenceli bir refleksiyon tonu olarak kullanır.</p>
+          <p data-card-description>Astro ton kartı, doğum tarihinden çıkan burç bilgisini kişisel farkındalık diline çevirir. Kullanıcıya kehanet veya kesin yönlendirme sunmaz; o günün enerjisini daha hafif, oyunlu ve düşük baskılı bir cümleyle okumasına yardım eder.</p>
+          <div class="card-quick-facts" data-card-facts aria-label="Astro ton kartı kısa özellikleri">
             <span><strong>01</strong>Günün dilini daha hafif ve sezgisel hale getirir.</span><span><strong>02</strong>Burç bilgisini kişisel farkındalık için kullanır.</span><span><strong>03</strong>Kesin gelecek iddiası yerine eğlenceli refleksiyon sunar.</span>
           </div>
           <div class="card-hero-actions">
@@ -56,54 +56,57 @@
             <a class="text-link" href="#nasil-calisir">Nasıl çalışır?</a>
           </div>
         </div>
-        <div class="card-mosaic" aria-label="Astro ton görsel anlatımı">
-          <article class="mosaic-tile primary">
+        <div class="card-mosaic" data-card-mosaic aria-label="Astro ton görsel anlatımı">
+          <a class="mosaic-tile primary active" href="/kartlar/astro-ton/" data-card-switch="astro-ton" aria-current="page">
             <img src="/assets/card-night.png" width="1024" height="1024" alt="Astro ton Pusula kart görseli">
             <div>
               <span>Astro refleksiyon</span>
               <strong>Ritmini yumuşat.</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a>
+          <div class="mosaic-options">
+          <a class="mosaic-tile" href="/kartlar/stoik-lens/" data-card-switch="stoik-lens">
             <img src="/assets/card-calm.png" width="1024" height="1024" alt="Stoik lens Pusula kart görseli">
             <div>
               <span>Stoik lens</span>
               <strong>Stoik lens</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a><a class="mosaic-tile" href="/kartlar/kariyer/" data-card-switch="kariyer">
             <img src="/assets/card-career.png" width="1024" height="1024" alt="Kariyer Pusula kart görseli">
             <div>
               <span>Kariyer</span>
               <strong>Kariyer</strong>
             </div>
-          </article><article class="mosaic-tile ">
+          </a><a class="mosaic-tile" href="/kartlar/sosyallesme/" data-card-switch="sosyallesme">
             <img src="/assets/card-social.png" width="1024" height="1024" alt="Sosyalleşme Pusula kart görseli">
             <div>
               <span>Sosyalleşme</span>
               <strong>Sosyalleşme</strong>
             </div>
-          </article>
+          </a>
+          </div>
         </div>
       </section>
 
       <section class="section card-product-story">
         <article class="product-story-card">
           <p class="eyebrow dark">Kartın özü</p>
-          <h2>Astro ton nedir?</h2>
-          <p>Astroloji ilgisini kesin öneri veya öngörüye dönüştürmeden kullanan bir atmosfer katmanıdır. Kartlar, kullanıcının burcunu ve günün seçili tonunu dikkate alarak daha sezgisel, yumuşak ve kişisel bir ifade üretir.</p>
+          <h2 data-card-what-title>Astro ton nedir?</h2>
+          <p data-card-what-text>Astroloji ilgisini kesin öneri veya öngörüye dönüştürmeden kullanan bir atmosfer katmanıdır. Kartlar, kullanıcının burcunu ve günün seçili tonunu dikkate alarak daha sezgisel, yumuşak ve kişisel bir ifade üretir.</p>
         </article>
         <article class="product-story-card accent">
           <p class="eyebrow dark">Neden kullanılır?</p>
-          <h2>Neden önemli?</h2>
-          <p>Bazı kullanıcılar kendini kuru tavsiyelerle değil, sembolik ve sezgisel bir dille daha rahat açar. Astro ton bu ihtiyacı güvenli sınır içinde karşılar: eğlenceli, kişisel, ama hüküm verici değil.</p>
+          <h2 data-card-why-title>Neden önemli?</h2>
+          <p data-card-why-text>Bazı kullanıcılar kendini kuru tavsiyelerle değil, sembolik ve sezgisel bir dille daha rahat açar. Astro ton bu ihtiyacı güvenli sınır içinde karşılar: eğlenceli, kişisel, ama hüküm verici değil.</p>
         </article>
       </section>
 
       <section id="nasil-calisir" class="section card-benefit-section">
         <div class="section-heading compact">
           <p class="eyebrow dark">Ürün değeri</p>
-          <h2>Ritmini yumuşat.</h2>
+          <h2 data-card-feature-title>Ritmini yumuşat.</h2>
         </div>
-        <div class="card-feature-grid">
+        <div class="card-feature-grid" data-card-features>
           <article class="card-feature-tile">
             <img src="/assets/card-night.png" width="1024" height="1024" alt="Astro ton Pusula kart görseli">
             <div>
@@ -139,15 +142,15 @@
       <section class="section card-product-columns">
         <article class="content-card card-product-list">
           <h3>Ne zaman iyi gelir?</h3>
-          <ul><li>Kullanıcı karar vermek yerine ritmini dinlemek istediğinde.</li><li>Günün enerjisini daha oyunlu bir dille okumak istediğinde.</li><li>Stoik ton fazla ciddi hissettirdiğinde.</li></ul>
+          <ul data-card-usecases><li>Kullanıcı karar vermek yerine ritmini dinlemek istediğinde.</li><li>Günün enerjisini daha oyunlu bir dille okumak istediğinde.</li><li>Stoik ton fazla ciddi hissettirdiğinde.</li></ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Hangi sinyallerle çalışır?</h3>
-          <ul><li>Ruh hali: kararsız, sakin, normal.</li><li>Tempo: çok hafif veya dengeli.</li><li>Profil: doğum tarihi ve burç bilgisi.</li></ul>
+          <ul data-card-signals><li>Ruh hali: kararsız, sakin, normal.</li><li>Tempo: çok hafif veya dengeli.</li><li>Profil: doğum tarihi ve burç bilgisi.</li></ul>
         </article>
         <article class="content-card card-product-list">
           <h3>Uygulamada nasıl davranır?</h3>
-          <ul><li>Astro ton, uygulama ayarından kapatılabilir.</li><li>Kapalı olduğunda astro kartları ve astro dili kart motorundan çıkar.</li><li>Metinler kopya fal değil, Pusula için yazılmış özgün refleksiyon cümleleridir.</li></ul>
+          <ul data-card-notes><li>Astro ton, uygulama ayarından kapatılabilir.</li><li>Kapalı olduğunda astro kartları ve astro dili kart motorundan çıkar.</li><li>Metinler kopya fal değil, Pusula için yazılmış özgün refleksiyon cümleleridir.</li></ul>
         </article>
       </section>
     </main>
@@ -182,6 +185,7 @@
         <a href="#main">Yukarı dön</a>
       </div>
     </footer>
+    <script src="/data/cards.js"></script>
     <script src="/main.js"></script>
   </body>
 </html>
