@@ -4,9 +4,93 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>Pusula CMS</title>
+    <title>Pusula Admin</title>
+    <link rel="icon" href="/assets/app-icon.png">
+    <link rel="stylesheet" href="/admin/admin.css">
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@3.6.2/dist/decap-cms.js"></script>
+    <main class="admin-app">
+      <section class="admin-hero">
+        <div class="admin-brand">
+          <img src="/assets/app-icon.png" width="44" height="44" alt="">
+          <span>Pusula Admin</span>
+        </div>
+        <div class="admin-hero-copy">
+          <p class="eyebrow">İçerik paneli</p>
+          <h1>Site metinlerini Pusula arayüzünden yönet.</h1>
+          <p>
+            GitHub ile giriş yap, içerik dosyalarını aç, düzenle ve kaydet.
+            Kaydettiğin değişiklikler repo'ya commit olarak yazılır.
+          </p>
+        </div>
+        <div class="admin-actions">
+          <button id="login-button" class="admin-button primary" type="button">GitHub ile giriş yap</button>
+          <button id="logout-button" class="admin-button ghost" type="button" hidden>Çıkış yap</button>
+        </div>
+      </section>
+
+      <section id="login-panel" class="login-panel">
+        <div class="login-card">
+          <span class="login-orb" aria-hidden="true"></span>
+          <h2>Yönetim için GitHub bağlantısı gerekiyor.</h2>
+          <p>
+            Pusula Admin, ayrı bir veritabanı kullanmaz. Değişiklikler doğrudan
+            <strong>vilnaraa/pusula-website</strong> reposuna yazılır.
+          </p>
+          <ul>
+            <li>Site ana metinleri</li>
+            <li>Ürün galerisi açıklamaları</li>
+            <li>Public changelog kayıtları</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="dashboard" class="dashboard" hidden>
+        <aside class="file-sidebar" aria-label="Düzenlenebilir içerikler">
+          <div class="sidebar-head">
+            <span>Dosyalar</span>
+            <small id="user-label">Bağlı değil</small>
+          </div>
+          <button class="file-tab active" type="button" data-file="site">
+            <strong>Site ayarları</strong>
+            <span>Hero, SEO, ürün metinleri</span>
+          </button>
+          <button class="file-tab" type="button" data-file="gallery">
+            <strong>Ürün galerisi</strong>
+            <span>Slider açıklamaları</span>
+          </button>
+          <button class="file-tab" type="button" data-file="changelog">
+            <strong>Changelog</strong>
+            <span>Sürüm kayıtları</span>
+          </button>
+        </aside>
+
+        <section class="editor-shell">
+          <div class="editor-toolbar">
+            <div>
+              <p class="eyebrow">Aktif dosya</p>
+              <h2 id="editor-title">Site ayarları</h2>
+            </div>
+            <div class="toolbar-actions">
+              <span id="save-state" class="save-state">Hazır</span>
+              <button id="reload-button" class="admin-button ghost" type="button">Yenile</button>
+              <button id="save-button" class="admin-button primary" type="button">Kaydet ve commit at</button>
+            </div>
+          </div>
+
+          <form id="site-form" class="structured-form" autocomplete="off"></form>
+
+          <div id="json-editor" class="json-editor" hidden>
+            <div class="json-editor-head">
+              <p>JSON düzenleyici</p>
+              <span id="json-hint">Dosya içeriği</span>
+            </div>
+            <textarea id="json-textarea" spellcheck="false"></textarea>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/admin/admin.js"></script>
   </body>
 </html>
