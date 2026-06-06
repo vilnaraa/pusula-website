@@ -26,6 +26,7 @@ const authError = (provider, message) =>
   html(
     `<script>
       if (window.opener) {
+        window.opener.postMessage("authorizing:${provider}", "*");
         window.opener.postMessage("authorization:${provider}:error:${JSON.stringify({ message })}", "*");
         window.close();
       }
@@ -97,13 +98,27 @@ export default {
         token: tokenData.access_token,
         provider: "github"
       };
+      const safePayload = JSON.stringify(payload).replace(/</g, "\\u003c");
 
       return html(`
         <script>
-          const message = "authorization:github:success:${JSON.stringify(payload).replaceAll('"', '\\"')}";
+          const payload = ${safePayload};
+          const message = "authorization:github:success:" + JSON.stringify(payload);
+          let sent = false;
+
+          const sendToken = (targetOrigin) => {
+            if (sent || !window.opener) return;
+            sent = true;
+            window.opener.postMessage(message, targetOrigin || "*");
+            window.setTimeout(() => window.close(), 250);
+          };
+
           if (window.opener) {
-            window.opener.postMessage(message, "*");
-            window.close();
+            window.addEventListener("message", (event) => {
+              sendToken(event.origin);
+            });
+            window.opener.postMessage("authorizing:github", "*");
+            window.setTimeout(() => sendToken("*"), 1200);
           } else {
             document.body.textContent = "GitHub login tamamlandı. Admin penceresine dönebilirsin.";
           }
