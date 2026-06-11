@@ -648,14 +648,18 @@
     await loadMedia();
   };
 
-  const setAuthenticated = async (token) => {
+  const setAuthenticated = async (token, login = "") => {
     state.token = token;
     sessionStorage.setItem(tokenKey, token);
     loginPanel.hidden = true;
     dashboard.hidden = false;
     loginButton.hidden = true;
     logoutButton.hidden = false;
-    await loadUser();
+    if (login) {
+      userLabel.textContent = `@${login}`;
+    } else {
+      await loadUser();
+    }
     await renderEditor();
   };
 
@@ -673,7 +677,7 @@
 
   const startLogin = () => {
     const popup = window.open(
-      `/api/auth?provider=github&scope=repo,user:email&state=${crypto.randomUUID()}`,
+      `/api/auth?provider=github&scope=public_repo%20user:email&state=${crypto.randomUUID()}`,
       "pusula-github-auth",
       "width=720,height=760"
     );
@@ -690,12 +694,22 @@
       return;
     }
 
+    if (event.data.startsWith("authorization:github:error:")) {
+      try {
+        const payload = JSON.parse(event.data.replace("authorization:github:error:", ""));
+        setStatus(payload.message || "GitHub girişi tamamlanamadı.", "error");
+      } catch {
+        setStatus("GitHub girişi tamamlanamadı.", "error");
+      }
+      return;
+    }
+
     if (!event.data.startsWith("authorization:github:success:")) return;
 
     try {
       const payload = JSON.parse(event.data.replace("authorization:github:success:", ""));
       if (payload.token) {
-        await setAuthenticated(payload.token);
+        await setAuthenticated(payload.token, payload.login || "");
       }
     } catch (error) {
       setStatus(error.message, "error");

@@ -4,7 +4,7 @@ Bu site için önerilen kurulum:
 
 1. GitHub'da sadece website dosyalarını içeren ayrı repo hazır olmalı: `vilnaraa/pusula-website`.
 2. Bu klasörün içeriğini repo köküne yükle.
-3. `admin/config.yml` içinde repo değeri `vilnaraa/pusula-website` olmalı.
+3. `/admin/` paneli custom Pusula Admin arayüzüdür; Decap config kullanılmaz.
 4. Cloudflare Pages içinde bu repo'yu bağla.
 5. Build command olarak `npm run build` gir.
 6. Build output directory için `dist` kullan.
@@ -34,7 +34,7 @@ binding = "ASSETS"
 not_found_handling = "404-page"
 ```
 
-## Decap CMS Auth
+## Pusula Admin Auth
 
 `/admin` panelinin GitHub'a kayıt yazabilmesi için GitHub OAuth kurulumu gerekir.
 
@@ -51,9 +51,12 @@ Minimum pratik akış:
 4. Cloudflare Worker variables/secrets içine şunları gir:
    - `GITHUB_CLIENT_ID`
    - `GITHUB_CLIENT_SECRET`
+   - `ALLOWED_GITHUB_LOGIN` opsiyonel; varsayılan `vilnaraa`.
 5. OAuth secret repo içine yazılmamalı.
 
 Bu değerler eksikse `/admin/` açılır, fakat GitHub login eksik konfigürasyon mesajı gösterir.
+
+Admin OAuth scope bilinçli olarak `public_repo user:email` ile sınırlıdır. Callback sonrası GitHub kullanıcısı kontrol edilir; `ALLOWED_GITHUB_LOGIN` dışındaki hesaplara token verilmez.
 
 ## Güvenlik notu
 

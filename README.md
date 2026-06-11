@@ -11,7 +11,7 @@ Bu klasör Pusula için statik tanıtım ve public changelog sitesidir.
 - `content/gallery.json`: Yönetilebilir ürün galerisi slaytları.
 - `data/changelog.json`: Yönetilebilir changelog kayıtları.
 - `data/site.js`, `data/gallery.js`, `data/changelog.js`: Build script tarafından üretilen tarayıcı data dosyaları.
-- `admin/`: Decap CMS yönetim paneli.
+- `admin/`: Pusula'ya özel GitHub OAuth ile çalışan içerik yönetim paneli.
 - `assets/`: Uygulama için üretilen bize ait görseller.
 - `assets/uploads/`: CMS üzerinden yüklenen görseller.
 - `scripts/build-site.js`: JSON içerikten JS data dosyaları ve SEO meta etiketleri üretir.
@@ -22,7 +22,7 @@ Bu klasör Pusula için statik tanıtım ve public changelog sitesidir.
 
 ## Yönetim paneli
 
-WordPress kullanılmıyor. Site, Decap CMS ile yönetilecek şekilde hazırlandı.
+WordPress kullanılmıyor. Site, Pusula'ya özel hafif bir admin paneliyle yönetilecek şekilde hazırlandı.
 
 Canlı ortamda yönetim paneli:
 
@@ -37,6 +37,13 @@ Panelden düzenlenebilecek alanlar:
 - Ürün galerisi başlıkları, açıklamaları, maddeleri ve görselleri
 - Ürün adımları, ilkeler ve footer metinleri
 - Changelog kayıtları
+
+Admin login için GitHub OAuth kullanılır. Worker environment içinde `GITHUB_CLIENT_ID` ve
+`GITHUB_CLIENT_SECRET` tanımlı olmalı. Varsayılan yetkili GitHub kullanıcısı `vilnaraa`; gerekirse
+Cloudflare environment alanında `ALLOWED_GITHUB_LOGIN` ile değiştirilebilir.
+
+OAuth scope değeri bilinçli olarak `public_repo user:email` ile sınırlıdır. Repo private yapılırsa bu scope
+tekrar değerlendirilmelidir.
 
 ## Changelog nasıl güncellenir?
 

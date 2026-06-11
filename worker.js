@@ -16,6 +16,13 @@ const getOrigin = (request) => new URL(request.url).origin;
 
 const getCallbackUrl = (request) => `${getOrigin(request)}/api/callback`;
 
+const defaultAllowedLogin = "vilnaraa";
+
+const getAllowedLogin = (env) =>
+  String(env.ALLOWED_GITHUB_LOGIN || defaultAllowedLogin)
+    .trim()
+    .toLowerCase();
+
 const missingEnv = () =>
   html(
     "<main style=\"font:16px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;max-width:680px;margin:64px auto;padding:24px;line-height:1.6\"><h1>GitHub login ayarı eksik</h1><p>Admin panelinin çalışması için Cloudflare Worker environment içinde <strong>GITHUB_CLIENT_ID</strong> ve <strong>GITHUB_CLIENT_SECRET</strong> tanımlanmalı.</p><p>GitHub OAuth App callback URL değeri: <code>https://pusulamobil.com.tr/api/callback</code></p></main>",
@@ -25,9 +32,10 @@ const missingEnv = () =>
 const authError = (provider, message) =>
   html(
     `<script>
+      const targetOrigin = window.location.origin;
       if (window.opener) {
-        window.opener.postMessage("authorizing:${provider}", "*");
-        window.opener.postMessage("authorization:${provider}:error:${JSON.stringify({ message })}", "*");
+        window.opener.postMessage("authorizing:${provider}", targetOrigin);
+        window.opener.postMessage("authorization:${provider}:error:${JSON.stringify({ message })}", targetOrigin);
         window.close();
       }
     </script>
@@ -63,7 +71,7 @@ export default {
       }
 
       const state = url.searchParams.get("state") || crypto.randomUUID();
-      const scope = url.searchParams.get("scope") || "repo,user:email";
+      const scope = "public_repo user:email";
       const authUrl = new URL("https://github.com/login/oauth/authorize");
       authUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
       authUrl.searchParams.set("redirect_uri", getCallbackUrl(request));
@@ -103,9 +111,28 @@ export default {
         return authError("github", tokenData.error_description || tokenData.error || "GitHub token alınamadı.");
       }
 
+      const userResponse = await fetch("https://api.github.com/user", {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${tokenData.access_token}`,
+          "User-Agent": "pusula-admin"
+        }
+      });
+      const userData = await userResponse.json();
+      const login = String(userData.login || "").toLowerCase();
+      const allowedLogin = getAllowedLogin(env);
+
+      if (!userResponse.ok || login !== allowedLogin) {
+        return authError(
+          "github",
+          "Bu admin paneline sadece yetkilendirilmiş GitHub hesabı ile giriş yapılabilir."
+        );
+      }
+
       const payload = {
         token: tokenData.access_token,
-        provider: "github"
+        provider: "github",
+        login
       };
       const safePayload = JSON.stringify(payload).replace(/</g, "\\u003c");
 
@@ -113,12 +140,14 @@ export default {
         <script>
           const payload = ${safePayload};
           const message = "authorization:github:success:" + JSON.stringify(payload);
+          const allowedOrigin = window.location.origin;
           let sent = false;
 
           const sendToken = (targetOrigin) => {
             if (sent || !window.opener) return;
+            if (targetOrigin !== allowedOrigin) return;
             sent = true;
-            window.opener.postMessage(message, targetOrigin || "*");
+            window.opener.postMessage(message, allowedOrigin);
             window.setTimeout(() => window.close(), 250);
           };
 
@@ -126,8 +155,8 @@ export default {
             window.addEventListener("message", (event) => {
               sendToken(event.origin);
             });
-            window.opener.postMessage("authorizing:github", "*");
-            window.setTimeout(() => sendToken("*"), 1200);
+            window.opener.postMessage("authorizing:github", allowedOrigin);
+            window.setTimeout(() => sendToken(allowedOrigin), 1200);
           } else {
             document.body.textContent = "GitHub login tamamlandı. Admin penceresine dönebilirsin.";
           }
