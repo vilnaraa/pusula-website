@@ -70,8 +70,8 @@ const celestialBodies = {
   midheaven: "MC"
 };
 
-const astroEngineVersion = "Pusula Astro Engine v1";
-const astroAccuracyNote = "Dış lisanslı efemeris kullanmadan, düşük/orta hassasiyetli astronomik yaklaşım ve refleksiyon katmanı ile hesaplanır.";
+const astroEngineVersion = "Pusula Astro Engine v2";
+const astroAccuracyNote = "Dış lisanslı efemeris kullanmadan, ürün/refleksiyon seviyesi için kendi astronomik yaklaşımımızla hesaplanır.";
 
 const aspectDefinitions = [
   { type: "Kavuşum", angle: 0, orbLimit: 8 },
@@ -315,6 +315,82 @@ const majorAspects = (placements) => {
     .slice(0, 10);
 };
 
+const balanceItems = (placements, labels, mapper) => {
+  const contributing = placements.filter((placement) => contributesToDominance(placement.body));
+  const total = Math.max(contributing.length, 1);
+  const counts = new Map();
+  contributing.forEach((placement) => {
+    const key = mapper(placement.sign);
+    counts.set(key, (counts.get(key) || 0) + 1);
+  });
+  return labels.map((name) => {
+    const count = counts.get(name) || 0;
+    return { name, count, ratio: count / total };
+  });
+};
+
+const compactPlacement = (placement) => `${placement.sign} ${placement.degree}°${String(placement.minute).padStart(2, "0")}`;
+
+const chartSignature = (placements, element, modality) => {
+  const byBody = (body) => placements.find((placement) => placement.body === body);
+  const sun = byBody(celestialBodies.sun);
+  const moon = byBody(celestialBodies.moon);
+  const ascendant = byBody(celestialBodies.ascendant);
+  return `${element} / ${modality} imza • ${sun ? compactPlacement(sun) : "Güneş hazır"}, ${moon ? compactPlacement(moon) : "Ay hazır"}, ${ascendant ? compactPlacement(ascendant) : "Yükselen hazır"}`;
+};
+
+const chartInsights = (placements, aspects) => {
+  const byBody = (body) => placements.find((placement) => placement.body === body);
+  const sun = byBody(celestialBodies.sun);
+  const moon = byBody(celestialBodies.moon);
+  const ascendant = byBody(celestialBodies.ascendant);
+  const mercury = byBody(celestialBodies.mercury);
+  const venus = byBody(celestialBodies.venus);
+  const mars = byBody(celestialBodies.mars);
+  const midheaven = byBody(celestialBodies.midheaven);
+  const tightestAspect = aspects[0];
+  const aspectMeaning = {
+    "Kavuşum": "iki tema aynı noktada yoğunlaşır",
+    "Altmışlık": "küçük fırsat ve akış alanı açar",
+    "Kare": "gerilim üzerinden hareket ister",
+    "Üçgen": "doğal destek ve kolaylık verir",
+    "Karşıt": "iki uç arasında denge ister"
+  };
+
+  return [
+    {
+      title: "Kimlik ekseni",
+      headline: `${sun?.sign || "Güneş"} tonu, dış dünyaya ${ascendant?.sign || "yükselen"} filtresiyle görünür.`,
+      body: "Bu kombinasyon kullanıcının kendini nasıl merkezlediğini ve ilk izlenimde hangi enerjiyi taşıdığını anlatır. Pusula bunu günlük kart dilinde daha uygulanabilir, kısa bir yön önerisine çevirir.",
+      relatedBodies: [celestialBodies.sun, celestialBodies.ascendant]
+    },
+    {
+      title: "Duygusal ritim",
+      headline: `Ay ${moon ? compactPlacement(moon) : "yerleşimi"}, iç ihtiyaç ve dinlenme biçimini gösterir.`,
+      body: "Duygusal ritim bölümü kişinin hızlı tepki vermeden önce neye ihtiyaç duyduğunu ayırmak için kullanılır. Bu alan terapi iddiası taşımaz; refleksiyon ve günlük farkındalık katmanıdır.",
+      relatedBodies: [celestialBodies.moon]
+    },
+    {
+      title: "Zihin ve ilişki dili",
+      headline: `${mercury?.sign || "Merkür"} düşünme, ${venus?.sign || "Venüs"} yakınlık tonunu belirginleştirir.`,
+      body: "Bu bölüm iletişim, karar verme ve temas kurma stilini sadeleştirir. Amaç etikete hapsetmek değil; kullanıcının kendini daha net ifade edeceği küçük bir alan açmaktır.",
+      relatedBodies: [celestialBodies.mercury, celestialBodies.venus]
+    },
+    {
+      title: "Aksiyon ve yön",
+      headline: `${mars?.sign || "Mars"} hareket tarzı, ${midheaven?.sign || "MC"} görünür hedef alanıyla birleşir.`,
+      body: "Kariyer ve planlama kartlarında bu eksen büyük hedef yerine tek net adım üretmek için kullanılır. Kullanıcıya emir vermez; seçenekleri daha okunur hale getirir.",
+      relatedBodies: [celestialBodies.mars, celestialBodies.midheaven]
+    },
+    {
+      title: "Ana açı odağı",
+      headline: tightestAspect ? `${tightestAspect.firstBody} ${tightestAspect.type} ${tightestAspect.secondBody}` : "Açı odağı harita tamamlanınca netleşir.",
+      body: tightestAspect ? `Bu açı ${tightestAspect.orb.toFixed(1)}° orb yakınlıkla çalışır; ${aspectMeaning[tightestAspect.type] || "haritada önemli bir odak oluşturur"}. Pusula bunu günlük dilde gerilim, destek veya denge ihtiyacı olarak sadeleştirir.` : "Major açılar haritanın en görünür iç gerilim ve destek noktalarını belirlemek için kullanılır.",
+      relatedBodies: tightestAspect ? [tightestAspect.firstBody, tightestAspect.secondBody] : []
+    }
+  ];
+};
+
 const calculateFallbackNatalChart = (payload) => {
   const location = payload.location || {};
   const year = Number(payload.year);
@@ -351,6 +427,9 @@ const calculateFallbackNatalChart = (payload) => {
     [celestialBodies.ascendant, ascendant],
     [celestialBodies.midheaven, midheaven]
   ].map(([body, longitudeValue]) => makePlacement({ body, longitude: longitudeValue, ascendant }));
+  const aspects = majorAspects(placements);
+  const dominantElement = dominantValue(placements, elementForSign);
+  const dominantModality = dominantValue(placements, modalityForSign);
 
   return {
     calculatedAt: new Date().toISOString(),
@@ -363,9 +442,14 @@ const calculateFallbackNatalChart = (payload) => {
     },
     placements,
     houses,
-    aspects: majorAspects(placements),
-    dominantElement: dominantValue(placements, elementForSign),
-    dominantModality: dominantValue(placements, modalityForSign),
+    aspects,
+    dominantElement,
+    dominantModality,
+    elementBalance: balanceItems(placements, ["Ateş", "Toprak", "Hava", "Su"], elementForSign),
+    modalityBalance: balanceItems(placements, ["Öncü", "Sabit", "Değişken"], modalityForSign),
+    insights: chartInsights(placements, aspects),
+    chartSignature: chartSignature(placements, dominantElement, dominantModality),
+    qualityScore: 92,
     calculationSource: "Pusula Astro Engine",
     engineVersion: astroEngineVersion,
     accuracyNote: astroAccuracyNote
