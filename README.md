@@ -45,6 +45,19 @@ Cloudflare environment alanında `ALLOWED_GITHUB_LOGIN` ile değiştirilebilir.
 OAuth scope değeri bilinçli olarak `public_repo user:email` ile sınırlıdır. Repo private yapılırsa bu scope
 tekrar değerlendirilmelidir.
 
+## Astro Chart API
+
+Worker `/api/natal-chart` endpoint'ini sunar. iOS uygulama doğum tarihi, saat ve çözülmüş doğum
+konumunu bu endpoint'e `POST` eder. Endpoint şu şekilde çalışır:
+
+- `ASTRO_PROVIDER_URL` tanımlıysa istek lisanslı astro/Swiss Ephemeris uyumlu provider'a iletilir.
+- `ASTRO_PROVIDER_KEY` tanımlıysa provider'a bearer token olarak eklenir.
+- `ASTRO_CHART_API_KEY` tanımlıysa iOS isteği de `Authorization: Bearer ...` ile korunur.
+- Provider yoksa Worker deterministic fallback hesaplama döndürür; uygulama boş kalmaz.
+
+Public App Store için Swiss Ephemeris tarzı lisanslı motor server-side tutulmalı; lisanslı/native kod
+mobil binary'ye gömülmemelidir.
+
 ## Changelog nasıl güncellenir?
 
 Tercih edilen yöntem: `/admin` panelinden `Changelog` bölümünü düzenlemek.
