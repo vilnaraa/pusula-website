@@ -50,13 +50,12 @@ tekrar değerlendirilmelidir.
 Worker `/api/natal-chart` endpoint'ini sunar. iOS uygulama doğum tarihi, saat ve çözülmüş doğum
 konumunu bu endpoint'e `POST` eder. Endpoint şu şekilde çalışır:
 
-- `ASTRO_PROVIDER_URL` tanımlıysa istek lisanslı astro/Swiss Ephemeris uyumlu provider'a iletilir.
-- `ASTRO_PROVIDER_KEY` tanımlıysa provider'a bearer token olarak eklenir.
 - `ASTRO_CHART_API_KEY` tanımlıysa iOS isteği de `Authorization: Bearer ...` ile korunur.
-- Provider yoksa Worker deterministic fallback hesaplama döndürür; uygulama boş kalmaz.
+- Varsayılan hesaplama `Pusula Astro Engine` ile yapılır; dış lisanslı efemeris kullanılmaz.
+- Motor Güneş, Ay, gezegenler, Plüton, Kuzey Ay Düğümü, Yükselen, MC, eşit evler ve major açı odaklarını döndürür.
+- `ASTRO_PROVIDER_URL` ve `ASTRO_PROVIDER_KEY` alanları ileride isteğe bağlı lisanslı provider için korunur; mevcut strateji lisanssız Pusula motorudur.
 
-Public App Store için Swiss Ephemeris tarzı lisanslı motor server-side tutulmalı; lisanslı/native kod
-mobil binary'ye gömülmemelidir.
+Bu motor ürün/refleksiyon seviyesi için tasarlanmıştır; profesyonel efemeris veya danışmanlık iddiası taşımaz.
 
 ## Changelog nasıl güncellenir?
 

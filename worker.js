@@ -64,8 +64,22 @@ const celestialBodies = {
   saturn: "Satürn",
   uranus: "Uranüs",
   neptune: "Neptün",
-  ascendant: "Yükselen"
+  pluto: "Plüton",
+  northNode: "Kuzey Ay Düğümü",
+  ascendant: "Yükselen",
+  midheaven: "MC"
 };
+
+const astroEngineVersion = "Pusula Astro Engine v1";
+const astroAccuracyNote = "Dış lisanslı efemeris kullanmadan, düşük/orta hassasiyetli astronomik yaklaşım ve refleksiyon katmanı ile hesaplanır.";
+
+const aspectDefinitions = [
+  { type: "Kavuşum", angle: 0, orbLimit: 8 },
+  { type: "Altmışlık", angle: 60, orbLimit: 4 },
+  { type: "Kare", angle: 90, orbLimit: 6 },
+  { type: "Üçgen", angle: 120, orbLimit: 6 },
+  { type: "Karşıt", angle: 180, orbLimit: 8 }
+];
 
 const normalizeSecret = (value) => {
   const normalized = String(value || "").trim();
@@ -156,6 +170,8 @@ const orbitalElements = (planet, d) => {
       return { node: 74.0005 + 0.000013978 * d, inclination: 0.7733 + 0.000000019 * d, perihelion: 96.6612 + 0.000030565 * d, semiMajorAxis: 19.18171 - 0.0000000155 * d, eccentricity: 0.047318 + 0.00000000745 * d, meanAnomaly: 142.5905 + 0.011725806 * d };
     case "neptune":
       return { node: 131.7806 + 0.000030173 * d, inclination: 1.7700 - 0.000000255 * d, perihelion: 272.8461 - 0.000006027 * d, semiMajorAxis: 30.05826 + 0.00000003313 * d, eccentricity: 0.008606 + 0.00000000215 * d, meanAnomaly: 260.2471 + 0.005995147 * d };
+    case "pluto":
+      return { node: 110.30347, inclination: 17.14175, perihelion: 113.76329, semiMajorAxis: 39.48168677, eccentricity: 0.24880766, meanAnomaly: 14.53 + 0.003975709 * d };
     default:
       throw new Error("Unknown planet");
   }
@@ -202,6 +218,16 @@ const ascendantLongitude = ({ jd, latitude, longitude }) => {
   return normalizeDegrees(atan2Degrees(numerator, denominator));
 };
 
+const midheavenLongitude = ({ jd, longitude }) => {
+  const d = jd - 2451545.0;
+  const gmst = normalizeDegrees(280.46061837 + 360.98564736629 * d);
+  const localSidereal = normalizeDegrees(gmst + longitude);
+  const obliquity = 23.439291 - 0.0000004 * d;
+  return normalizeDegrees(atan2Degrees(sinDegrees(localSidereal), cosDegrees(localSidereal) * cosDegrees(obliquity)));
+};
+
+const northNodeLongitude = (d) => normalizeDegrees(125.04452 - 0.0529538083 * d);
+
 const makePlacement = ({ body, longitude, ascendant }) => {
   const normalized = normalizeDegrees(longitude);
   const inSign = normalized % 30;
@@ -241,11 +267,52 @@ const modalityForSign = (sign) => {
 
 const dominantValue = (placements, mapper) => {
   const counts = new Map();
-  placements.filter((placement) => placement.body !== celestialBodies.ascendant).forEach((placement) => {
+  placements.filter((placement) => contributesToDominance(placement.body)).forEach((placement) => {
     const key = mapper(placement.sign);
     counts.set(key, (counts.get(key) || 0) + 1);
   });
   return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || "Dengeli";
+};
+
+const contributesToDominance = (body) =>
+  ![celestialBodies.ascendant, celestialBodies.midheaven, celestialBodies.northNode].includes(body);
+
+const participatesInAspects = (body) =>
+  ![celestialBodies.northNode].includes(body);
+
+const smallestAngularDistance = (first, second) => {
+  const distance = Math.abs(normalizeDegrees(first) - normalizeDegrees(second));
+  return Math.min(distance, 360 - distance);
+};
+
+const majorAspects = (placements) => {
+  const aspectBodies = placements.filter((placement) => participatesInAspects(placement.body));
+  const results = [];
+
+  for (let firstIndex = 0; firstIndex < aspectBodies.length; firstIndex += 1) {
+    for (let secondIndex = firstIndex + 1; secondIndex < aspectBodies.length; secondIndex += 1) {
+      const first = aspectBodies[firstIndex];
+      const second = aspectBodies[secondIndex];
+      const separation = smallestAngularDistance(first.longitude, second.longitude);
+      const match = aspectDefinitions
+        .map((definition) => ({ ...definition, orb: Math.abs(separation - definition.angle) }))
+        .filter((definition) => definition.orb <= definition.orbLimit)
+        .sort((a, b) => a.orb - b.orb)[0];
+
+      if (!match) continue;
+
+      results.push({
+        firstBody: first.body,
+        secondBody: second.body,
+        type: match.type,
+        orb: Math.round(match.orb * 10) / 10
+      });
+    }
+  }
+
+  return results
+    .sort((a, b) => a.orb - b.orb || `${a.firstBody}${a.secondBody}`.localeCompare(`${b.firstBody}${b.secondBody}`))
+    .slice(0, 10);
 };
 
 const calculateFallbackNatalChart = (payload) => {
@@ -267,6 +334,7 @@ const calculateFallbackNatalChart = (payload) => {
   const jd = julianDay(birthDateUTC);
   const d = jd - 2451543.5;
   const ascendant = ascendantLongitude({ jd, latitude, longitude });
+  const midheaven = midheavenLongitude({ jd, longitude });
   const houses = equalHouses(ascendant);
   const placements = [
     [celestialBodies.sun, sunLongitude(d)],
@@ -278,7 +346,10 @@ const calculateFallbackNatalChart = (payload) => {
     [celestialBodies.saturn, planetLongitude("saturn", d)],
     [celestialBodies.uranus, planetLongitude("uranus", d)],
     [celestialBodies.neptune, planetLongitude("neptune", d)],
-    [celestialBodies.ascendant, ascendant]
+    [celestialBodies.pluto, planetLongitude("pluto", d)],
+    [celestialBodies.northNode, northNodeLongitude(d)],
+    [celestialBodies.ascendant, ascendant],
+    [celestialBodies.midheaven, midheaven]
   ].map(([body, longitudeValue]) => makePlacement({ body, longitude: longitudeValue, ascendant }));
 
   return {
@@ -292,9 +363,12 @@ const calculateFallbackNatalChart = (payload) => {
     },
     placements,
     houses,
+    aspects: majorAspects(placements),
     dominantElement: dominantValue(placements, elementForSign),
     dominantModality: dominantValue(placements, modalityForSign),
-    calculationSource: "Pusula server fallback"
+    calculationSource: "Pusula Astro Engine",
+    engineVersion: astroEngineVersion,
+    accuracyNote: astroAccuracyNote
   };
 };
 
@@ -335,7 +409,7 @@ const handleNatalChart = async (request, env) => {
         const providerChart = await providerResponse.json();
         return apiJson({
           ...providerChart,
-          calculationSource: providerChart.calculationSource || "Swiss Ephemeris provider"
+          calculationSource: providerChart.calculationSource || "Lisanslı astro provider"
         });
       }
     } catch {
