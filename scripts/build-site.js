@@ -89,6 +89,7 @@ const buildNav = (cards) => `
               ${cardNavItems(cards)}
             </div>
           </div>
+          <a href="/astro-haritan/">Astro Haritan</a>
           <a href="/app-store/">App Store</a>
           <a href="/faq/">FAQ</a>
           <a href="/changelog/">Changelog</a>
@@ -111,6 +112,7 @@ const buildFooter = () => `
           <strong>Ürün</strong>
           <a href="/#product">Ürün</a>
           <a href="/#cards">Kartlar</a>
+          <a href="/astro-haritan/">Astro Haritan</a>
           <a href="/app-store/">App Store</a>
           <a href="/changelog/">Changelog</a>
           <a href="/faq/">FAQ</a>
@@ -299,6 +301,7 @@ const cards = cardsData.cards || [];
 const changelog = readJson("data/changelog.json");
 const sitemapPages = [
   { path: "", priority: "1.0", changefreq: "weekly" },
+  { path: "astro-haritan/", priority: "0.85", changefreq: "weekly" },
   { path: "app-store/", priority: "0.8", changefreq: "weekly" },
   ...cards.map((card) => ({ path: `kartlar/${card.slug}/`, priority: "0.7", changefreq: "monthly" })),
   { path: "changelog/", priority: "0.8", changefreq: "weekly" },
@@ -435,6 +438,7 @@ fs.mkdirSync(dist, { recursive: true });
   "_headers",
   "admin",
   "app-store",
+  "astro-haritan",
   "assets",
   "changelog",
   "content",
