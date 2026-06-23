@@ -65,7 +65,7 @@
     {
       title: "Hesap: isteğe bağlı süreklilik",
       description:
-        "Pusula’nın temel deneyimi hesapsız çalışır. Apple ve Google ile giriş, yalnızca verilerini ileride cihazlar arasında taşımak isteyen kullanıcılar için isteğe bağlı bir süreklilik katmanı olarak tasarlanır.",
+        "Pusula’nın temel deneyimi hesapsız çalışır. Apple ve Google ile giriş, yalnızca verilerini cihazlar arasında taşımak isteyen kullanıcılar için isteğe bağlı bir süreklilik katmanı olarak tasarlanır.",
       image: "assets/screens/pusula-current-01.png",
       alt: "Hesap ve senkronizasyon ekranı",
       points: [

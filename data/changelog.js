@@ -8,7 +8,7 @@ window.PUSULA_CHANGELOG = {
       "type": "Yeni",
       "summary": "Pusula web sitesi tek sayfa tanıtımdan daha zengin, indekslenebilir ürün ve yasal bilgi yapısına genişletildi.",
       "added": [
-        "Yakında App Store'da alanı",
+        "App Store hazırlık alanı",
         "App Store hazırlık sayfası",
         "FAQ sayfası",
         "Gizlilik, KVKK ve kullanım koşulları sayfaları",
@@ -89,7 +89,7 @@ window.PUSULA_CHANGELOG = {
       "added": [
         "Planım alt menüsü",
         "Yakın mekan önerileri için konum tabanlı akış",
-        "Dizi ve film için TMDB tabanlı yeni içerik listeleri",
+        "Dizi ve film için harici içerik denemeleri",
         "Doğum günü özel plan alanı"
       ],
       "changed": [

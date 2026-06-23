@@ -320,6 +320,7 @@ p {
 }
 
 .hero-tagline {
+  min-width: 0;
   max-width: 760px;
   margin-bottom: 14px;
   color: #fff;
@@ -327,9 +328,11 @@ p {
   font-weight: 900;
   line-height: 1.12;
   overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .hero-lead {
+  min-width: 0;
   max-width: 640px;
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.84);
@@ -347,7 +350,7 @@ p {
 .store-notice {
   display: inline-flex;
   align-items: center;
-  max-width: 430px;
+  max-width: 520px;
   min-height: 64px;
   gap: 14px;
   margin-top: 20px;
@@ -357,6 +360,13 @@ p {
   color: #fff;
   padding: 10px 14px;
   backdrop-filter: blur(12px);
+}
+
+.live-store-notice {
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 241, 0.18), rgba(255, 250, 241, 0.08)),
+    rgba(17, 23, 34, 0.18);
 }
 
 .store-notice:hover,
@@ -388,6 +398,28 @@ p {
   margin-top: 3px;
   color: rgba(255, 255, 255, 0.78);
   font-weight: 750;
+}
+
+.app-store-badge {
+  width: 135px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.app-store-badge-link {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  min-height: 54px;
+  margin-top: 18px;
+  border-radius: 12px;
+}
+
+.app-store-badge-link:hover,
+.app-store-badge-link:focus-visible {
+  outline: 3px solid rgba(210, 165, 58, 0.44);
+  outline-offset: 5px;
 }
 
 .button {
@@ -487,17 +519,64 @@ p {
 }
 
 .page-hero h1 {
+  min-width: 0;
   max-width: 920px;
   margin-bottom: 18px;
   color: var(--ink);
   font-size: clamp(3.4rem, 7vw, 5.8rem);
   line-height: 0.96;
+  overflow-wrap: break-word;
 }
 
 .page-hero p:not(.eyebrow) {
+  min-width: 0;
   max-width: 760px;
   color: var(--muted);
   font-size: 1.2rem;
+  overflow-wrap: break-word;
+}
+
+.app-store-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+  align-items: stretch;
+  gap: 24px;
+}
+
+.app-store-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  border: 1px solid rgba(222, 207, 183, 0.92);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(210, 165, 58, 0.2), transparent 38%),
+    linear-gradient(145deg, rgba(47, 102, 88, 0.12), transparent 58%),
+    rgba(255, 250, 241, 0.86);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+}
+
+.app-store-card > img {
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(17, 23, 34, 0.16);
+}
+
+.app-store-card h2 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.app-store-card p {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.app-store-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.48fr) minmax(240px, 0.48fr);
+  gap: 20px;
+  padding-top: 34px;
 }
 
 .faq-hero {
@@ -2002,7 +2081,7 @@ p {
   color: var(--muted);
 }
 
-.site-footer a:not(.footer-logo) {
+.site-footer a:not(.footer-logo):not(.footer-store-badge) {
   min-height: 44px;
   border-radius: var(--radius);
   margin-left: -10px;
@@ -2011,11 +2090,26 @@ p {
   transition: color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
-.site-footer a:not(.footer-logo):hover,
-.site-footer a:not(.footer-logo):focus-visible {
+.site-footer a:not(.footer-logo):not(.footer-store-badge):hover,
+.site-footer a:not(.footer-logo):not(.footer-store-badge):focus-visible {
   background: rgba(47, 102, 88, 0.08);
   color: var(--green);
   transform: translateX(2px);
+}
+
+.footer-store-badge {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+.footer-store-badge:hover,
+.footer-store-badge:focus-visible {
+  outline: 3px solid rgba(210, 165, 58, 0.36);
+  outline-offset: 4px;
 }
 
 .footer-bottom {
@@ -2091,7 +2185,9 @@ p {
 
   .product-grid,
   .product-gallery-shell,
-  .changelog-heading {
+  .changelog-heading,
+  .app-store-hero,
+  .app-store-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2195,10 +2291,10 @@ p {
   }
 
   .hero-content {
-    width: auto;
+    width: calc(100% - 32px);
     max-width: none;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 104px 0 44px;
   }
 
@@ -2215,18 +2311,38 @@ p {
   }
 
   .hero-tagline {
-    max-width: 100%;
-    font-size: 1.35rem;
+    display: block;
+    width: min(100%, 19rem);
+    max-width: 19rem;
+    font-size: 1.18rem;
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .hero-lead,
   .section-heading p {
-    max-width: 100%;
+    width: min(100%, 21rem);
+    max-width: 21rem;
     font-size: 1rem;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .hero-actions {
     display: grid;
+    width: 100%;
+  }
+
+  .store-notice {
+    display: grid;
+    width: 100%;
+    max-width: none;
+    justify-items: start;
+  }
+
+  .app-store-badge {
+    width: 150px;
   }
 
   .trust-bar,
@@ -2251,10 +2367,18 @@ p {
   .page-hero,
   .card-compact-hero,
   .card-detail-hero {
-    width: auto;
+    width: calc(100% - 32px);
     max-width: none;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-hero h1,
+  .page-hero p:not(.eyebrow) {
+    width: min(100%, 21rem);
+    max-width: 21rem;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .page-hero {

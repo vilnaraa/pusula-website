@@ -62,7 +62,9 @@ const buildStructuredData = (seo) => ({
       description:
         seo.ogDescription ||
         "Günün ruh hali ve ihtiyacına göre kişisel Pusula kartı, günlük ritim ve destek araçları sunan mobil uygulama.",
-      url: seo.canonicalUrl || "https://pusulamobil.com.tr/"
+      url: seo.canonicalUrl || "https://pusulamobil.com.tr/",
+      downloadUrl: seo.appStoreUrl || "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957",
+      installUrl: seo.appStoreUrl || "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957"
     }
   ]
 });
@@ -105,8 +107,10 @@ const buildFooter = () => `
             <img src="/assets/app-icon.png" width="44" height="44" alt="">
             <span>Pusula</span>
           </a>
-          <p>Günün tonuna göre küçük, kişisel bir yön.</p>
-          <span class="footer-status">Yakında App Store'da</span>
+          <p>Günün tonuna göre küçük, kişisel bir yön. App Store'da yayında.</p>
+          <a class="footer-store-badge" href="https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957" aria-label="Pusula uygulamasını App Store'dan indir">
+            <img src="/assets/download-on-the-app-store.svg" width="135" height="40" alt="Download on the App Store">
+          </a>
         </section>
         <nav class="footer-column" aria-label="Ürün bağlantıları">
           <strong>Ürün</strong>
