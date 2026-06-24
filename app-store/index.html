@@ -45,53 +45,147 @@
         </div>
       </nav>
     </header>
-    <main id="main" class="subpage-main">
-      <section class="page-hero app-store-hero">
-        <div>
-          <p class="eyebrow dark">Canlı yayın</p>
-          <h1>Pusula App Store'da yayında.</h1>
-          <p>Pusula: Günlük Rehber artık public olarak indirilebilir. Uygulama ücretsizdir; hesap açmadan günlük kart, Bugünüm, Planım, Destek ve Astro Haritan akışlarını kullanabilirsin.</p>
-          <a class="app-store-badge-link" href="https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957" aria-label="Pusula uygulamasını App Store'dan indir">
-            <img class="app-store-badge" src="/assets/download-on-the-app-store.svg" width="162" height="48" alt="Download on the App Store">
-          </a>
-        </div>
-        <aside class="app-store-card">
-          <img src="/assets/app-icon.png" width="92" height="92" alt="Pusula uygulama ikonu">
-          <span class="live-badge">Version 1.0</span>
-          <h2>Pusula: Günlük Rehber</h2>
-          <p>Günün tonuna göre küçük, kişisel bir yön. Local-first, ücretsiz ve isteğe bağlı hesap girişiyle çalışır.</p>
-          <a class="button dark-button" href="https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957">App Store sayfasını aç</a>
-        </aside>
-      </section>
+    <main id="main" class="subpage-main app-store-main">
+      <div class="scroll-progress" data-scroll-progress aria-hidden="true"><span></span></div>
 
-      <section class="section app-store-grid">
-        <article class="content-card featured-card">
-          <span class="live-badge">Yayında</span>
-          <h2>İlk public sürüm hazır.</h2>
-          <p>Pusula'nın ilk App Store sürümü; günlük kart motoru, Bugünüm check-in akışı, Planım önerileri, Destek araçları ve Astro Haritan deneyimini içerir.</p>
-          <div class="store-status-grid">
-            <div>
-              <strong>Ücret</strong>
-              <span>Ücretsiz</span>
+      <section class="app-release-hero" data-release-hero>
+        <img class="release-hero-bg" src="/assets/hero-pusula.png" width="853" height="1844" alt="">
+        <div class="release-hero-shade" aria-hidden="true"></div>
+        <div class="release-hero-shell">
+          <div class="release-hero-copy" data-reveal>
+            <p class="eyebrow">App Store'da yayında</p>
+            <h1>Pusula: Günlük Rehber</h1>
+            <p class="release-hero-lead">
+              Günün tonuna göre küçük, kişisel bir yön. Ücretsiz, local-first ve hesap açmadan kullanılabilen sakin bir iPhone deneyimi.
+            </p>
+            <div class="release-hero-actions">
+              <a class="app-store-badge-link" href="https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957" aria-label="Pusula uygulamasını App Store'dan indir">
+                <img class="app-store-badge" src="/assets/download-on-the-app-store.svg" width="162" height="48" alt="Download on the App Store">
+              </a>
+              <a class="button secondary" href="#release-story">Yayın akışını gör</a>
             </div>
-            <div>
-              <strong>Platform</strong>
+            <div class="release-hero-note" aria-label="Pusula yayın özeti">
               <span>iPhone</span>
-            </div>
-            <div>
-              <strong>Veri</strong>
+              <span>Ücretsiz</span>
               <span>Local-first</span>
+              <span>İsteğe bağlı hesap</span>
             </div>
           </div>
-        </article>
-        <article class="content-card">
-          <h3>Resmi indirme rozeti</h3>
-          <p>Bu sayfadaki App Store rozeti Apple'ın sağladığı resmi badge artwork dosyasıdır. Rozet sadece Pusula'nın App Store ürün sayfasına yönlendirmek için kullanılır.</p>
-        </article>
-        <article class="content-card">
-          <h3>Sonraki adım</h3>
-          <p>Public yayından sonra odak; kullanıcı geri bildirimleri, içerik kalitesi, mekan önerilerinin doğruluğu ve görsel/motion polish üzerinde olacak.</p>
-        </article>
+
+          <aside class="release-device-stage" data-reveal aria-label="Pusula uygulama ekranı">
+            <div class="release-phone">
+              <img src="/assets/screens/pusula-current-01.png" width="1320" height="2868" alt="Pusula uygulama ekranı">
+            </div>
+            <div class="release-art-stack" aria-hidden="true">
+              <img src="/assets/card-calm.png" width="640" height="640" alt="">
+              <img src="/assets/card-night.png" width="640" height="640" alt="">
+              <img src="/assets/card-plan.png" width="640" height="640" alt="">
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="release-metrics" aria-label="Pusula yayın durumu" data-reveal>
+        <div>
+          <span>Sürüm</span>
+          <strong>1.0.1</strong>
+          <small>Patch build hazır</small>
+        </div>
+        <div>
+          <span>Ev Modu</span>
+          <strong>Pusula feed</strong>
+          <small>Yerel yedekle güvenli</small>
+        </div>
+        <div>
+          <span>Astro Haritan</span>
+          <strong>Hatırlar</strong>
+          <small>Şehir ve saat yeniden sorulmaz</small>
+        </div>
+        <div>
+          <span>Veri</span>
+          <strong>Cihazda</strong>
+          <small>Hesap opsiyonel kalır</small>
+        </div>
+      </section>
+
+      <section id="release-story" class="section release-story">
+        <div class="release-story-heading" data-reveal>
+          <p class="eyebrow dark">Yayın deneyimi</p>
+          <h2>Basit bir indirme sayfası yerine, ürünün ritmini gösteren bir akış.</h2>
+          <p>
+            Bu sayfa Pusula'nın ne yaptığını tek kartta anlatmak yerine; güven, günlük kullanım, Ev Modu ve Astro Haritan tarafındaki kalite çizgisini scroll içinde görünür kılar.
+          </p>
+        </div>
+
+        <div class="release-story-layout">
+          <aside class="release-sticky-visual" data-reveal aria-label="Pusula ürün görselleri">
+            <div class="release-phone compact">
+              <img src="/assets/app-home.png" width="1320" height="2868" alt="Pusula ana ekranı">
+            </div>
+            <div class="release-screen-caption">
+              <span>Canlı ürün</span>
+              <strong>Günlük kart, Planım ve Astro Haritan aynı sakin ritimde.</strong>
+            </div>
+          </aside>
+
+          <div class="release-step-list" aria-label="Pusula yayın akışı">
+            <article class="release-step" data-release-step data-reveal>
+              <span>01</span>
+              <h3>İlk temas güvenli.</h3>
+              <p>Uygulama kullanıcıyı hesap duvarıyla karşılamaz. Ücretsiz kullanım, isteğe bağlı giriş ve local-first veri yaklaşımı ilk anda netleşir.</p>
+            </article>
+            <article class="release-step" data-release-step data-reveal>
+              <span>02</span>
+              <h3>Ev Modu artık birinci parti akışla çalışır.</h3>
+              <p>Dizi-film tarafı dış API bağımlılığı olmadan, Pusula domaininden gelen güvenli feed ve cihazdaki yerel öneri yedeğiyle ilerler.</p>
+            </article>
+            <article class="release-step" data-release-step data-reveal>
+              <span>03</span>
+              <h3>Astro Haritan daha kısa ve hatırlı.</h3>
+              <p>Doğum saati ve şehir bilgisi bir kez girildikten sonra korunur. Uzayan sayfa, ana başlıklar arasında seçilebilir bir deneyime dönüşür.</p>
+            </article>
+            <article class="release-step" data-release-step data-reveal>
+              <span>04</span>
+              <h3>Yayın sonrası kalite çizgisi net.</h3>
+              <p>Görseller bize ait kalır, klinik iddia kurulmaz, üçüncü parti içerik ve lisans riskleri ürün akışına taşınmaz.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section release-quality-band" data-reveal>
+        <div>
+          <p class="eyebrow">Pusula standardı</p>
+          <h2>Mobil uygulama gibi hissettiren, sakin ama hareketli bir web yüzeyi.</h2>
+        </div>
+        <div class="release-quality-grid">
+          <article>
+            <img src="/assets/card-career.png" width="640" height="640" alt="Kariyer Pusula kart görseli">
+            <h3>Görsel sahiplik</h3>
+            <p>Kart görselleri Pusula evreninden gelir; üçüncü parti poster veya kapak bağımlılığı kurulmaz.</p>
+          </article>
+          <article>
+            <img src="/assets/card-social.png" width="640" height="640" alt="Sosyalleşme Pusula kart görseli">
+            <h3>Kısa aksiyon</h3>
+            <p>Kullanıcıya uzun açıklama yerine, o güne uyacak küçük ve uygulanabilir bir yön verilir.</p>
+          </article>
+          <article>
+            <img src="/assets/card-support.png" width="640" height="640" alt="Destek Pusula kart görseli">
+            <h3>Net sınır</h3>
+            <p>Pusula terapi iddiası taşımaz; destek dili sorumlu ve günlük ürün sınırları içinde kalır.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section release-download-panel" data-reveal>
+        <div>
+          <p class="eyebrow dark">Şimdi indir</p>
+          <h2>Pusula App Store'da hazır.</h2>
+          <p>Günlük kartını al, Bugünüm ve Planım akışlarını dene, Astro Haritanı kaydet ve hesabı yalnızca istersen bağla.</p>
+        </div>
+        <a class="app-store-badge-link" href="https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957" aria-label="Pusula uygulamasını App Store'dan indir">
+          <img class="app-store-badge" src="/assets/download-on-the-app-store.svg" width="162" height="48" alt="Download on the App Store">
+        </a>
       </section>
     </main>
     <footer class="site-footer">

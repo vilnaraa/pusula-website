@@ -90,6 +90,80 @@
   const galleryPrev = document.querySelector("[data-slider-prev]");
   const galleryNext = document.querySelector("[data-slider-next]");
   let galleryIndex = 0;
+  const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+
+  const initScrollMotion = () => {
+    const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
+    const releaseSteps = Array.from(document.querySelectorAll("[data-release-step]"));
+    const progressBar = document.querySelector("[data-scroll-progress] span");
+
+    if (revealItems.length > 0) {
+      document.body.classList.add("motion-ready");
+    }
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      releaseSteps[0]?.classList.add("is-active");
+      return;
+    }
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px 12% 0px",
+        threshold: 0.16
+      }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    if (releaseSteps.length > 0) {
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (!visible) return;
+
+          releaseSteps.forEach((step) => step.classList.toggle("is-active", step === visible.target));
+        },
+        {
+          rootMargin: "-22% 0px -38% 0px",
+          threshold: [0.24, 0.42, 0.6]
+        }
+      );
+
+      releaseSteps.forEach((step) => stepObserver.observe(step));
+    }
+
+    if (progressBar instanceof HTMLElement) {
+      let ticking = false;
+
+      const updateProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+        progressBar.style.transform = `scaleX(${progress})`;
+        ticking = false;
+      };
+
+      const queueProgress = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateProgress);
+      };
+
+      window.addEventListener("scroll", queueProgress, { passive: true });
+      window.addEventListener("resize", queueProgress);
+      updateProgress();
+    }
+  };
 
   const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
   navDropdowns.forEach((dropdown) => {
@@ -529,4 +603,5 @@
     renderCardDetail(activeSlug, { pushState: false, scroll: false });
   }
   renderEntries("Tumu");
+  initScrollMotion();
 })();
