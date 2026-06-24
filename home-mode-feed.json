@@ -1,0 +1,102 @@
+{
+  "series": [
+    {
+      "id": "new-season-search",
+      "icon": "tv.fill",
+      "title": "Yeni sezon araması",
+      "body": "Akşamı dolduracak ama karar yorgunluğu yaratmayacak güncel dizi araması.",
+      "metadata": "Güncel / kısa liste",
+      "providers": ["JustWatch", "Yeni sezon"],
+      "search_query": "güncel yeni sezon dizi nerede izlenir",
+      "accent": "blue",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "short-light-series",
+      "icon": "sparkles.tv.fill",
+      "title": "Kısa ve hafif dizi",
+      "body": "Bugün ağır konu istemiyorsan kısa bölümlü ve kolay akan seçeneklere bak.",
+      "metadata": "30-45 dk bölüm ritmi",
+      "providers": ["JustWatch", "Hafif tempo"],
+      "search_query": "kısa hafif diziler nerede izlenir",
+      "accent": "gold",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "calm-night-series",
+      "icon": "moon.stars.fill",
+      "title": "Gece modu dizisi",
+      "body": "Telefonu kapatmadan önce tek bölüm izlenebilecek daha sakin tempo.",
+      "metadata": "Düşük tempo",
+      "providers": ["JustWatch", "Sakin tempo"],
+      "search_query": "sakin tempo dizi nerede izlenir",
+      "accent": "mineral",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "watch-together-series",
+      "icon": "person.2.fill",
+      "title": "Birlikte izlemelik",
+      "body": "Tek başına değil, biriyle paylaşınca daha iyi akan ve sohbet açan seçenekler.",
+      "metadata": "Paylaşılabilir seçim",
+      "providers": ["JustWatch", "Ortak seçim"],
+      "search_query": "birlikte izlenecek diziler nerede izlenir",
+      "accent": "clay",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    }
+  ],
+  "movies": [
+    {
+      "id": "new-movie-search",
+      "icon": "movieclapper.fill",
+      "title": "Yeni film araması",
+      "body": "Güncel ve evde izlenebilir film aramasını tek dokunuşla başlat.",
+      "metadata": "Güncel yayın",
+      "providers": ["JustWatch", "Yeni yayın"],
+      "search_query": "güncel yeni film nerede izlenir",
+      "accent": "clay",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "calm-evening-movie",
+      "icon": "moon.fill",
+      "title": "Sakin akşam filmi",
+      "body": "Yorucu olmayan, iyi his bırakan bir film seçimi için arama.",
+      "metadata": "Rahat tempo",
+      "providers": ["JustWatch", "Rahat tempo"],
+      "search_query": "iyi hissettiren sakin filmler nerede izlenir",
+      "accent": "mineral",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "one-night-movie",
+      "icon": "popcorn.fill",
+      "title": "Tek gecelik seçim",
+      "body": "Uzun liste gezmeden, bu akşam başlayıp bitirebileceğin film modu.",
+      "metadata": "90-130 dk",
+      "providers": ["JustWatch", "Bu akşam"],
+      "search_query": "bu akşam izlenecek film nerede izlenir",
+      "accent": "gold",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    },
+    {
+      "id": "popular-movie-search",
+      "icon": "star.fill",
+      "title": "Öne çıkan arama",
+      "body": "Popüler konuşulan seçenekleri taramak ve hızlı karar vermek için.",
+      "metadata": "Popüler / keşif",
+      "providers": ["JustWatch", "Popüler"],
+      "search_query": "popüler yeni filmler nerede izlenir",
+      "accent": "blue",
+      "action_title": "Nerede izlenir bak",
+      "source_label": "Pusula"
+    }
+  ]
+}
