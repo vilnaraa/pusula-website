@@ -1,6 +1,209 @@
 window.PUSULA_CHANGELOG = {
-  "updatedAt": "2026-06-05",
+  "updatedAt": "2026-06-24",
   "entries": [
+    {
+      "version": "2.1",
+      "date": "2026-06-24",
+      "title": "App Store sayfası motion odaklı yenilendi",
+      "type": "Tasarım",
+      "summary": "App Store sayfası statik duyuru görünümünden çıkıp ürün ritmini gösteren scroll odaklı bir deneyime dönüştürüldü.",
+      "added": [
+        "App Store sayfasına full-bleed hero ve telefon mockup alanı",
+        "Scroll progress çizgisi",
+        "Yayın metrikleri şeridi",
+        "Sticky ürün görseliyle ilerleyen release story bölümü",
+        "Mobil ve desktop için ayrı görsel kontrol akışı"
+      ],
+      "changed": [
+        "App Store sayfasındaki tek kartlı basit yapı daha profesyonel bir ürün anlatısına çevrildi",
+        "Mobilde ilk viewport daha kontrollü ve okunaklı hale getirildi",
+        "Apple resmi App Store badge dosyası korunarak yeni CTA yerleşimlerine taşındı"
+      ],
+      "removed": [
+        "App Store sayfasındaki kısa ve statik duyuru kartı yaklaşımı"
+      ]
+    },
+    {
+      "version": "2.0",
+      "date": "2026-06-24",
+      "title": "iOS 1.0.1 patch ve güvenli Ev Modu hazırlandı",
+      "type": "Güvenlik",
+      "summary": "Ev Modu üçüncü parti içerik API bağımlılığından çıkarıldı; iOS 1.0.1 build hazırlanıp App Store Connect'e yüklendi.",
+      "added": [
+        "Pusula domaininden yayınlanan home-mode-feed.json",
+        "HOME_MODE_FEED_URL release ayarı",
+        "Ev Modu için local fallback koruması",
+        "iOS 1.0.1 build 8 archive ve IPA çıktısı",
+        "App Store Connect upload akışı"
+      ],
+      "changed": [
+        "Ev Modu dizi-film önerileri TMDB yerine Pusula feed ve yerel öneri yedeğiyle çalışacak şekilde güncellendi",
+        "Astro Harita doğum saati ve şehir bilgisini hatırlayacak hale getirildi",
+        "Astro Harita ekranı uzun kaydırma yerine bölüm seçimine dayalı daha kısa bir yapıya taşındı",
+        "Release checklist ve App Store submission notları 1.0.1 patch'e göre güncellendi"
+      ],
+      "removed": [
+        "TMDB free API bağımlılığı",
+        "TMDB API key release kontrolü",
+        "Ev Modu içinde üçüncü parti poster/veri riskine açık akış"
+      ]
+    },
+    {
+      "version": "1.9",
+      "date": "2026-06-23",
+      "title": "Website App Store yayınına göre güncellendi",
+      "type": "Yeni",
+      "summary": "Pusula'nın App Store'da yayına alınması sonrası web sitesi hazırlık dilinden canlı yayın diline geçirildi.",
+      "added": [
+        "Resmi Apple App Store badge artwork dosyası",
+        "Canlı App Store indirme bağlantıları",
+        "App Store yayınına özel sayfa içeriği",
+        "Footer ve hero alanlarında public indirme CTA'ları"
+      ],
+      "changed": [
+        "Hazırlık ve bekleme dili, App Store'da yayında mesajına dönüştürüldü",
+        "SEO, sitemap ve structured data App Store canlı linkine göre güncellendi",
+        "Kart ve yasal sayfalardaki ürün durumu metinleri public yayına göre tazelendi"
+      ],
+      "removed": [
+        "App Store hazırlık/bekleme vurgusu"
+      ]
+    },
+    {
+      "version": "1.8",
+      "date": "2026-06-21",
+      "title": "Sign in with Apple iPad uyumu düzeltildi",
+      "type": "Geliştirme",
+      "summary": "iPad üzerinde Sign in with Apple akışının App Review ve gerçek cihaz davranışına daha uyumlu çalışması için düzeltme yapıldı.",
+      "added": [
+        "iPad kullanım senaryosu için ek doğrulama"
+      ],
+      "changed": [
+        "Apple giriş akışı iPad ortamında daha kararlı çalışacak şekilde ele alındı"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.7",
+      "date": "2026-06-18",
+      "title": "App Review hesap silme akışı düzeltildi",
+      "type": "Güvenlik",
+      "summary": "Hesap ve veri kontrolü tarafında App Review beklentilerini karşılamak için hesap silme/bağlantı kaldırma akışı iyileştirildi.",
+      "added": [
+        "App Review senaryosu için hesap yönetimi doğrulaması"
+      ],
+      "changed": [
+        "Hesap silme ve bağlantı kaldırma deneyimi daha açık ve gözden geçirilebilir hale getirildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.6",
+      "date": "2026-06-16",
+      "title": "App Store submission pack hazırlandı",
+      "type": "Yeni",
+      "summary": "App Store gönderimi için metadata, açıklama ve release materyalleri tek yerde toparlandı.",
+      "added": [
+        "App Store submission dokümanı",
+        "Review notları ve ürün açıklaması",
+        "Yayın öncesi kontrol başlıkları"
+      ],
+      "changed": [
+        "Release iletişimi local-first, ücretsiz ve opsiyonel hesap kararlarına göre netleştirildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.5",
+      "date": "2026-06-15",
+      "title": "Astro Haritan web ve görsel QA akışı genişledi",
+      "type": "Tasarım",
+      "summary": "Astro Haritan deneyimi hem iOS görsel kalitesi hem de web anlatımı tarafında daha güçlü bir ürün bölümüne dönüştürüldü.",
+      "added": [
+        "Astro Haritan public website sayfası",
+        "Astro Haritan navigasyon bağlantıları",
+        "Release görsel regresyon kontrolleri",
+        "Astro hero QA akışı"
+      ],
+      "changed": [
+        "Astro Haritan görsel deneyimi daha premium ve okunaklı hale getirildi",
+        "Website sitemap ve kart sayfaları Astro Haritan bağlantılarıyla güncellendi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.4",
+      "date": "2026-06-14",
+      "title": "Profesyonel Astro Haritan motoru eklendi",
+      "type": "Geliştirme",
+      "summary": "Astro Haritan için doğum bilgisi, harita hesaplama, backend bridge ve profesyonel rapor katmanı birlikte geliştirildi.",
+      "added": [
+        "Astro chart tab",
+        "Natal chart input alanları",
+        "Natal chart calculator bağlantısı",
+        "Astro chart backend bridge",
+        "Profesyonel astro report layer",
+        "Website tarafında astro endpoint ve rapor payload genişlemeleri"
+      ],
+      "changed": [
+        "Astro deneyimi sadece burç bilgisinden daha kapsamlı harita yorumuna genişletildi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.3",
+      "date": "2026-06-11",
+      "title": "Admin güvenliği ve günlük deneyim polish",
+      "type": "Geliştirme",
+      "summary": "Website admin tarafı sertleştirildi; iOS tarafında dark mode, kart overlay geçişi, mekan önerileri ve sakinleşme sesi iyileştirildi.",
+      "added": [
+        "Admin authentication hardening",
+        "Mekan önerileri için ek kalite geçişleri",
+        "Sakinleşme alanında ses deneyimi iyileştirmesi"
+      ],
+      "changed": [
+        "Dark mode ve kart overlay geçişleri daha düzgün hale getirildi",
+        "Yakın mekan önerileri daha güvenilir bir ürün hissi verecek şekilde ele alındı"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.2",
+      "date": "2026-06-07",
+      "title": "TestFlight ve API hardening dönemi tamamlandı",
+      "type": "Güvenlik",
+      "summary": "TestFlight'a hazırlık, export ayarları ve release öncesi API anahtarı güvenliği için temel kontroller tamamlandı.",
+      "added": [
+        "App Store export options",
+        "API hardening plan dokümantasyonu",
+        "Release öncesi API key hardening notları",
+        "TestFlight QA polish düzeltmeleri"
+      ],
+      "changed": [
+        "iOS app TestFlight akışına hazır olacak şekilde paketlendi",
+        "Release güvenliği için local prototipler ve generated artifact'ler git dışında bırakıldı"
+      ],
+      "removed": []
+    },
+    {
+      "version": "1.1.5",
+      "date": "2026-06-06",
+      "title": "Kart sayfaları ve website admin akışı genişledi",
+      "type": "Tasarım",
+      "summary": "Kart sayfaları daha kompakt ve etkileşimli hale getirildi; website içerik yönetimi için özel admin ve CMS auth akışı güçlendirildi.",
+      "added": [
+        "Özel Pusula admin alanı",
+        "Lokalize kart route yapısı",
+        "Kart sayfalarında etkileşimli görsel geçişler",
+        "Cloudflare Worker ayar güncellemeleri"
+      ],
+      "changed": [
+        "Kart sayfaları daha kompakt bir ürün anlatısına taşındı",
+        "Decap CMS OAuth callback handshake düzeltildi",
+        "Website kartları ve CMS auth deneyimi polish edildi"
+      ],
+      "removed": []
+    },
     {
       "version": "1.1",
       "date": "2026-06-05",

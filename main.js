@@ -367,6 +367,10 @@
   const list = document.getElementById("changelog-list");
   const lastUpdated = document.getElementById("last-updated");
   const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
+  const changelogPreviewLimit = 3;
+  let currentChangelogFilter = "Tumu";
+  let changelogDialog = null;
+  let lastFocusedBeforeDialog = null;
 
   const formatDate = (dateValue) => {
     const date = new Date(`${dateValue}T12:00:00`);
@@ -506,7 +510,7 @@
     }
   });
 
-  const renderList = (items, label, values) => {
+  const renderList = (label, values) => {
     if (!values || values.length === 0) return "";
     const renderedItems = values
       .map((item) => `<li>${escapeHtml(item)}</li>`)
@@ -520,9 +524,125 @@
     `;
   };
 
+  const getFilteredEntries = (filter) =>
+    filter === "Tumu" ? entries : entries.filter((entry) => entry.type === filter);
+
+  const renderTimelineEntry = (entry, options = {}) => {
+    const isCompact = options.compact === true;
+    return `
+      <article class="timeline-entry${isCompact ? " timeline-entry-compact" : ""}">
+        <aside class="timeline-meta" aria-label="${escapeHtml(entry.title)} metası">
+          <span class="version-badge">v${escapeHtml(entry.version)}</span>
+          <span class="type-badge">${escapeHtml(entry.type)}</span>
+          <span class="timeline-date">${escapeHtml(formatDate(entry.date))}</span>
+        </aside>
+        <div>
+          <h3>${escapeHtml(entry.title)}</h3>
+          <p>${escapeHtml(entry.summary)}</p>
+          ${
+            isCompact
+              ? ""
+              : `<div class="change-columns">
+                  ${renderList("Eklendi", entry.added)}
+                  ${renderList("Değişti", entry.changed)}
+                  ${renderList("Kaldırıldı", entry.removed)}
+                </div>`
+          }
+        </div>
+      </article>
+    `;
+  };
+
+  const getChangelogDialog = () => {
+    if (changelogDialog) return changelogDialog;
+
+    const dialog = document.createElement("dialog");
+    dialog.className = "changelog-dialog";
+    dialog.setAttribute("aria-labelledby", "changelog-dialog-title");
+    dialog.innerHTML = `
+      <div class="changelog-dialog-shell" role="document">
+        <header class="changelog-dialog-header">
+          <div>
+            <p class="eyebrow dark">Public changelog</p>
+            <h2 id="changelog-dialog-title">Ürün günlüğü</h2>
+            <p data-changelog-dialog-count></p>
+          </div>
+          <button class="changelog-dialog-close" type="button" data-changelog-close aria-label="Changelog penceresini kapat">×</button>
+        </header>
+        <div class="changelog-dialog-body">
+          <div class="timeline changelog-dialog-timeline" data-changelog-dialog-list></div>
+        </div>
+      </div>
+    `;
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        closeChangelogDialog();
+      }
+    });
+
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("dialog-open");
+      if (lastFocusedBeforeDialog instanceof HTMLElement) {
+        lastFocusedBeforeDialog.focus();
+      }
+    });
+
+    document.body.append(dialog);
+    changelogDialog = dialog;
+    return dialog;
+  };
+
+  const openChangelogDialog = () => {
+    const filtered = getFilteredEntries(currentChangelogFilter);
+    const dialog = getChangelogDialog();
+    const title = dialog.querySelector("#changelog-dialog-title");
+    const count = dialog.querySelector("[data-changelog-dialog-count]");
+    const modalList = dialog.querySelector("[data-changelog-dialog-list]");
+
+    if (title) {
+      title.textContent =
+        currentChangelogFilter === "Tumu"
+          ? "Tüm ürün günlüğü"
+          : `${currentChangelogFilter} kayıtları`;
+    }
+
+    if (count) {
+      count.textContent = `${filtered.length} kayıt, tarih sırasına göre listeleniyor.`;
+    }
+
+    if (modalList) {
+      modalList.innerHTML = filtered.map((entry) => renderTimelineEntry(entry)).join("");
+    }
+
+    lastFocusedBeforeDialog = document.activeElement;
+    document.body.classList.add("dialog-open");
+
+    if (typeof dialog.showModal === "function") {
+      if (!dialog.open) {
+        dialog.showModal();
+      }
+      return;
+    }
+
+    dialog.setAttribute("open", "");
+  };
+
+  function closeChangelogDialog() {
+    if (!changelogDialog) return;
+
+    if (typeof changelogDialog.close === "function" && changelogDialog.open) {
+      changelogDialog.close();
+      return;
+    }
+
+    changelogDialog.removeAttribute("open");
+    document.body.classList.remove("dialog-open");
+  }
+
   const renderEntries = (filter) => {
-    const filtered =
-      filter === "Tumu" ? entries : entries.filter((entry) => entry.type === filter);
+    currentChangelogFilter = filter;
+    const filtered = getFilteredEntries(filter);
 
     if (!list) return;
 
@@ -531,28 +651,17 @@
       return;
     }
 
-    list.innerHTML = filtered
-      .map(
-        (entry) => `
-          <article class="timeline-entry">
-            <aside class="timeline-meta" aria-label="${escapeHtml(entry.title)} metası">
-              <span class="version-badge">v${escapeHtml(entry.version)}</span>
-              <span class="type-badge">${escapeHtml(entry.type)}</span>
-              <span class="timeline-date">${escapeHtml(formatDate(entry.date))}</span>
-            </aside>
-            <div>
-              <h3>${escapeHtml(entry.title)}</h3>
-              <p>${escapeHtml(entry.summary)}</p>
-              <div class="change-columns">
-                ${renderList(entry, "Eklendi", entry.added)}
-                ${renderList(entry, "Değişti", entry.changed)}
-                ${renderList(entry, "Kaldırıldı", entry.removed)}
-              </div>
-            </div>
-          </article>
-        `
-      )
-      .join("");
+    const previewEntries = filtered.slice(0, changelogPreviewLimit);
+    const remainingCount = Math.max(filtered.length - previewEntries.length, 0);
+
+    list.innerHTML = `
+      ${previewEntries.map((entry) => renderTimelineEntry(entry, { compact: true })).join("")}
+      <div class="changelog-more-row">
+        <button class="button dark-button changelog-more-button" type="button" data-changelog-open>
+          ${remainingCount > 0 ? `${remainingCount} kayıt daha göster` : "Changelog detaylarını aç"}
+        </button>
+      </div>
+    `;
   };
 
   if (lastUpdated) {
@@ -582,6 +691,16 @@
   document.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
+    if (target.closest("[data-changelog-open]")) {
+      openChangelogDialog();
+      return;
+    }
+
+    if (target.closest("[data-changelog-close]")) {
+      closeChangelogDialog();
+      return;
+    }
+
     const switcher = target.closest("[data-card-switch]");
     if (!switcher || !document.querySelector("[data-card-detail]")) return;
 
