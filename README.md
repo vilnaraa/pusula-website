@@ -50,7 +50,9 @@ tekrar değerlendirilmelidir.
 Worker `/api/natal-chart` endpoint'ini sunar. iOS uygulama doğum tarihi, saat ve çözülmüş doğum
 konumunu bu endpoint'e `POST` eder. Endpoint şu şekilde çalışır:
 
-- `ASTRO_CHART_API_KEY` tanımlıysa iOS isteği de `Authorization: Bearer ...` ile korunur.
+- iOS uygulama static bearer/API key göndermez; mobil binary içindeki secret değerler gizli kabul edilmez.
+- `PUSULA_RATE_LIMIT_KV` binding'i tanımlıysa endpoint IP bazlı rate limit uygular.
+- Varsayılan kota `NATAL_CHART_RATE_LIMIT=12` ve `NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS=3600`; Cloudflare env üzerinden değiştirilebilir.
 - Varsayılan hesaplama `Pusula Astro Engine` ile yapılır; dış lisanslı efemeris kullanılmaz.
 - Motor Güneş, Ay, gezegenler, Plüton, Kuzey Ay Düğümü, Yükselen, MC, eşit evler, major açı odakları, element/nitelik dağılımı ve rapor insight'larını döndürür.
 - `ASTRO_PROVIDER_URL` ve `ASTRO_PROVIDER_KEY` alanları ileride isteğe bağlı lisanslı provider için korunur; mevcut strateji lisanssız Pusula motorudur.

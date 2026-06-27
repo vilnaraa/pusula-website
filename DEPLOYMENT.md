@@ -71,6 +71,20 @@ GitHub'a koyma:
 - App Store Connect bilgileri
 - AWS/TMDB/Ticketmaster secret değerleri
 
+## API güvenliği
+
+Mobil uygulama içine provider/backend secret gömülmez. Public endpoint'ler dışarıdan çağrılabilir kabul edilir ve Cloudflare tarafında sınırlandırılır.
+
+`/api/natal-chart` için önerilen minimum üretim ayarı:
+
+- Cloudflare KV namespace oluştur: `PUSULA_RATE_LIMIT_KV`
+- Worker binding adı: `PUSULA_RATE_LIMIT_KV`
+- Env değerleri: `NATAL_CHART_RATE_LIMIT=12`, `NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS=3600`
+- Cloudflare WAF/Rate Limiting Rule ile `/api/natal-chart` için ek IP ve bot koruması aç
+- Provider secret gerekiyorsa sadece Worker env içinde tut; iOS app'e koyma
+- Eski `ASTRO_CHART_API_KEY` client bearer koruması olarak kullanılmaz; mobil app static secret göndermemelidir
+- Abuse log/alert için Cloudflare analytics ve provider dashboard kota uyarılarını aç
+
 GitHub'a koymak güvenli:
 
 - Web sitesi HTML/CSS/JS

@@ -43,14 +43,74 @@ const authError = (provider, message) =>
     400
   );
 
-const apiJson = (body, status = 200) =>
+const apiJson = (body, status = 200, extraHeaders = {}) =>
   new Response(JSON.stringify(body), {
     status,
     headers: {
       ...jsonHeaders,
-      "Cache-Control": "no-store"
+      "Cache-Control": "no-store",
+      ...extraHeaders
     }
   });
+
+const positiveInteger = (value, fallback) => {
+  const parsed = Number.parseInt(String(value || ""), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+};
+
+const clientIP = (request) =>
+  request.headers.get("CF-Connecting-IP") ||
+  request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ||
+  "unknown";
+
+const sha256Hex = async (value) => {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+};
+
+const rateLimitHeaders = ({ limit, remaining, resetAt }) => ({
+  "X-RateLimit-Limit": String(limit),
+  "X-RateLimit-Remaining": String(Math.max(remaining, 0)),
+  "X-RateLimit-Reset": String(Math.ceil(resetAt / 1000))
+});
+
+const enforceKVRateLimit = async (request, env, namespace, defaults) => {
+  const kv = env.PUSULA_RATE_LIMIT_KV;
+  if (!kv || typeof kv.get !== "function" || typeof kv.put !== "function") {
+    return { allowed: true, headers: {} };
+  }
+
+  const limit = positiveInteger(env.NATAL_CHART_RATE_LIMIT, defaults.limit);
+  const windowSeconds = positiveInteger(env.NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS, defaults.windowSeconds);
+  const now = Date.now();
+  const bucket = Math.floor(now / (windowSeconds * 1000));
+  const ipHash = await sha256Hex(`${namespace}:${clientIP(request)}`);
+  const key = `rate:${namespace}:${bucket}:${ipHash}`;
+  const current = await kv.get(key, "json").catch(() => null);
+  const count = positiveInteger(current?.count, 0) + 1;
+  const resetAt = (bucket + 1) * windowSeconds * 1000;
+  const remaining = Math.max(limit - count, 0);
+  const headers = rateLimitHeaders({ limit, remaining, resetAt });
+
+  await kv.put(
+    key,
+    JSON.stringify({ count, resetAt }),
+    { expirationTtl: windowSeconds + 60 }
+  );
+
+  if (count > limit) {
+    return {
+      allowed: false,
+      headers: {
+        ...headers,
+        "Retry-After": String(Math.max(Math.ceil((resetAt - now) / 1000), 1))
+      }
+    };
+  }
+
+  return { allowed: true, headers };
+};
 
 const zodiacSigns = ["Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak", "Terazi", "Akrep", "Yay", "Oğlak", "Kova", "Balık"];
 
@@ -461,19 +521,35 @@ const handleNatalChart = async (request, env) => {
     return apiJson({ error: "Method not allowed" }, 405);
   }
 
-  const expectedKey = normalizeSecret(env.ASTRO_CHART_API_KEY);
-  if (expectedKey) {
-    const authorization = request.headers.get("Authorization") || "";
-    if (authorization !== `Bearer ${expectedKey}`) {
-      return apiJson({ error: "Unauthorized" }, 401);
-    }
+  const contentLength = Number.parseInt(request.headers.get("Content-Length") || "0", 10);
+  if (Number.isFinite(contentLength) && contentLength > 4096) {
+    return apiJson({ error: "Payload too large" }, 413);
+  }
+
+  const rateLimit = await enforceKVRateLimit(request, env, "natal-chart", {
+    limit: 12,
+    windowSeconds: 3600
+  });
+  if (!rateLimit.allowed) {
+    return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
+  }
+
+  let rawBody;
+  try {
+    rawBody = await request.text();
+  } catch {
+    return apiJson({ error: "Invalid request body" }, 400, rateLimit.headers);
+  }
+
+  if (new TextEncoder().encode(rawBody).byteLength > 4096) {
+    return apiJson({ error: "Payload too large" }, 413, rateLimit.headers);
   }
 
   let payload;
   try {
-    payload = await request.json();
+    payload = JSON.parse(rawBody);
   } catch {
-    return apiJson({ error: "Invalid JSON body" }, 400);
+    return apiJson({ error: "Invalid JSON body" }, 400, rateLimit.headers);
   }
 
   const providerURL = normalizeSecret(env.ASTRO_PROVIDER_URL);
@@ -494,7 +570,7 @@ const handleNatalChart = async (request, env) => {
         return apiJson({
           ...providerChart,
           calculationSource: providerChart.calculationSource || "Lisanslı astro provider"
-        });
+        }, 200, rateLimit.headers);
       }
     } catch {
       // Provider failure intentionally falls through to deterministic fallback.
@@ -502,9 +578,9 @@ const handleNatalChart = async (request, env) => {
   }
 
   try {
-    return apiJson(calculateFallbackNatalChart(payload));
+    return apiJson(calculateFallbackNatalChart(payload), 200, rateLimit.headers);
   } catch (error) {
-    return apiJson({ error: error.message || "Natal chart calculation failed" }, 400);
+    return apiJson({ error: error.message || "Natal chart calculation failed" }, 400, rateLimit.headers);
   }
 };
 
