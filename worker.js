@@ -1,8 +1,18 @@
+const securityHeaders = {
+  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "geolocation=(), microphone=(), camera=()"
+};
+
 const jsonHeaders = {
+  ...securityHeaders,
   "Content-Type": "application/json; charset=utf-8"
 };
 
 const htmlHeaders = {
+  ...securityHeaders,
   "Content-Type": "text/html; charset=utf-8"
 };
 
@@ -587,6 +597,11 @@ const handleNatalChart = async (request, env) => {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.protocol !== "https:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (url.pathname === "/admin") {
       return Response.redirect(`${url.origin}/admin/`, 301);

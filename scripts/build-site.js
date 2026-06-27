@@ -449,6 +449,7 @@ fs.mkdirSync(dist, { recursive: true });
   "content",
   "data",
   "faq",
+  ".well-known",
   "kartlar",
   "kvkk",
   "privacy",
