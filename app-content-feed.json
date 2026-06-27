@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-27",
+  "minAppVersion": "1.0.4",
+  "copy": {
+    "onboarding.heroSubtitle": "Günün nasıl geçerse geçsin, kendine dönebileceğin küçük bir yön.",
+    "onboarding.freeTitle": "Ücretsiz. Hesap açmadan başlayabilirsin.",
+    "onboarding.freeBody": "Cevapların bu cihazda kalır. Apple veya Google ile devam etmek tamamen isteğe bağlıdır; Pusula'yı kullanmak için hesap gerekmez.",
+    "onboarding.authSubtitle": "Hesap bağlamak sadece kimliğini doğrular. Günlük ritmin ve cevapların cihazda kalır; senkronizasyon açılırsa ayrıca onay ister.",
+    "onboarding.boundariesSubtitle": "Pusula, gün içinde neye ihtiyacın olduğunu fark edip küçük bir yön seçmen için var.",
+    "onboarding.boundariesComfortBody": "Burada doğru cevap, puan ya da performans yok. İstersen sadece bir ton seçip devam edebilirsin.",
+    "onboarding.profileSubtitle": "Bu cevaplar kartların dilini ve önerilerin temposunu sana biraz daha yaklaştırır.",
+    "onboarding.moodSubtitle": "Bugüne yakın gelen tonu seç. Enerji seviyesini istersen elle inceltebilirsin.",
+    "home.headerTitle": "Bugünün yönü",
+    "home.headerSubtitle": "Kartın günün tonu ve seçtiğin ihtiyaç alanına göre hazırlanır. Detaya dokununca küçük adımı görürsün.",
+    "home.dreamEmptySubtitle": "Rüyanı yaz; Pusula sembolleri kesin hükme çevirmeden kısa bir yansıma çıkarır.",
+    "dream.headerSubtitle": "Rüyanı cihazında sakla. Pusula tabir dağıtmaz; sembol, duygu ve tekrar eden izleri sakin bir dille toparlar.",
+    "dream.recurringThemesEmpty": "Birkaç kayıt sonrası sık dönen semboller ve duygular burada görünür hale gelir.",
+    "dream.formFootnote": "Bu alan terapi, teşhis veya kehanet sunmaz. Yorumlar sadece kişisel farkındalık ve günlük not amaçlıdır.",
+    "dream.emptyInsightBody": "Tek paragraf yeterli. Hatırladığın sahneleri yaz; Pusula önce temaları ayırır, sonra güvenli bir yansıma sorusu verir.",
+    "today.headerSubtitle": "Uzun uzun yazman gerekmez. Bugünün sende bıraktığı tonu seçmen yeterli.",
+    "plan.headerSubtitle": "Şehir bilgisi açıksa yakınındaki kahve, yemek ve etkinlik fikirlerini daha pratik hale getirir.",
+    "plan.locationUnknownBody": "Yakındaki mekan ve etkinlik önerileri için şehir bilgisi kullanılabilir. İzin vermezsen varsayılan şehirle devam edilir.",
+    "plan.ratingNote": "Not: mekan önerileri Apple Maps verisiyle gelir. Puan ve yorum filtresi ayrı bir veri sağlayıcı gerektirir.",
+    "support.headerSubtitle": "Ayarlar, bildirimler ve güvenli yönlendirmeler burada. Acil riskte resmi destek kanallarını kullan.",
+    "support.astroToggleDescription": "Astro tonu açıkken burç bilgine göre günlük bir dış sinyal denenir. Kapalıyken kartlar daha sade refleksiyon ve küçük adım dilinde kalır.",
+    "support.accountSignedOutBody": "Apple veya Google hesabı bağlamak isteğe bağlıdır. Hesapsız kullanım tam çalışır; cevapların ve kart geçmişin cihazda kalır.",
+    "support.accountLocalFirstNote": "Pusula şu an local-first çalışır; token veya hassas günlük verisi sunucuda tutulmaz.",
+    "support.syncSubtitle": "Senkronizasyon açılırsa yalnızca başka cihazda devam etmek için gereken düşük hassasiyetli alanlar taşınmalı.",
+    "support.mapsSubtitle": "Haritalar uygulamasında yakındaki hastaneler aranır.",
+    "support.trustedPersonSubtitle": "Güvendiğin bir kişiye hızlıca ulaşman için kişiler listesini açar.",
+    "support.crisisSubtitle": "Acil riskte uygulama içeriği yerine 112 ve resmi destek kanalları kullanılmalı.",
+    "sheets.streakDoneMessage": "Bugün kendinle kısa bir temas kurdun. Seri burada baskı değil, hatırlatma olarak durur.",
+    "sheets.streakWaitingMessage": "Bugün tek seçim yeterli. Nasıl geçtiğini seç; kartın günün tonuna göre yenilensin.",
+    "sheets.reminderBody": "Bildirim seni doğrudan Bugünüm akışına taşır. Saat cihazda saklanır ve yerel bildirim olarak planlanır.",
+    "sheets.calmBody": "Yavaşça nefes al. Omuzlarını bırak. Şu an bütün günü çözmen gerekmiyor; sadece hızını biraz düşür.",
+    "sheets.crisisWarning": "Kendine veya bir başkasına zarar verme riski varsa uygulama içeriği yeterli değildir. Hemen 112'yi ara veya en yakın acil servise git.",
+    "sheets.crisisAlsoBody": "Yakındaki bir acil servise git. Güvendiğin bir kişiye şu an yalnız kalmaman gerektiğini söyle. Türkiye dışındaysan bulunduğun ülkenin acil numarasını kullan."
+  },
+  "cardOverrides": [
+    {
+      "key": "PUSULA KARTI|Sade bir adım yeter.",
+      "title": "Tek küçük adımı seç.",
+      "body": "Bugün her şeyi çözmeye çalışma. Masanın üstündeki en küçük parçayı seçmen yeterli.",
+      "detail": "Ertelediğin işin yalnızca ilk 5 dakikasını başlat. Bitirmek zorunda değilsin.",
+      "affirmation": "Bugün küçük başlamak da ilerlemek sayılır.",
+      "reflection": "Şimdi başlatabileceğim en küçük parça hangisi?"
+    },
+    {
+      "key": "KÜÇÜK ADIM|Kontrol alanına dön.",
+      "title": "Elinde olana dön.",
+      "body": "Bugün sonucu değil, davranışını seçebilirsin. Bu küçük ayrım yükü hafifletir.",
+      "detail": "Kontrol edemediğin bir şeyi kenara yaz. Yanına bugün yapabileceğin tek davranışı ekle.",
+      "reflection": "Şu an gerçekten etkileyebildiğim alan neresi?"
+    },
+    {
+      "key": "YÜKÜ AZALT|Ağır geleni küçült.",
+      "title": "Yükü biraz küçült.",
+      "body": "Zor bir gün, bütün hayatın özeti değildir. Şimdi sadece ağırlığı bir parça azalt.",
+      "detail": "Kısa bir mesaj at, su iç ya da 10 dakikalık sessiz bir alan aç. Büyük çözüm arama.",
+      "affirmation": "Bugün hafiflemek için küçük bir hakkım var.",
+      "reflection": "Beni en azından bir derece rahatlatacak şey ne?"
+    },
+    {
+      "key": "YANINDA|Şu an bile değerli kalıyorsun.",
+      "title": "Kendine sert konuşma.",
+      "body": "Canın sıkkınken iç sesin keskinleşebilir. Bugün kendinle konuşma tonunu biraz yumuşat.",
+      "detail": "Kendine söylediğin en sert cümleyi fark et. Aynı cümleyi sevdiğin birine söyleyecek gibi yeniden kur.",
+      "reflection": "Bugün kendime hangi cümleyi biraz daha insaflı söyleyebilirim?"
+    },
+    {
+      "key": "KARİYERDE DENGE|Bugün kariyerini değil, hızını düzelt.",
+      "title": "Önce hızını ayarla.",
+      "body": "Zor bir günde hayat planı çıkarmak yükü büyütebilir. Bugün hedefi değil, temponu düzenle.",
+      "detail": "Kariyerle ilgili tek bir işi 15 dakikalık parçaya indir. Fazlasını bugüne yükleme.",
+      "reflection": "Bugün hangi küçük düzenleme yarının işini kolaylaştırır?"
+    },
+    {
+      "key": "ASTRO REFLEKSİYON|Ritmin açık görünüyor.",
+      "title": "Enerjini tek yere koy.",
+      "body": "Bugün canlı hissediyorsan bunu her yere dağıtmak zorunda değilsin. Bir yön seçmek yeterli.",
+      "detail": "İyi enerjini tek bir işe, tek bir kişiye ya da tek bir niyete ayır.",
+      "reflection": "Bugünkü açıklığı nerede sade ve gerçek kullanabilirim?"
+    },
+    {
+      "key": "YÖN ARAYIŞI|Yön için tek işaret seç.",
+      "title": "Tek işarete bak.",
+      "body": "Bütün olasılıkları aynı anda tartınca yön duygusu bulanıklaşır. Bugün sadece bir işareti ciddiye al.",
+      "detail": "Aklındaki seçeneklerden birini seç ve onunla ilgili tek gerçek bilgi topla.",
+      "reflection": "Bugün hangi bilgi yönümü daha net gösterebilir?"
+    },
+    {
+      "key": "NETLİK|Yönünü tek cümleye indir.",
+      "title": "Yönünü bir cümle yap.",
+      "body": "Büyük planın tamamı hazır olmayabilir. Bugün yalnızca bir sonraki cümleyi netleştir.",
+      "detail": "Bugünkü hedefini tek cümle yaz. Cümle uzuyorsa hedefi küçült.",
+      "reflection": "Bugün anlaşılır hale getirmem gereken tek şey ne?"
+    },
+    {
+      "key": "SOSYALLEŞME|İyi halini paylaş.",
+      "title": "İyi halini küçük paylaş.",
+      "body": "İyi hissettiğin anı sessizce saklamak zorunda değilsin. Küçük bir temas bağı sıcak tutabilir.",
+      "detail": "Birine kısa bir mesaj at ya da iyi gelen şeyi tek cümleyle paylaş.",
+      "reflection": "Bugün kiminle küçük ve doğal bir temas kurabilirim?"
+    },
+    {
+      "key": "İÇ HAVA|Karanlık geçici bir hava.",
+      "title": "İç havayı hüküm yapma.",
+      "body": "Canın sıkkınsa bunu kişiliğin ya da geleceğin gibi okuma. Bu sadece bugünün iç havası olabilir.",
+      "detail": "Kendine büyük karar verme baskısı koyma. Önce bedenini ve ortamını biraz sakinleştir.",
+      "reflection": "Bugünkü havayı büyütmeden nasıl taşıyabilirim?"
+    },
+    {
+      "key": "YARGIYI AYIR|Düşünceyi hüküm sanma.",
+      "title": "Düşünceyi karar sayma.",
+      "body": "Zihin yorulduğunda kesin konuşur. Her cümlesi gerçek olmayabilir; bazıları sadece yorgunluğun sesidir.",
+      "detail": "Aklındaki sert cümleyi yaz. Yanına daha nötr bir versiyonunu ekle.",
+      "reflection": "Bugün hangi düşünceyi biraz daha uzaktan görebilirim?"
+    },
+    {
+      "key": "DİKKAT SINIRI|Dikkatini koru.",
+      "title": "Dikkatini geri al.",
+      "body": "Dikkatin sınırlı. Bugün onu her bildirime, her isteğe ve her düşünceye dağıtmak zorunda değilsin.",
+      "detail": "15 dakika boyunca tek pencere, tek iş, tek niyet seç.",
+      "reflection": "Bugün dikkatimi en çok nerede korumam gerekiyor?"
+    }
+  ]
+}

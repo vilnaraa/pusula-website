@@ -17,6 +17,10 @@
 /main.js
   Cache-Control: no-cache, must-revalidate
 
+/app-content-feed.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300, must-revalidate
+
 /admin/*
   Cache-Control: no-cache, must-revalidate
 

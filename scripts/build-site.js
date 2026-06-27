@@ -438,6 +438,7 @@ fs.mkdirSync(dist, { recursive: true });
   "styles.css",
   "main.js",
   "home-mode-feed.json",
+  "app-content-feed.json",
   "robots.txt",
   "security.txt",
   "sitemap.xml",
