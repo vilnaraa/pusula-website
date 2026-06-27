@@ -1,0 +1,4 @@
+Contact: https://pusulamobil.com.tr/faq/
+Expires: 2027-06-26T00:00:00Z
+Preferred-Languages: tr, en
+Canonical: https://pusulamobil.com.tr/.well-known/security.txt
