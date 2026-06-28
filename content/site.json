@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Pusula | App Store'da yayında",
-    "description": "Pusula, App Store'da yayında olan ücretsiz ve local-first günlük rehber uygulamasıdır.",
+    "description": "Pusula, App Store'da yayında olan ücretsiz ve günlük rehber uygulamasıdır. ",
     "canonicalUrl": "https://pusulamobil.com.tr/",
     "appStoreUrl": "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957",
     "ogTitle": "Pusula",
@@ -10,9 +10,9 @@
     "themeColor": "#101622"
   },
   "hero": {
-    "eyebrow": "Local-first mobil rehber",
+    "eyebrow": "Günlük mobil rehberiniz",
     "title": "Pusula",
-    "tagline": "Günün tonuna göre küçük, kişisel bir yön.",
+    "tagline": "Günün gidişatına göre küçük, kişisel bir yön.",
     "lead": "Pusula; ruh halini, günün ritmini ve ihtiyacını kısa seçimlerle anlar. Sana stoik, astrolojik, sosyal veya kariyer odaklı uygulanabilir bir kart verir.",
     "primaryCta": {
       "label": "App Store'dan indir",
@@ -71,7 +71,7 @@
   },
   "cards": {
     "eyebrow": "Görsel dil",
-    "title": "Kartlar sakin, kişisel ve bize ait bir görsel evrenden geliyor."
+    "title": "Kartlar, tamamen uygulama yaratıcısının özgün evreninden geliyor."
   },
   "principles": [
     {
