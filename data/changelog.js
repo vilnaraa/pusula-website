@@ -9,7 +9,11 @@ window.PUSULA_CHANGELOG = {
       "summary": "Rüya deneyimi journal öncelikli yapıdan hızlı tabir öncelikli akışa taşındı; uygulama içi rüya, astro ve kart metinleri admin panelden yönetilebilir hale getirildi.",
       "added": [
         "Admin paneline Uygulama içerikleri sekmesi",
+        "Admin paneline Rüya Pusulası website sayfası sekmesi",
         "app-content-feed.json için rüya, astro/plan ve kart override editörü",
+        "Rüya Pusulası için ayrı /ruya-pusulasi/ public sayfası",
+        "Ana sayfaya görünür Rüya Pusulası bölümü",
+        "Rüya Pusulası için özgün SVG ürün görselleri",
         "Website kart sayfalarına Rüya Pusulası anlatısı",
         "Ürün galerisine Rüya Pusulası slide'ı"
       ],

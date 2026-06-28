@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="dreamMapTitle dreamMapDesc">
+  <title id="dreamMapTitle">Rüya Pusulası tabir haritası</title>
+  <desc id="dreamMapDesc">Rüya metninden sembol, duygu ve soru katmanlarına akan Pusula yorum haritası.</desc>
+  <defs>
+    <linearGradient id="dreamMapBg" x1="80" y1="30" x2="880" y2="690" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset=".54" stop-color="#efe4d1"/>
+      <stop offset="1" stop-color="#d8c8ae"/>
+    </linearGradient>
+    <linearGradient id="dreamNight" x1="185" y1="108" x2="730" y2="626" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#173c35"/>
+      <stop offset=".58" stop-color="#111722"/>
+      <stop offset="1" stop-color="#6f6379"/>
+    </linearGradient>
+    <linearGradient id="dreamGold" x1="250" y1="170" x2="790" y2="580" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1d77e"/>
+      <stop offset="1" stop-color="#d2a53a"/>
+    </linearGradient>
+    <linearGradient id="dreamPaper" x1="185" y1="130" x2="360" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="1" stop-color="#f2e6d2"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="28" y="28" width="904" height="664" rx="44" fill="url(#dreamMapBg)"/>
+  <path d="M105 585 C205 485 304 502 390 415 C481 324 574 225 837 208" fill="none" stroke="#2f6658" stroke-width="2.4" stroke-dasharray="10 16" opacity=".24"/>
+  <path d="M128 153 C267 100 392 115 512 178 C635 243 720 222 844 154" fill="none" stroke="#d2a53a" stroke-width="2" opacity=".32"/>
+
+  <g aria-hidden="true">
+    <rect x="102" y="116" width="268" height="488" rx="34" fill="#111722"/>
+    <rect x="119" y="136" width="234" height="448" rx="24" fill="url(#dreamPaper)"/>
+    <rect x="147" y="170" width="104" height="14" rx="7" fill="#2f6658" opacity=".82"/>
+    <rect x="147" y="205" width="178" height="10" rx="5" fill="#decfb7"/>
+    <rect x="147" y="230" width="136" height="10" rx="5" fill="#decfb7"/>
+    <rect x="147" y="255" width="164" height="10" rx="5" fill="#decfb7"/>
+    <rect x="147" y="303" width="178" height="146" rx="18" fill="#fffaf1" stroke="#decfb7" stroke-width="2"/>
+    <path d="M168 339 H292 M168 370 H305 M168 401 H260" stroke="#6f6379" stroke-width="11" stroke-linecap="round" opacity=".38"/>
+    <rect x="147" y="488" width="178" height="48" rx="24" fill="#111722"/>
+    <path d="M188 512 H285" stroke="#fffaf1" stroke-width="9" stroke-linecap="round" opacity=".88"/>
+  </g>
+
+  <g aria-hidden="true">
+    <path d="M355 344 C414 290 479 277 550 314" fill="none" stroke="#2f6658" stroke-width="5" stroke-linecap="round" opacity=".52"/>
+    <path d="M363 416 C438 461 516 454 585 404" fill="none" stroke="#d2a53a" stroke-width="5" stroke-linecap="round" opacity=".58"/>
+    <path d="M520 244 C609 164 736 167 804 252 C737 223 644 232 596 290 C563 329 557 381 578 431 C507 395 461 298 520 244 Z" fill="url(#dreamNight)"/>
+    <path d="M618 224 C694 208 756 240 792 292 C742 258 670 265 626 310 C589 348 581 407 608 468 C548 423 524 325 574 264 C585 250 600 236 618 224 Z" fill="#fffaf1" opacity=".88"/>
+    <circle cx="719" cy="310" r="8" fill="url(#dreamGold)"/>
+    <circle cx="662" cy="378" r="5" fill="#fffaf1" opacity=".8"/>
+    <circle cx="770" cy="404" r="5" fill="#fffaf1" opacity=".72"/>
+  </g>
+
+  <g aria-hidden="true">
+    <rect x="520" y="132" width="284" height="108" rx="22" fill="#fffaf1" stroke="#decfb7" stroke-width="2"/>
+    <circle cx="565" cy="186" r="23" fill="#2f6658" opacity=".16"/>
+    <path d="M553 188 C561 172 578 172 586 188" fill="none" stroke="#2f6658" stroke-width="6" stroke-linecap="round"/>
+    <path d="M620 170 H755 M620 198 H724" stroke="#111722" stroke-width="12" stroke-linecap="round" opacity=".72"/>
+
+    <rect x="594" y="306" width="260" height="116" rx="24" fill="#173c35"/>
+    <circle cx="636" cy="363" r="24" fill="#d2a53a" opacity=".22"/>
+    <path d="M625 362 H647 M636 351 V373" stroke="#d2a53a" stroke-width="7" stroke-linecap="round"/>
+    <path d="M690 344 H805 M690 374 H775" stroke="#fffaf1" stroke-width="12" stroke-linecap="round" opacity=".78"/>
+
+    <rect x="506" y="494" width="316" height="112" rx="24" fill="#fffaf1" stroke="#decfb7" stroke-width="2"/>
+    <circle cx="552" cy="550" r="24" fill="#b9644f" opacity=".16"/>
+    <path d="M540 550 C552 536 565 536 577 550 C565 566 552 566 540 550 Z" fill="none" stroke="#b9644f" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M606 533 H764 M606 563 H728" stroke="#111722" stroke-width="12" stroke-linecap="round" opacity=".68"/>
+  </g>
+</svg>

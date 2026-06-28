@@ -41,13 +41,13 @@
     {
       title: "Planım: iyi gelen şeyi somut bir plana çevir",
       description:
-        "Planım ekranı, uygulamanın önerilerini gerçek dünyaya bağlar. Kullanıcı kahve, yemek, etkinlik, ev modu veya spor seçenekleriyle o gün kendisine iyi gelebilecek küçük bir plan seçebilir.",
+        "Planım ekranı, uygulamanın önerilerini gerçek dünyaya bağlar. Kullanıcı kahve, yemek, etkinlik veya şehir destekli küçük rota seçenekleriyle o gün kendisine iyi gelebilecek bir yön seçebilir.",
       image: "assets/screens/pusula-current-01.png",
       alt: "Planım ekranı",
       points: [
         "Yakındaki kahve ve restoran önerileri konum izniyle doğrudan uygulama içinde listelenir.",
-        "Ev modu; dizi, film ve spor seçeneklerini görsel, puan ve platform bilgisiyle daha seçilebilir hale getirir.",
-        "Etkinlik ve spor alanları canlı veri geldiğinde zenginleşir; veri sınırlıysa kullanıcıya net kısayollar sunulur."
+        "Astro ve şehir bilgisi bir kez ayarlandığında tekrar tekrar sorulmadan günlük plan dilini besler.",
+        "Etkinlik alanı canlı veri geldiğinde zenginleşir; veri sınırlıysa kullanıcıya net yönlendirme sunulur."
       ]
     },
     {

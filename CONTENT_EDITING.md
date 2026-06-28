@@ -9,6 +9,7 @@ Değiştirmek istediğin şeye göre dosya:
 - SEO, hero, ürün başlığı, ilkeler, footer: `content/site.json`
 - Ürün slider yazıları ve görselleri: `content/gallery.json`
 - Astro Haritan public sayfası: `content/astro.json`
+- Rüya Pusulası public sayfası ve ana sayfa rüya bölümü: `content/ruya.json`
 - Kart sayfaları ve ürün anlatıları: `content/cards.json`
 - Uygulama içi remote metinler, rüya/astro copy ve kart override'ları: `app-content-feed.json`
 - Changelog kayıtları: `data/changelog.json`
@@ -25,6 +26,7 @@ Paneldeki tablar:
 - `Site ayarları`: SEO, hero, ürün metinleri, footer.
 - `Ürün galerisi`: slider ekranları, açıklamalar, görsel yolları.
 - `Astro Haritan`: `/astro-haritan/` sayfasının SEO, hero, katman ve ürün değeri metinleri.
+- `Rüya Pusulası`: `/ruya-pusulasi/` sayfası ve ana sayfadaki rüya bölümünün metinleri.
 - `Uygulama içerikleri`: iOS/Android uygulamadaki remote copy, Rüya Pusulası, Astro/Plan metinleri ve kart override'ları.
 - `Changelog`: public sürüm kayıtları.
 - `Kart sayfaları`: `/kartlar/...` altındaki ürün sayfaları.

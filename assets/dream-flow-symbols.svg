@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="dreamFlowTitle dreamFlowDesc">
+  <title id="dreamFlowTitle">Rüya Pusulası üç aşamalı akış görseli</title>
+  <desc id="dreamFlowDesc">Rüya anlatımı, hızlı tabir ve isteğe bağlı kayıt adımlarını gösteren üç panelli Pusula görseli.</desc>
+  <defs>
+    <linearGradient id="dreamFlowBg" x1="40" y1="24" x2="920" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="1" stop-color="#eadcc5"/>
+    </linearGradient>
+    <linearGradient id="dreamFlowNight" x1="130" y1="105" x2="820" y2="466" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f6658"/>
+      <stop offset=".55" stop-color="#111722"/>
+      <stop offset="1" stop-color="#6f6379"/>
+    </linearGradient>
+    <linearGradient id="dreamFlowGold" x1="180" y1="110" x2="790" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1d77e"/>
+      <stop offset="1" stop-color="#d2a53a"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="912" height="492" rx="40" fill="url(#dreamFlowBg)"/>
+  <path d="M123 168 C244 110 347 124 447 188 C558 258 665 235 834 150" fill="none" stroke="#2f6658" stroke-width="2.2" opacity=".2"/>
+  <path d="M116 396 C244 322 365 350 466 410 C580 478 704 446 846 360" fill="none" stroke="#d2a53a" stroke-width="2.2" opacity=".28"/>
+
+  <g aria-hidden="true">
+    <rect x="96" y="118" width="214" height="302" rx="28" fill="#fffaf1" stroke="#decfb7" stroke-width="2"/>
+    <rect x="126" y="154" width="84" height="13" rx="7" fill="#2f6658" opacity=".82"/>
+    <path d="M128 203 H258 M128 231 H244 M128 259 H270 M128 287 H220" stroke="#6f6379" stroke-width="10" stroke-linecap="round" opacity=".34"/>
+    <path d="M132 344 C159 314 195 313 221 344 C195 372 159 372 132 344 Z" fill="none" stroke="#2f6658" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="177" cy="344" r="9" fill="#d2a53a"/>
+  </g>
+
+  <path d="M333 268 H408" stroke="#2f6658" stroke-width="8" stroke-linecap="round"/>
+  <path d="M385 244 L411 268 L385 292" fill="none" stroke="#2f6658" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g aria-hidden="true">
+    <rect x="434" y="88" width="238" height="362" rx="34" fill="url(#dreamFlowNight)"/>
+    <circle cx="552" cy="207" r="78" fill="#fffaf1" opacity=".9"/>
+    <path d="M577 142 C635 171 650 242 608 291 C629 224 596 171 528 152 C543 143 560 140 577 142 Z" fill="#111722" opacity=".85"/>
+    <path d="M490 346 H616 M512 378 H594" stroke="#fffaf1" stroke-width="13" stroke-linecap="round" opacity=".76"/>
+    <rect x="496" y="310" width="113" height="16" rx="8" fill="url(#dreamFlowGold)"/>
+  </g>
+
+  <path d="M696 268 H771" stroke="#d2a53a" stroke-width="8" stroke-linecap="round"/>
+  <path d="M748 244 L774 268 L748 292" fill="none" stroke="#d2a53a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g aria-hidden="true">
+    <rect x="790" y="118" width="74" height="302" rx="28" fill="#111722"/>
+    <rect x="800" y="132" width="54" height="274" rx="18" fill="#fffaf1"/>
+    <rect x="812" y="158" width="31" height="8" rx="4" fill="#2f6658"/>
+    <path d="M812 196 H843 M812 218 H836 M812 240 H844" stroke="#decfb7" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="827" cy="300" r="20" fill="#2f6658" opacity=".16"/>
+    <path d="M817 301 L824 308 L839 289" fill="none" stroke="#2f6658" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="810" y="354" width="36" height="16" rx="8" fill="#111722"/>
+  </g>
+</svg>

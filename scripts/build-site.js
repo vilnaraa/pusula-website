@@ -83,6 +83,7 @@ const buildNav = (cards) => `
         </a>
         <div class="nav-links">
           <a href="/#product">Ürün</a>
+          <a href="/ruya-pusulasi/">Rüya Pusulası</a>
           <div class="nav-dropdown">
             <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
               Kartlar
@@ -115,6 +116,7 @@ const buildFooter = () => `
         <nav class="footer-column" aria-label="Ürün bağlantıları">
           <strong>Ürün</strong>
           <a href="/#product">Ürün</a>
+          <a href="/ruya-pusulasi/">Rüya Pusulası</a>
           <a href="/#cards">Kartlar</a>
           <a href="/astro-haritan/">Astro Haritan</a>
           <a href="/app-store/">App Store</a>
@@ -384,6 +386,126 @@ ${buildFooter()}
 `;
 };
 
+const renderDreamHomeSection = (dream) => {
+  const home = dream.home || {};
+  const demo = dream.demo || {};
+
+  return `<section id="ruya-pusulasi" class="section dream-home-section">
+        <div class="dream-home-shell">
+          <div class="dream-home-copy">
+            <p class="eyebrow dark">${escapeHtml(home.eyebrow || "Rüya Pusulası")}</p>
+            <h2>${escapeHtml(home.title || "Rüyanı yaz, tabiri bekletmeden gör.")}</h2>
+            <p>${escapeHtml(home.body || "")}</p>
+            <div class="dream-actions">
+              <a class="button primary dark-button" href="/ruya-pusulasi/">${escapeHtml(home.primaryCta || "Rüya Pusulası'nı incele")}</a>
+              <a class="text-link" href="/ruya-pusulasi/#ruya-akis">${escapeHtml(home.secondaryCta || "Akış nasıl çalışıyor?")}</a>
+            </div>
+          </div>
+          <div class="dream-home-visual">
+            <img src="assets/dream-flow-symbols.svg" width="960" height="540" alt="Rüya Pusulası yaz, tabir et ve kaydet akışını gösteren görsel">
+            <div class="dream-mini-result" aria-label="${escapeAttr(demo.resultTitle || "Rüya tabiri")}">
+              <span>${escapeHtml(demo.resultTitle || "Rüya tabiri")}</span>
+              <strong>${escapeHtml(demo.questionBody || "Bugün hangi kapıyı sadece bir adım aralayabilirsin?")}</strong>
+            </div>
+          </div>
+        </div>
+      </section>`;
+};
+
+const renderDreamPage = (dream, cards) => {
+  const seo = dream.seo || {};
+  const hero = dream.hero || {};
+  const demo = dream.demo || {};
+  const stepsHeading = dream.stepsHeading || {};
+  const steps = dream.steps || [];
+  const notes = dream.notes || [];
+  const canonical = seo.canonicalUrl || "https://pusulamobil.com.tr/ruya-pusulasi/";
+
+  return `<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="${escapeAttr(seo.description || "")}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="${escapeAttr(seo.ogTitle || seo.title || "Rüya Pusulası | Pusula")}">
+    <meta property="og:description" content="${escapeAttr(seo.ogDescription || seo.description || "")}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${escapeAttr(canonical)}">
+    <meta property="og:image" content="${escapeAttr(seo.ogImage || "https://pusulamobil.com.tr/assets/card-night.png")}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="${escapeAttr(canonical)}">
+    <link rel="icon" href="/assets/app-icon.png">
+    <link rel="apple-touch-icon" href="/assets/app-icon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <title>${escapeHtml(seo.title || "Rüya Pusulası | Pusula")}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+${buildNav(cards)}
+    <main id="main" class="subpage-main">
+      <section class="dream-page-hero">
+        <div class="dream-page-copy">
+          <p class="eyebrow dark">${escapeHtml(hero.eyebrow || "Rüya Pusulası")}</p>
+          <h1>${escapeHtml(hero.title || "Rüya tabiri önce, journal sonra.")}</h1>
+          <p class="card-product-subtitle">${escapeHtml(hero.subtitle || "")}</p>
+          <p>${escapeHtml(hero.body || "")}</p>
+          <div class="dream-actions">
+            <a class="button primary dark-button" href="${escapeAttr(hero.primaryUrl || "/app-store/")}">${escapeHtml(hero.primaryCta || "App Store'da aç")}</a>
+            <a class="text-link" href="#ruya-akis">${escapeHtml(hero.secondaryCta || "Akışı gör")}</a>
+          </div>
+        </div>
+        <div class="dream-page-visual">
+          <img src="/assets/dream-interpretation-map.svg" width="960" height="720" alt="Rüya metninden tabir katmanlarına akan Pusula görseli">
+        </div>
+      </section>
+
+      <section id="ruya-akis" class="section dream-demo-section">
+        <div class="dream-demo-grid">
+          <article class="dream-input-panel">
+            <span>${escapeHtml(demo.inputLabel || "Rüya metni")}</span>
+            <p>${escapeHtml(demo.inputText || "")}</p>
+          </article>
+          <article class="dream-reading-panel">
+            <span>${escapeHtml(demo.resultTitle || "Rüya tabiri")}</span>
+            <h2>${escapeHtml(demo.resultBody || "")}</h2>
+            <div>
+              <strong>${escapeHtml(demo.questionTitle || "Bugünün sorusu")}</strong>
+              <p>${escapeHtml(demo.questionBody || "")}</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section dream-steps-section">
+        <div class="section-heading compact">
+          <p class="eyebrow dark">${escapeHtml(stepsHeading.eyebrow || "Akış")}</p>
+          <h2>${escapeHtml(stepsHeading.title || "")}</h2>
+        </div>
+        <div class="dream-step-grid">
+          ${steps
+            .map(
+              (step, index) => `<article class="dream-step-card">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <h3>${escapeHtml(step.title || "")}</h3>
+            <p>${escapeHtml(step.body || "")}</p>
+          </article>`
+            )
+            .join("")}
+        </div>
+        <div class="dream-note-strip">
+          ${notes.map((note) => `<span>${escapeHtml(note)}</span>`).join("")}
+        </div>
+      </section>
+    </main>
+${buildFooter()}
+    <script src="/data/cards.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
+`;
+};
+
 const copyRecursive = (source, destination) => {
   const stat = fs.statSync(source);
 
@@ -402,11 +524,13 @@ const copyRecursive = (source, destination) => {
 const site = readJson("content/site.json");
 const gallery = readJson("content/gallery.json");
 const astro = readJson("content/astro.json");
+const dream = readJson("content/ruya.json");
 const cardsData = readJson("content/cards.json");
 const cards = cardsData.cards || [];
 const changelog = readJson("data/changelog.json");
 const sitemapPages = [
   { path: "", priority: "1.0", changefreq: "weekly" },
+  { path: "ruya-pusulasi/", priority: "0.85", changefreq: "weekly" },
   { path: "astro-haritan/", priority: "0.85", changefreq: "weekly" },
   { path: "app-store/", priority: "0.8", changefreq: "weekly" },
   ...cards.map((card) => ({ path: `kartlar/${card.slug}/`, priority: "0.7", changefreq: "monthly" })),
@@ -419,6 +543,7 @@ const sitemapPages = [
 
 writeWindowData("data/site.js", "PUSULA_SITE", site);
 writeWindowData("data/gallery.js", "PUSULA_GALLERY", gallery);
+writeWindowData("data/ruya.js", "PUSULA_RUYA", dream);
 writeWindowData("data/cards.js", "PUSULA_CARDS", cardsData);
 writeWindowData("data/changelog.js", "PUSULA_CHANGELOG", changelog);
 
@@ -510,6 +635,13 @@ indexHtml = replaceOrFail(
   "structured data"
 );
 
+indexHtml = replaceOrFail(
+  indexHtml,
+  /<!-- dream-home:start -->[\s\S]*?<!-- dream-home:end -->/,
+  `<!-- dream-home:start -->\n      ${renderDreamHomeSection(dream)}\n      <!-- dream-home:end -->`,
+  "dream home section"
+);
+
 fs.writeFileSync(indexPath, indexHtml);
 
 cards.forEach((card) => {
@@ -521,6 +653,10 @@ cards.forEach((card) => {
 const astroPath = path.join(root, "astro-haritan", "index.html");
 fs.mkdirSync(path.dirname(astroPath), { recursive: true });
 fs.writeFileSync(astroPath, renderAstroPage(astro, cards));
+
+const dreamPath = path.join(root, "ruya-pusulasi", "index.html");
+fs.mkdirSync(path.dirname(dreamPath), { recursive: true });
+fs.writeFileSync(dreamPath, renderDreamPage(dream, cards));
 
 const sitemapPath = path.join(root, "sitemap.xml");
 if (fs.existsSync(sitemapPath) && seo.canonicalUrl) {
@@ -561,6 +697,7 @@ fs.mkdirSync(dist, { recursive: true });
   "kartlar",
   "kvkk",
   "privacy",
+  "ruya-pusulasi",
   "terms"
 ].forEach((relativePath) => {
   copyRecursive(path.join(root, relativePath), path.join(dist, relativePath));

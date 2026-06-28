@@ -285,6 +285,10 @@ p {
   content: "H";
 }
 
+.file-tab[data-file="dreamPage"]::before {
+  content: "R";
+}
+
 .file-tab[data-file="appContent"]::before {
   content: "A";
 }
