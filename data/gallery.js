@@ -1,8 +1,8 @@
 window.PUSULA_GALLERY = {
   "slides": [
     {
-      "title": "İlk temas: güven veren bir başlangıç",
-      "description": "Pusula, kullanıcıyı ilk ekranda kayıt baskısıyla karşılamaz. Uygulamanın ücretsiz olduğunu, hesap açmanın zorunlu olmadığını ve kişisel cevapların varsayılan olarak cihazda kaldığını açık bir dille anlatır.",
+      "title": "Güven veren bir başlangıç. ",
+      "description": "Pusula, kullanıcıyı ilk ekranda baskısız bir şekilde karşılar. Uygulamanın ücretsiz olduğunu, hesap açmanın zorunlu olmadığını ve kişisel cevapların varsayılan olarak cihazda kaldığını açık bir dille anlatır.",
       "image": "assets/screens/pusula-current-01.png",
       "alt": "Pusula onboarding ekranı",
       "points": [
@@ -17,7 +17,7 @@ window.PUSULA_GALLERY = {
       "image": "assets/screens/pusula-current-01.png",
       "alt": "Pusula kartı ekranı",
       "points": [
-        "Stoik lens, astro ton, kariyer ve sosyalleşme gibi farklı yönler tek kart sistemi içinde birleşir.",
+        "Stoacı lens, astrolojik ton, kariyer ve sosyalleşme gibi farklı yönler tek kart sistemi içinde birleşir.",
         "Yakın zamanda gösterilen kartlar hatırlanır; aynı mesajların sık tekrar etmesi bilinçli şekilde azaltılır.",
         "135 kartlık içerik havuzu, özgün Türkçe yorumlar ve telif riski düşük bir anlatı diliyle hazırlanır."
       ]
