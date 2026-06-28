@@ -34,13 +34,24 @@ window.PUSULA_GALLERY = {
       ]
     },
     {
+      "title": "Rüya Pusulası: yaz, hızlıca tabir et",
+      "description": "Rüya alanı artık journal formu gibi başlamaz. Kullanıcı rüyasını yazar, Pusula önce hızlı bir tabir çıkarır; geçmişe kaydetmek tamamen isteğe bağlıdır.",
+      "image": "assets/screens/pusula-current-01.png",
+      "alt": "Rüya Pusulası tabir ekranı",
+      "points": [
+        "İlk aksiyon başlık veya duygu seçimi değil, doğrudan rüyayı tabir etmektir.",
+        "Kişi isterse tabiri rüya geçmişine ekler; başlık, his ve uyku kalitesi o ikinci adımda sorulur.",
+        "Yorumlar terapi, teşhis veya kehanet iddiası taşımaz; kişisel farkındalık dilinde kalır."
+      ]
+    },
+    {
       "title": "Planım: iyi gelen şeyi somut bir plana çevir",
-      "description": "Planım ekranı, uygulamanın önerilerini gerçek dünyaya bağlar. Kullanıcı kahve, yemek, etkinlik veya ev modu seçenekleriyle o gün kendisine iyi gelebilecek küçük bir plan seçebilir.",
+      "description": "Planım ekranı, uygulamanın önerilerini gerçek dünyaya bağlar. Kullanıcı kahve, yemek, etkinlik veya şehir/astro destekli küçük plan seçenekleriyle o gün kendisine iyi gelebilecek bir yön seçebilir.",
       "image": "assets/screens/pusula-current-01.png",
       "alt": "Planım ekranı",
       "points": [
         "Yakındaki kahve ve restoran önerileri konum izniyle doğrudan uygulama içinde listelenir.",
-        "Ev modu; dizi ve film seçeneklerini görsel, puan ve platform bilgisiyle daha seçilebilir hale getirir.",
+        "Astro ve şehir bilgisi bir kez ayarlandığında tekrar tekrar sorulmadan günlük plan dilini besler.",
         "Etkinlik alanı canlı veri geldiğinde zenginleşir; veri sınırlıysa kullanıcıya net yönlendirme sunulur."
       ]
     },

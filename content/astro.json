@@ -1,0 +1,57 @@
+{
+  "seo": {
+    "title": "Astro Haritan | Pusula",
+    "description": "Pusula Astro Haritan; doğum bilgilerine göre burç profili, günlük astro tonu ve tematik harita katmanları sunan refleksiyon alanıdır.",
+    "ogTitle": "Astro Haritan | Pusula",
+    "ogDescription": "Burç profilini, günlük astro tonunu ve astro harita katmanlarını Pusula'nın sakin ürün diliyle keşfet.",
+    "ogImage": "https://pusulamobil.com.tr/assets/card-night.png",
+    "canonicalUrl": "https://pusulamobil.com.tr/astro-haritan/"
+  },
+  "hero": {
+    "eyebrow": "Yeni sekme",
+    "title": "Astro Haritan",
+    "subtitle": "Burç profilini, günlük astro tonunu ve harita katmanlarını tek bir sakin ekranda toplar.",
+    "body": "Astro Haritan, doğum tarihiyle başlayan local-first bir refleksiyon alanıdır. Amaç profesyonel astroloji iddiası kurmak değil; kullanıcının gününü daha anlaşılır, görsel ve kişisel bir dille okumasına yardım etmektir.",
+    "primaryCta": "App Store'da gör",
+    "primaryUrl": "/app-store/",
+    "secondaryCta": "Harita katmanları"
+  },
+  "panel": {
+    "label": "Güneş burcu",
+    "value": "İkizler",
+    "body": "Merak, iletişim ve yön değiştirme kapasitesi."
+  },
+  "layersHeading": {
+    "eyebrow": "Harita katmanları",
+    "title": "Astro kısmı sadece burç yorumu değil, kullanıcının kendini okuma biçimini zenginleştirir."
+  },
+  "layers": [
+    {
+      "number": "01",
+      "title": "Doğum profili",
+      "body": "Doğum tarihiyle güneş burcu, element, nitelik ve temel profil bilgileri cihazda hesaplanır."
+    },
+    {
+      "number": "02",
+      "title": "Günlük astro tonu",
+      "body": "Astro açıkken günlük kart dili burç sinyaliyle yumuşar; kapalıyken stoik ve küçük adım tonu korunur."
+    },
+    {
+      "number": "03",
+      "title": "Harita modu",
+      "body": "Evler, yerleşimler ve açı özetleri profesyonel görünen ama terapötik iddia taşımayan bir arayüzde gösterilir."
+    },
+    {
+      "number": "04",
+      "title": "Astrocartography yönü",
+      "body": "İlerleyen sürümlerde harita hissi, rota ve şehir temalarıyla daha görsel bir keşif alanına dönüşebilir."
+    }
+  ],
+  "product": {
+    "eyebrow": "Ürün değeri",
+    "title": "Astro tonu, kesin yönlendirme yerine kişisel refleksiyon dili kurar.",
+    "body": "Kullanıcıya “bugün kesin böyle olacak” demek yerine, günün ritmini okumak için güvenli ve yumuşak bir çerçeve verir. Bu yüzden Astro Haritan hem görsel olarak güçlü hem de ürün sınırları açısından kontrollü tasarlandı.",
+    "image": "/assets/card-night.png",
+    "alt": "Astro ton kart görseli"
+  }
+}

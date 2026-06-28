@@ -283,6 +283,107 @@ ${buildFooter()}
 `;
 };
 
+const renderAstroPage = (astro, cards) => {
+  const seo = astro.seo || {};
+  const hero = astro.hero || {};
+  const panel = astro.panel || {};
+  const layersHeading = astro.layersHeading || {};
+  const layers = astro.layers || [];
+  const product = astro.product || {};
+  const canonical = seo.canonicalUrl || "https://pusulamobil.com.tr/astro-haritan/";
+
+  return `<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="${escapeAttr(seo.description || "")}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="${escapeAttr(seo.ogTitle || seo.title || "Astro Haritan | Pusula")}">
+    <meta property="og:description" content="${escapeAttr(seo.ogDescription || seo.description || "")}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${escapeAttr(canonical)}">
+    <meta property="og:image" content="${escapeAttr(seo.ogImage || "https://pusulamobil.com.tr/assets/card-night.png")}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="${escapeAttr(canonical)}">
+    <link rel="icon" href="/assets/app-icon.png">
+    <link rel="apple-touch-icon" href="/assets/app-icon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <title>${escapeHtml(seo.title || "Astro Haritan | Pusula")}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+${buildNav(cards)}
+    <main id="main" class="subpage-main">
+      <section class="astro-map-hero">
+        <div class="astro-map-copy">
+          <p class="eyebrow dark">${escapeHtml(hero.eyebrow || "Astro Haritan")}</p>
+          <h1>${escapeHtml(hero.title || "Astro Haritan")}</h1>
+          <p class="card-product-subtitle">${escapeHtml(hero.subtitle || "")}</p>
+          <p>${escapeHtml(hero.body || "")}</p>
+          <div class="astro-map-actions">
+            <a class="button primary dark-button" href="${escapeAttr(hero.primaryUrl || "/app-store/")}">${escapeHtml(hero.primaryCta || "App Store'da gör")}</a>
+            <a class="text-link" href="#katmanlar">${escapeHtml(hero.secondaryCta || "Harita katmanları")}</a>
+          </div>
+        </div>
+
+        <div class="astro-map-visual" aria-label="Pusula Astro Haritan görsel temsili">
+          <div class="astro-orbit-map" aria-hidden="true">
+            <span class="orbit-ring ring-one"></span>
+            <span class="orbit-ring ring-two"></span>
+            <span class="orbit-ring ring-three"></span>
+            <span class="astro-node node-one"></span>
+            <span class="astro-node node-two"></span>
+            <span class="astro-node node-three"></span>
+            <span class="astro-node node-four"></span>
+            <span class="astro-compass"></span>
+          </div>
+          <div class="astro-map-panel">
+            <span>${escapeHtml(panel.label || "Güneş burcu")}</span>
+            <strong>${escapeHtml(panel.value || "İkizler")}</strong>
+            <small>${escapeHtml(panel.body || "")}</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="katmanlar" class="section astro-layer-section">
+        <div class="section-heading compact">
+          <p class="eyebrow dark">${escapeHtml(layersHeading.eyebrow || "Harita katmanları")}</p>
+          <h2>${escapeHtml(layersHeading.title || "")}</h2>
+        </div>
+
+        <div class="astro-layer-grid">
+          ${layers
+            .map(
+              (layer, index) => `<article class="astro-layer-card">
+            <span>${escapeHtml(layer.number || String(index + 1).padStart(2, "0"))}</span>
+            <h3>${escapeHtml(layer.title || "")}</h3>
+            <p>${escapeHtml(layer.body || "")}</p>
+          </article>`
+            )
+            .join("")}
+        </div>
+      </section>
+
+      <section class="section astro-product-section">
+        <article class="astro-product-card">
+          <img src="${escapeAttr(product.image || "/assets/card-night.png")}" width="1024" height="1024" alt="${escapeAttr(product.alt || "Astro ton kart görseli")}">
+          <div>
+            <p class="eyebrow dark">${escapeHtml(product.eyebrow || "Ürün değeri")}</p>
+            <h2>${escapeHtml(product.title || "")}</h2>
+            <p>${escapeHtml(product.body || "")}</p>
+          </div>
+        </article>
+      </section>
+    </main>
+${buildFooter()}
+    <script src="/data/cards.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
+`;
+};
+
 const copyRecursive = (source, destination) => {
   const stat = fs.statSync(source);
 
@@ -300,6 +401,7 @@ const copyRecursive = (source, destination) => {
 
 const site = readJson("content/site.json");
 const gallery = readJson("content/gallery.json");
+const astro = readJson("content/astro.json");
 const cardsData = readJson("content/cards.json");
 const cards = cardsData.cards || [];
 const changelog = readJson("data/changelog.json");
@@ -415,6 +517,10 @@ cards.forEach((card) => {
   fs.mkdirSync(path.dirname(cardPath), { recursive: true });
   fs.writeFileSync(cardPath, renderCardPage(card, cards));
 });
+
+const astroPath = path.join(root, "astro-haritan", "index.html");
+fs.mkdirSync(path.dirname(astroPath), { recursive: true });
+fs.writeFileSync(astroPath, renderAstroPage(astro, cards));
 
 const sitemapPath = path.join(root, "sitemap.xml");
 if (fs.existsSync(sitemapPath) && seo.canonicalUrl) {

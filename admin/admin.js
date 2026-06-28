@@ -35,6 +35,54 @@
       path: "content/gallery.json",
       mode: "gallery"
     },
+    astro: {
+      title: "Astro Haritan",
+      kicker: "Website sayfası",
+      description: "Astro Haritan public sayfasındaki SEO, hero, katman ve ürün değeri metinlerini yönetir.",
+      stats: ["SEO", "Hero", "Katmanlar"],
+      path: "content/astro.json",
+      mode: "form",
+      fields: [
+        ["seo.title", "SEO başlığı", "input"],
+        ["seo.description", "SEO açıklaması", "textarea"],
+        ["seo.ogTitle", "OG başlığı", "input"],
+        ["seo.ogDescription", "OG açıklaması", "textarea"],
+        ["seo.ogImage", "OG görsel URL", "input"],
+        ["hero.eyebrow", "Hero üst etiketi", "input"],
+        ["hero.title", "Hero başlığı", "input"],
+        ["hero.subtitle", "Hero alt başlığı", "textarea"],
+        ["hero.body", "Hero açıklaması", "textarea"],
+        ["hero.primaryCta", "Birincil CTA", "input"],
+        ["hero.primaryUrl", "Birincil CTA URL", "input"],
+        ["hero.secondaryCta", "İkincil CTA", "input"],
+        ["panel.label", "Görsel panel etiketi", "input"],
+        ["panel.value", "Görsel panel değeri", "input"],
+        ["panel.body", "Görsel panel metni", "textarea"],
+        ["layersHeading.eyebrow", "Katman üst etiketi", "input"],
+        ["layersHeading.title", "Katman başlığı", "textarea"],
+        ["layers.0.title", "Katman 1 başlığı", "input"],
+        ["layers.0.body", "Katman 1 metni", "textarea"],
+        ["layers.1.title", "Katman 2 başlığı", "input"],
+        ["layers.1.body", "Katman 2 metni", "textarea"],
+        ["layers.2.title", "Katman 3 başlığı", "input"],
+        ["layers.2.body", "Katman 3 metni", "textarea"],
+        ["layers.3.title", "Katman 4 başlığı", "input"],
+        ["layers.3.body", "Katman 4 metni", "textarea"],
+        ["product.eyebrow", "Ürün üst etiketi", "input"],
+        ["product.title", "Ürün başlığı", "textarea"],
+        ["product.body", "Ürün metni", "textarea"],
+        ["product.image", "Ürün görseli", "input"],
+        ["product.alt", "Ürün görsel alt metni", "input"]
+      ]
+    },
+    appContent: {
+      title: "Uygulama içerikleri",
+      kicker: "Remote app feed",
+      description: "iOS ve Android uygulamadaki uzaktan güncellenebilir metinleri, rüya/astro copy alanlarını ve kart override'larını yönetir.",
+      stats: ["Rüya modu", "Astro/plan", "Kart override"],
+      path: "app-content-feed.json",
+      mode: "appContent"
+    },
     changelog: {
       title: "Changelog",
       kicker: "Public kayıtlar",
@@ -142,6 +190,77 @@
       .filter(Boolean);
 
   const joinLines = (value) => (Array.isArray(value) ? value.join("\n") : "");
+
+  const appCopyGroups = [
+    {
+      title: "Rüya Pusulası",
+      description: "Uygulama içindeki rüya tabiri akışının ana metinleri. Buradan değiştirilen metinler feed yenilendiğinde app içinde görünür.",
+      keys: [
+        ["dream.headerSubtitle", "Üst açıklama", "textarea"],
+        ["home.dreamEmptySubtitle", "Ana sayfa boş rüya açıklaması", "textarea"],
+        ["dream.formTitle", "Form başlığı", "input"],
+        ["dream.textLabel", "Rüya alanı etiketi", "input"],
+        ["dream.textPlaceholder", "Rüya alanı placeholder", "textarea"],
+        ["dream.analyzeButtonTitle", "Tabir butonu", "input"],
+        ["dream.savePromptTitle", "Kayıt sorusu başlığı", "textarea"],
+        ["dream.savePromptBody", "Kayıt sorusu açıklaması", "textarea"],
+        ["dream.savePromptPrimary", "Kayıt birincil buton", "input"],
+        ["dream.savePromptSecondary", "Kayıt ikincil buton", "input"],
+        ["dream.saveDetailsTitle", "Kayıt detay başlığı", "input"],
+        ["dream.saveDetailsBody", "Kayıt detay açıklaması", "textarea"],
+        ["dream.saveDetailsButton", "Kayıt detay butonu", "input"],
+        ["dream.formFootnote", "Güvenlik/uyarı notu", "textarea"],
+        ["dream.emptyInsightBody", "Boş durum açıklaması", "textarea"],
+        ["dream.recurringThemesEmpty", "Tekrarlayan tema boş durumu", "textarea"]
+      ]
+    },
+    {
+      title: "Astro harita ve plan",
+      description: "Astro tonu, şehir ve harita/plan metinleri. Uygulamadaki statik olmayan açıklama alanları buradan yönetilir.",
+      keys: [
+        ["support.astroToggleDescription", "Astro toggle açıklaması", "textarea"],
+        ["plan.headerSubtitle", "Plan ekranı üst açıklaması", "textarea"],
+        ["plan.locationUnknownBody", "Şehir/konum açıklaması", "textarea"],
+        ["plan.ratingNote", "Harita puan/yayın notu", "textarea"]
+      ]
+    },
+    {
+      title: "Onboarding ve ana akış",
+      description: "İlk kurulum, Bugünüm ve destek ekranındaki uzaktan güncellenebilir genel metinler.",
+      keys: [
+        ["onboarding.heroSubtitle", "Onboarding hero açıklaması", "textarea"],
+        ["onboarding.freeTitle", "Ücretsiz başlığı", "input"],
+        ["onboarding.freeBody", "Ücretsiz açıklaması", "textarea"],
+        ["onboarding.authSubtitle", "Hesap açıklaması", "textarea"],
+        ["onboarding.boundariesSubtitle", "Sınır açıklaması", "textarea"],
+        ["onboarding.boundariesComfortBody", "Rahatlatıcı onboarding metni", "textarea"],
+        ["onboarding.profileSubtitle", "Profil açıklaması", "textarea"],
+        ["onboarding.moodSubtitle", "Mood açıklaması", "textarea"],
+        ["home.headerTitle", "Ana sayfa başlığı", "input"],
+        ["home.headerSubtitle", "Ana sayfa açıklaması", "textarea"],
+        ["today.headerSubtitle", "Bugünüm açıklaması", "textarea"],
+        ["support.headerSubtitle", "Destek açıklaması", "textarea"],
+        ["support.accountSignedOutBody", "Hesap çıkış açıklaması", "textarea"],
+        ["support.accountLocalFirstNote", "Local-first notu", "textarea"],
+        ["support.syncSubtitle", "Senkronizasyon notu", "textarea"]
+      ]
+    },
+    {
+      title: "Güvenli yönlendirme ve sheet metinleri",
+      description: "Bildirim, kriz ve sakinleşme sheet copy alanları.",
+      keys: [
+        ["support.mapsSubtitle", "Harita yönlendirme açıklaması", "textarea"],
+        ["support.trustedPersonSubtitle", "Güvenilir kişi açıklaması", "textarea"],
+        ["support.crisisSubtitle", "Kriz yönlendirme açıklaması", "textarea"],
+        ["sheets.streakDoneMessage", "Seri tamam mesajı", "textarea"],
+        ["sheets.streakWaitingMessage", "Seri bekliyor mesajı", "textarea"],
+        ["sheets.reminderBody", "Hatırlatıcı açıklaması", "textarea"],
+        ["sheets.calmBody", "Sakinleşme açıklaması", "textarea"],
+        ["sheets.crisisWarning", "Kriz uyarısı", "textarea"],
+        ["sheets.crisisAlsoBody", "Ek kriz yönlendirmesi", "textarea"]
+      ]
+    }
+  ];
 
   const apiFetch = async (url, options = {}) => {
     const response = await fetch(url, {
@@ -345,6 +464,83 @@
     `;
   };
 
+  const renderAppContentEditor = (json) => {
+    const copy = json.copy || {};
+    const overrides = json.cardOverrides || [];
+    repeaterEditor.innerHTML = `
+      <div class="editor-intro">
+        <div>
+          <p class="eyebrow">Remote app feed</p>
+          <h3>Uygulama metinlerini ve kart override'larını yönet</h3>
+          <p>Bu dosya yayınlandığında uygulama 15 dakika içinde yeni metinleri alır. App Store update gerektirmeyen copy değişiklikleri burada yapılır.</p>
+        </div>
+        <button class="admin-button primary" type="button" data-action="add-app-override">Yeni kart override</button>
+      </div>
+      <div class="repeat-card app-meta-card">
+        <div class="repeat-head">
+          <strong>Feed ayarları</strong>
+        </div>
+        <div class="repeat-grid">
+          ${textField({ label: "Feed versiyonu", value: json.version, field: "version" })}
+          ${textField({ label: "Son güncelleme", value: json.updatedAt, field: "updatedAt" })}
+          ${textField({ label: "Minimum app versiyonu", value: json.minAppVersion, field: "minAppVersion" })}
+        </div>
+      </div>
+      ${appCopyGroups
+        .map(
+          (group) => `
+            <section class="copy-group">
+              <div class="copy-group-head">
+                <h3>${escapeHtml(group.title)}</h3>
+                <p>${escapeHtml(group.description)}</p>
+              </div>
+              <div class="repeat-grid">
+                ${group.keys
+                  .map(([key, label, type]) =>
+                    textField({
+                      label: `${label} · ${key}`,
+                      value: copy[key],
+                      field: key,
+                      type,
+                      wide: type === "textarea"
+                    }).replaceAll("data-field=", "data-copy-key=")
+                  )
+                  .join("")}
+              </div>
+            </section>
+          `
+        )
+        .join("")}
+      <div class="copy-group">
+        <div class="copy-group-head">
+          <h3>Kart override'ları</h3>
+          <p>Uygulamadaki günlük kart havuzunda sadece listedeki alanları değiştirir. Key alanı uygulamadaki kart anahtarıyla aynı kalmalı.</p>
+        </div>
+        ${overrides
+          .map(
+            (override, index) => `
+              <article class="repeat-card app-card-override" data-index="${index}">
+                <div class="repeat-head">
+                  <strong>${String(index + 1).padStart(2, "0")} · ${escapeHtml(override.key || "Yeni override")}</strong>
+                  <button class="icon-button danger" type="button" data-action="remove-item" aria-label="Override sil">Sil</button>
+                </div>
+                <div class="repeat-grid">
+                  ${textField({ label: "Kart key", value: override.key, field: "key", wide: true })}
+                  ${textField({ label: "Eyebrow", value: override.eyebrow, field: "eyebrow" })}
+                  ${textField({ label: "Başlık", value: override.title, field: "title" })}
+                  ${textField({ label: "Body", value: override.body, field: "body", type: "textarea", wide: true })}
+                  ${textField({ label: "Detay", value: override.detail, field: "detail", type: "textarea", wide: true })}
+                  ${textField({ label: "Affirmation", value: override.affirmation, field: "affirmation", type: "textarea" })}
+                  ${textField({ label: "Reflection", value: override.reflection, field: "reflection", type: "textarea" })}
+                </div>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    `;
+  };
+
   const readRepeatCards = (listName, fields, arrayFields = []) =>
     Array.from(repeaterEditor.querySelectorAll(".repeat-card")).map((card) => {
       const item = {};
@@ -394,6 +590,33 @@
       ["benefits", "useCases", "signals", "productNotes"]
     )
   });
+
+  const readAppContentJson = () => {
+    const current = structuredClone(state.loaded.appContent.json);
+    const versionValue = repeaterEditor.querySelector('[data-field="version"]')?.value || current.version || 1;
+    const parsedVersion = Number(versionValue);
+    current.version = Number.isFinite(parsedVersion) ? parsedVersion : versionValue;
+    current.updatedAt = repeaterEditor.querySelector('[data-field="updatedAt"]')?.value || "";
+    current.minAppVersion = repeaterEditor.querySelector('[data-field="minAppVersion"]')?.value || "";
+    current.copy = current.copy && typeof current.copy === "object" ? current.copy : {};
+
+    repeaterEditor.querySelectorAll("[data-copy-key]").forEach((field) => {
+      current.copy[field.dataset.copyKey] = field.value;
+    });
+
+    current.cardOverrides = Array.from(repeaterEditor.querySelectorAll(".app-card-override"))
+      .map((card) => {
+        const item = {};
+        ["key", "title", "body", "detail", "affirmation", "reflection", "eyebrow"].forEach((field) => {
+          const value = card.querySelector(`[data-field="${field}"]`)?.value || "";
+          if (value.trim()) item[field] = value;
+        });
+        return item;
+      })
+      .filter((item) => item.key);
+
+    return current;
+  };
 
   const renderMedia = () => {
     if (!state.media.length) {
@@ -468,6 +691,7 @@
 
     repeaterEditor.hidden = false;
     if (config.mode === "gallery") renderGalleryEditor(loaded.json);
+    if (config.mode === "appContent") renderAppContentEditor(loaded.json);
     if (config.mode === "changelog") renderChangelogEditor(loaded.json);
     if (config.mode === "cards") renderCardsEditor(loaded.json);
   };
@@ -481,6 +705,7 @@
     }
 
     if (config.mode === "gallery") return readGalleryJson();
+    if (config.mode === "appContent") return readAppContentJson();
     if (config.mode === "changelog") return readChangelogJson();
     if (config.mode === "cards") return readCardsJson();
 
@@ -570,10 +795,20 @@
     productNotes: []
   });
 
+  const blankAppOverride = () => ({
+    key: "PUSULA KARTI|Yeni kart anahtarı",
+    title: "Yeni kart başlığı",
+    body: "Kartın ana metnini buraya yaz.",
+    detail: "Küçük adım metni.",
+    affirmation: "Kendine söyle metni.",
+    reflection: "Mini refleksiyon sorusu."
+  });
+
   const rerenderRepeater = () => {
     const key = state.activeFile;
     const json = state.loaded[key].json;
     if (files[key].mode === "gallery") renderGalleryEditor(json);
+    if (files[key].mode === "appContent") renderAppContentEditor(json);
     if (files[key].mode === "changelog") renderChangelogEditor(json);
     if (files[key].mode === "cards") renderCardsEditor(json);
   };
@@ -589,11 +824,16 @@
 
     if (button.dataset.action === "remove-item" && Number.isInteger(index)) {
       if (files[key].mode === "gallery") json.slides.splice(index, 1);
+      if (files[key].mode === "appContent") json.cardOverrides.splice(index, 1);
       if (files[key].mode === "changelog") json.entries.splice(index, 1);
       if (files[key].mode === "cards") json.cards.splice(index, 1);
     }
 
     if (button.dataset.action === "add-gallery") json.slides.push(blankGallerySlide());
+    if (button.dataset.action === "add-app-override") {
+      json.cardOverrides = json.cardOverrides || [];
+      json.cardOverrides.push(blankAppOverride());
+    }
     if (button.dataset.action === "add-changelog") json.entries.unshift(blankChangelogEntry());
     if (button.dataset.action === "add-card") json.cards.push(blankCard());
 

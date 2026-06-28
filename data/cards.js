@@ -75,6 +75,43 @@ window.PUSULA_CARDS = {
       ]
     },
     {
+      "slug": "ruya-pusulasi",
+      "navLabel": "Rüya Pusulası",
+      "tag": "Rüya tabiri",
+      "title": "Rüya Pusulası",
+      "headline": "Rüyanı hızlıca tabir et.",
+      "subtitle": "Kullanıcı rüyasını yazar; Pusula cihaz içinde hızlı bir tabir çıkarır, kayıt kısmını isteğe bağlı bırakır.",
+      "description": "Rüya Pusulası, klasik günlük ekranı gibi önce başlık ve form doldurtmaz. Kullanıcı hatırladığı rüyayı yazar, uygulama sembol, duygu ve tekrar eden izleri güvenli bir dille yorumlar. Kişi isterse bu tabiri daha sonra rüya geçmişine ekleyebilir.",
+      "image": "/assets/card-night.png",
+      "alt": "Rüya Pusulası gece temalı kart görseli",
+      "metaDescription": "Pusula Rüya Pusulası, rüyayı cihaz içinde hızlıca tabir eden ve geçmişe kaydetmeyi isteğe bağlı bırakan kişisel farkındalık alanıdır.",
+      "whatTitle": "Rüya Pusulası nedir?",
+      "whatText": "Rüya Pusulası, rüyayı kesin hüküm veya kehanet gibi okumadan, sembol ve duygu izlerini sade bir tabire dönüştüren local-first bir yorum alanıdır. İlk deneyim hızlı tabirdir; journal soruları yalnızca kullanıcı kaydetmek isterse açılır.",
+      "whyTitle": "Neden önemli?",
+      "whyText": "Rüya yazan kullanıcının ilk beklentisi form doldurmak değil, ne anlama geldiğini hızlıca görmektir. Bu yapı beklentiyi doğrudan karşılar ve kişisel geçmişi sadece isteyen kullanıcı için devreye alır.",
+      "benefits": [
+        "Rüya yazılır yazılmaz hızlı tabir üretir.",
+        "Journal alanını ana akıştan çıkarıp isteğe bağlı hale getirir.",
+        "Tabirleri terapi, teşhis veya kehanet iddiasından uzak tutar.",
+        "Rüya geçmişinde tema, duygu ve uyku örüntülerini biriktirir."
+      ],
+      "useCases": [
+        "Kullanıcı sabah hatırladığı rüyayı hızlıca anlamlandırmak istediğinde.",
+        "Aynı sembol veya duygu tekrar ediyor mu görmek istediğinde.",
+        "Rüyayı kaydetmeden sadece kısa bir yorum almak istediğinde."
+      ],
+      "signals": [
+        "Rüya metni: mekan, kişi, sembol ve olay akışı.",
+        "Otomatik tahmin: rüyadan kalan duygu ve uyku kalitesi.",
+        "Opsiyonel kayıt: başlık, his ve uyku kalitesi."
+      ],
+      "productNotes": [
+        "Rüya tabiri cihaz içinde çalışır; üçüncü parti içerik API'sine ihtiyaç duymaz.",
+        "Kayıt geçmişi local-first kalır ve kullanıcı kaydetmezse geçmişe eklenmez.",
+        "Remote feed üzerinden rüya ekranı metinleri App Store update beklemeden düzenlenebilir."
+      ]
+    },
+    {
       "slug": "kariyer",
       "navLabel": "Kariyer",
       "tag": "Kariyer",
@@ -154,30 +191,30 @@ window.PUSULA_CARDS = {
       "tag": "Planım",
       "title": "Planım",
       "headline": "Bugüne iyi gelecek bir rota.",
-      "subtitle": "Ruh halinden gerçek bir güne geçer: kahve, yemek, etkinlik veya ev modu.",
-      "description": "Planım kartı, Pusula’nın iç refleksiyonunu günlük hayata bağlayan köprüdür. Kullanıcı bugün kendisine neyin iyi gelebileceğini seçer; uygulama bunu mekan, etkinlik veya evde izleme planı gibi daha somut seçeneklere çevirir.",
+      "subtitle": "Ruh halinden gerçek bir güne geçer: kahve, yemek, etkinlik veya şehir destekli küçük rota.",
+      "description": "Planım kartı, Pusula’nın iç refleksiyonunu günlük hayata bağlayan köprüdür. Kullanıcı bugün kendisine neyin iyi gelebileceğini seçer; uygulama bunu mekan, etkinlik veya şehir/astro destekli daha somut seçeneklere çevirir.",
       "image": "/assets/card-plan.png",
       "alt": "Planım Pusula kart görseli",
-      "metaDescription": "Pusula Planım kartı, ruh halini kahve, yemek, etkinlik veya ev modu gibi günlük planlara dönüştüren karttır.",
+      "metaDescription": "Pusula Planım kartı, ruh halini kahve, yemek, etkinlik veya şehir destekli günlük planlara dönüştüren karttır.",
       "whatTitle": "Planım kartı nedir?",
-      "whatText": "Planım kartı, kullanıcının bugün neye ihtiyacı olduğunu gerçek bir küçük plana dönüştürür. Kahve, restoran, etkinlik ve ev modu gibi seçenekler aracılığıyla içsel sinyali dış dünyada yapılabilir bir harekete bağlar.",
+      "whatText": "Planım kartı, kullanıcının bugün neye ihtiyacı olduğunu gerçek bir küçük plana dönüştürür. Kahve, restoran, etkinlik ve şehir destekli seçenekler aracılığıyla içsel sinyali dış dünyada yapılabilir bir harekete bağlar.",
       "whyTitle": "Neden önemli?",
       "whyText": "İyi hissetmek bazen yalnızca doğru cümleyi değil, doğru küçük planı da gerektirir. Planım, kullanıcının gününü somutlaştırır ve seçenek yorgunluğunu azaltır.",
       "benefits": [
         "Ruh hali sinyalini günlük plana bağlar.",
         "Konum destekli kahve ve restoran önerileri sunabilir.",
-        "Etkinlik ve ev modu seçeneklerini tek yerde toplar.",
-        "Kullanıcıya dışarı çıkma veya evde kalma arasında baskısız seçim verir."
+        "Etkinlik ve şehir destekli rota seçeneklerini tek yerde toplar.",
+        "Kullanıcıya dışarı çıkma veya günü daha sakin kurma arasında baskısız seçim verir."
       ],
       "useCases": [
         "Kullanıcı kendine küçük bir ödül vermek istediğinde.",
         "Doğum günü gibi özel günlerde plan fikri gerektiğinde.",
-        "Evde kalmak, kahve içmek veya etkinliğe gitmek arasında seçim yapılırken."
+        "Kahve içmek, yemek yemek veya etkinliğe gitmek arasında seçim yapılırken."
       ],
       "signals": [
         "Günün tonu: iyi, çok iyi, normal veya canım sıkkın.",
         "Konum izni: mekan önerileri için.",
-        "Kullanıcı tercihi: ev modu, kahve, yemek, etkinlik."
+        "Kullanıcı tercihi: kahve, yemek, etkinlik veya sakin rota."
       ],
       "productNotes": [
         "Planım, kart motorunun öneri dilini gerçek aksiyon seçenekleriyle tamamlar.",

@@ -8,7 +8,9 @@ Değiştirmek istediğin şeye göre dosya:
 
 - SEO, hero, ürün başlığı, ilkeler, footer: `content/site.json`
 - Ürün slider yazıları ve görselleri: `content/gallery.json`
+- Astro Haritan public sayfası: `content/astro.json`
 - Kart sayfaları ve ürün anlatıları: `content/cards.json`
+- Uygulama içi remote metinler, rüya/astro copy ve kart override'ları: `app-content-feed.json`
 - Changelog kayıtları: `data/changelog.json`
 - Görseller: `assets/` veya admin yüklemeleri için `assets/uploads/`
 
@@ -22,6 +24,8 @@ Paneldeki tablar:
 
 - `Site ayarları`: SEO, hero, ürün metinleri, footer.
 - `Ürün galerisi`: slider ekranları, açıklamalar, görsel yolları.
+- `Astro Haritan`: `/astro-haritan/` sayfasının SEO, hero, katman ve ürün değeri metinleri.
+- `Uygulama içerikleri`: iOS/Android uygulamadaki remote copy, Rüya Pusulası, Astro/Plan metinleri ve kart override'ları.
 - `Changelog`: public sürüm kayıtları.
 - `Kart sayfaları`: `/kartlar/...` altındaki ürün sayfaları.
 - `Medya kütüphanesi`: görsel upload, yol kopyalama ve ilgili alana yapıştırma.
@@ -105,6 +109,19 @@ Admin panelde `Kart sayfaları` tabını aç. Her kart için şu alanları formd
 - Görsel yolu ve SEO açıklaması.
 
 Önemli: İngilizce `/cards/...` adresleri artık canonical değildir. Eski adresler Worker üzerinden `/kartlar/...` adreslerine yönlenir.
+
+## Uygulama İçi Metinler Nasıl Güncellenir?
+
+Admin panelde `Uygulama içerikleri` tabını aç. Bu alan `app-content-feed.json` dosyasını düzenler.
+
+Buradan yönetilen başlıklar:
+
+- Rüya Pusulası: hızlı tabir, kayıt sorusu, kayıt detay formu ve uyarı metinleri.
+- Astro harita ve Planım: astro toggle, şehir/harita açıklamaları ve plan notları.
+- Onboarding, Bugünüm, Destek ve sheet metinleri.
+- Günlük Pusula kartları için remote override başlık, body, detay, affirmation ve reflection alanları.
+
+Not: Bu değişiklikler uygulama tarafından remote feed olarak alınır. App Store update gerektirmeyen metin düzeltmeleri için burayı kullan. Yeni ekran, yeni iş kuralı veya yeni native component gerekiyorsa yine iOS/Android build gerekir.
 
 ## Changelog Nasıl Güncellenir?
 

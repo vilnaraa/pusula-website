@@ -281,6 +281,14 @@ p {
   content: "G";
 }
 
+.file-tab[data-file="astro"]::before {
+  content: "H";
+}
+
+.file-tab[data-file="appContent"]::before {
+  content: "A";
+}
+
 .file-tab[data-file="changelog"]::before {
   content: "C";
 }
@@ -501,6 +509,35 @@ p {
 
 .card-editor .field textarea {
   min-height: 108px;
+}
+
+.copy-group {
+  display: grid;
+  gap: 14px;
+}
+
+.copy-group-head {
+  border-bottom: 1px solid rgba(222, 207, 183, 0.64);
+  padding: 4px 2px 12px;
+}
+
+.copy-group-head h3 {
+  margin: 0 0 6px;
+  font-size: 1.32rem;
+}
+
+.copy-group-head p {
+  margin: 0;
+  max-width: 760px;
+}
+
+.app-meta-card .repeat-head {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.app-card-override .field textarea {
+  min-height: 104px;
 }
 
 .icon-button {

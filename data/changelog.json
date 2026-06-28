@@ -1,6 +1,28 @@
 {
-  "updatedAt": "2026-06-24",
+  "updatedAt": "2026-06-28",
   "entries": [
+    {
+      "version": "2.2",
+      "date": "2026-06-28",
+      "title": "Rüya Pusulası ve uygulama içerik feed'i admin'e eklendi",
+      "type": "Geliştirme",
+      "summary": "Rüya deneyimi journal öncelikli yapıdan hızlı tabir öncelikli akışa taşındı; uygulama içi rüya, astro ve kart metinleri admin panelden yönetilebilir hale getirildi.",
+      "added": [
+        "Admin paneline Uygulama içerikleri sekmesi",
+        "app-content-feed.json için rüya, astro/plan ve kart override editörü",
+        "Website kart sayfalarına Rüya Pusulası anlatısı",
+        "Ürün galerisine Rüya Pusulası slide'ı"
+      ],
+      "changed": [
+        "Rüya ekranı önce hızlı tabir üretecek, geçmişe kaydetme ikinci adımda sorulacak şekilde yeniden tasarlandı",
+        "Rüya journal soruları ana formdan çıkarılıp isteğe bağlı kayıt detayına taşındı",
+        "Planım ve galeri metinlerindeki eski Ev Modu/dizi-film dili güncel kapsamla değiştirildi"
+      ],
+      "removed": [
+        "Rüya deneyimindeki zorunlu başlık, his ve uyku kalitesi girişleri",
+        "Website içeriklerinde kalan eski Ev Modu referansları"
+      ]
+    },
     {
       "version": "2.1",
       "date": "2026-06-24",
