@@ -412,6 +412,25 @@ const renderDreamHomeSection = (dream) => {
       </section>`;
 };
 
+const renderDeveloperNoteSection = (site) => {
+  const note = site.developerNote || {};
+  return `<section class="section developer-note-section">
+        <div class="developer-note-shell">
+          <div class="developer-note-copy">
+            <p class="eyebrow dark">${escapeHtml(note.eyebrow || "Geliştiriciden not")}</p>
+            <blockquote>${escapeHtml(note.quote || "")}</blockquote>
+          </div>
+          <figure class="developer-note-portrait">
+            <img src="${escapeAttr(note.image || "assets/developer-note-portrait.svg")}" width="720" height="900" alt="${escapeAttr(note.alt || "")}">
+            <figcaption>
+              <strong>${escapeHtml(note.name || "")}</strong>
+              <span>${escapeHtml(note.title || "")}</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>`;
+};
+
 const renderDreamPage = (dream, cards) => {
   const seo = dream.seo || {};
   const hero = dream.hero || {};
@@ -640,6 +659,13 @@ indexHtml = replaceOrFail(
   /<!-- dream-home:start -->[\s\S]*?<!-- dream-home:end -->/,
   `<!-- dream-home:start -->\n      ${renderDreamHomeSection(dream)}\n      <!-- dream-home:end -->`,
   "dream home section"
+);
+
+indexHtml = replaceOrFail(
+  indexHtml,
+  /<!-- developer-note:start -->[\s\S]*?<!-- developer-note:end -->/,
+  `<!-- developer-note:start -->\n      ${renderDeveloperNoteSection(site)}\n      <!-- developer-note:end -->`,
+  "developer note section"
 );
 
 fs.writeFileSync(indexPath, indexHtml);

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">Pusula geliştirici portre alanı</title>
+  <desc id="desc">Pusula renkleriyle hazırlanmış, geliştirici fotoğrafı gelene kadar kullanılacak sakin portre kompozisyonu.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff8ed"/>
+      <stop offset="0.58" stop-color="#d7e3d0"/>
+      <stop offset="1" stop-color="#2f6658"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111722"/>
+      <stop offset="1" stop-color="#2f6658"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#111722" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="720" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="548" cy="146" r="108" fill="#d2a53a" opacity="0.26"/>
+  <circle cx="152" cy="764" r="146" fill="#fff8ed" opacity="0.32"/>
+  <path d="M142 208c126-112 310-117 438-8" fill="none" stroke="#fff8ed" stroke-width="8" stroke-linecap="round" opacity="0.72"/>
+  <g filter="url(#softShadow)">
+    <circle cx="360" cy="314" r="112" fill="#f0d3bd"/>
+    <path d="M224 660c18-128 76-196 136-196s118 68 136 196" fill="url(#ink)"/>
+    <path d="M246 660h228c40 0 72 32 72 72v42H174v-42c0-40 32-72 72-72Z" fill="#111722"/>
+    <path d="M257 318c12-92 70-154 144-139 62 13 104 62 100 128-66-16-135-26-244 11Z" fill="#111722"/>
+  </g>
+  <g transform="translate(510 618)">
+    <circle cx="0" cy="0" r="58" fill="#fff8ed" opacity="0.92"/>
+    <path d="M0-34 11-8 38 0 11 8 0 34-11 8-38 0-11-8Z" fill="#d2a53a"/>
+    <circle cx="0" cy="0" r="12" fill="#2f6658"/>
+  </g>
+</svg>

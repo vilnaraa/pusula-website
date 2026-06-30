@@ -26,11 +26,11 @@ window.PUSULA_SITE = {
   "trust": [
     {
       "label": "Ücret",
-      "value": "Tamamen ücretsiz"
+      "value": "Temel kullanım ücretsiz"
     },
     {
       "label": "Giriş",
-      "value": "Zorunlu değil"
+      "value": "Apple veya Google"
     },
     {
       "label": "Veri",
@@ -77,7 +77,7 @@ window.PUSULA_SITE = {
     {
       "number": "01",
       "title": "Local-first",
-      "description": "Onboarding cevapları ve günlük seçimler cihazda tutulur. Giriş sadece ileride senkronizasyon için opsiyonel olur."
+      "description": "Rüya, fal, tarot ve günlük seçimler cihazda tutulur. Hesap tarafında yalnız e-posta kaydı hedeflenir."
     },
     {
       "number": "02",
@@ -90,6 +90,14 @@ window.PUSULA_SITE = {
       "description": "Görseller bize ait üretilir. Stoik ve astrolojik metinler kopya çeviri yerine dikkatli, özgün yorum olarak yazılır."
     }
   ],
+  "developerNote": {
+    "eyebrow": "Geliştiriciden not",
+    "quote": "Pusula'yı bir uygulamadan çok, insanın gün içinde kendine dönebileceği küçük ve sakin bir alan gibi tasarlıyorum. Cevap vermekten önce yavaşlatan, büyütmeden yön gösteren bir ürün olmasını istiyorum.",
+    "name": "Ferruh Can Çetinkol",
+    "title": "NLP Uzmanı, Mentör",
+    "image": "assets/developer-note-portrait.svg",
+    "alt": "Ferruh Can Çetinkol portre alanı"
+  },
   "changelog": {
     "eyebrow": "Public changelog",
     "title": "Uygulamada neler değişti?",

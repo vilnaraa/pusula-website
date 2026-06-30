@@ -59,6 +59,25 @@ konumunu bu endpoint'e `POST` eder. Endpoint şu şekilde çalışır:
 
 Bu motor ürün/refleksiyon seviyesi için tasarlanmıştır; profesyonel efemeris veya danışmanlık iddiası taşımaz.
 
+## Pusula Plus API
+
+Worker Pusula Plus için üç endpoint sunar:
+
+- `POST /api/plus/status`: hesap token'ı ile Plus entitlement özeti ve ücretsiz hak sayaçlarını döndürür.
+- `POST /api/plus/usage`: rüya/fal/tarot ücretsiz kullanım sayaçlarını max-only şekilde KV'ye yazar.
+- `POST /api/plus/transactions/sync`: iOS StoreKit transaction ID'lerini Apple Server API ile doğrular ve doğrulanmış entitlement özetini KV'ye yazar.
+
+`PUSULA_RATE_LIMIT_KV` binding'i varsa Plus sayaçları aynı namespace içinde `plus:*` prefix'iyle saklanır. İstenirse production'da ayrı `PUSULA_PLUS_KV` binding'i de tanımlanabilir.
+
+Apple Server API doğrulaması için Cloudflare Worker secret/env değerleri gereklidir:
+
+- `APPLE_IAP_ISSUER_ID`
+- `APPLE_IAP_KEY_ID`
+- `APPLE_IAP_PRIVATE_KEY`
+- Opsiyonel: `PUSULA_IOS_BUNDLE_ID` veya `APPLE_BUNDLE_ID` (`com.canmacbook.pusula`)
+
+Bu secret'lar yoksa endpoint güvenli fallback yapar; iOS uygulama yine StoreKit yerel entitlement ve `AppStore.sync()` restore akışıyla çalışır.
+
 ## Changelog nasıl güncellenir?
 
 Tercih edilen yöntem: `/admin` panelinden `Changelog` bölümünü düzenlemek.

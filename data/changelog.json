@@ -1,6 +1,56 @@
 {
-  "updatedAt": "2026-06-28",
+  "updatedAt": "2026-06-30",
   "entries": [
+    {
+      "version": "2.4",
+      "date": "2026-06-30",
+      "title": "Pusula Plus monetization katmanı hazırlandı",
+      "type": "Geliştirme",
+      "summary": "iOS uygulamasında astro harita, rüya tabiri, fal, tarot ve journal kayıtları için StoreKit tabanlı Pusula Plus erişim modeli hazırlandı.",
+      "added": [
+        "Pusula Plus için aylık abonelik ve lifetime ürün ID altyapısı",
+        "Astro haritada özet ve günlük yorum ücretsiz kalacak şekilde Plus kilidi",
+        "Rüya tabiri için ilk 5 yorum ücretsiz kota",
+        "Fal Pusulası için ilk 3 okuma ücretsiz kota",
+        "Tarot Pusulası için ilk açılım ücretsiz kota",
+        "Rüya, fal ve tarot geçmiş kayıtları için Plus journal kilidi",
+        "Admin panelde Plus paywall metinleri için remote copy alanları"
+      ],
+      "changed": [
+        "Fal ve tarot okumaları artık otomatik geçmişe yazılmak yerine önce sonuç gösterir, kayıt adımı Plus ile açılır",
+        "Remote app feed kabulü version 2 ile uyumlu hale getirildi",
+        "App Store submission notları abonelik ve lifetime ürün akışını kapsayacak şekilde güncellendi"
+      ],
+      "removed": []
+    },
+    {
+      "version": "2.3",
+      "date": "2026-06-30",
+      "title": "Fal, tarot, zorunlu hesap ve geliştirici notu hazırlandı",
+      "type": "Yeni",
+      "summary": "iOS tarafında Fal Pusulası, Tarot Pusulası, zorunlu Apple/Google giriş kapısı ve Ayarlar yenilemesi hazırlandı; websitesi daha insancıl bir geliştirici notu alanı kazandı.",
+      "added": [
+        "Fal Pusulası için fincan ve tabak fotoğrafı girişleri",
+        "Cihaz içinde çalışan sembolik kahve falı analiz motoru",
+        "Fal geçmişi ve biriken fallardan bildirim hatırlatmaları",
+        "Pusula tasarım diline ait özgün tarot kart destesi",
+        "Tek kart ve üç kart tarot açılım motoru",
+        "Tarot geçmişi",
+        "Ayarlar ekranına sürüm, changelog, website ve arkadaş daveti alanları",
+        "Apple/Google girişini zorunlu kılan auth kapısı",
+        "Supabase e-posta kaydı için Pusula domaininde güvenli endpoint",
+        "Ana sayfaya Geliştiriciden not bölümü"
+      ],
+      "changed": [
+        "Destek sekmesi Ayarlar olarak yeniden adlandırıldı",
+        "Store metadata önerisi Pusula: Astro Fal Tarot arama hattına taşındı",
+        "Website ve app-content-feed metinleri zorunlu hesap ve local-first içerik çizgisine güncellendi"
+      ],
+      "removed": [
+        "Hesapsız devam edebilirsin dili",
+        "Website ilkelerinde eski opsiyonel hesap vurgusu"
+      ]
+    },
     {
       "version": "2.2",
       "date": "2026-06-28",

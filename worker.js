@@ -91,8 +91,8 @@ const enforceKVRateLimit = async (request, env, namespace, defaults) => {
     return { allowed: true, headers: {} };
   }
 
-  const limit = positiveInteger(env.NATAL_CHART_RATE_LIMIT, defaults.limit);
-  const windowSeconds = positiveInteger(env.NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS, defaults.windowSeconds);
+  const limit = positiveInteger(env[defaults.limitEnvKey] || env.NATAL_CHART_RATE_LIMIT, defaults.limit);
+  const windowSeconds = positiveInteger(env[defaults.windowEnvKey] || env.NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS, defaults.windowSeconds);
   const now = Date.now();
   const bucket = Math.floor(now / (windowSeconds * 1000));
   const ipHash = await sha256Hex(`${namespace}:${clientIP(request)}`);
@@ -538,7 +538,9 @@ const handleNatalChart = async (request, env) => {
 
   const rateLimit = await enforceKVRateLimit(request, env, "natal-chart", {
     limit: 12,
-    windowSeconds: 3600
+    windowSeconds: 3600,
+    limitEnvKey: "NATAL_CHART_RATE_LIMIT",
+    windowEnvKey: "NATAL_CHART_RATE_LIMIT_WINDOW_SECONDS"
   });
   if (!rateLimit.allowed) {
     return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
@@ -592,6 +594,495 @@ const handleNatalChart = async (request, env) => {
   } catch (error) {
     return apiJson({ error: error.message || "Natal chart calculation failed" }, 400, rateLimit.headers);
   }
+};
+
+const isValidEmail = (value) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim().toLowerCase());
+
+const plusProductIDs = new Set(["pusula.plus.monthly", "pusula.plus.lifetime"]);
+const plusFeatureIDs = new Set(["dreamInterpretation", "coffeeFortune", "tarotReading", "astroPremium", "journalArchive"]);
+const plusDefaultBundleID = "com.canmacbook.pusula";
+const textEncoder = new TextEncoder();
+
+const plusKV = (env) => env.PUSULA_PLUS_KV || env.PUSULA_RATE_LIMIT_KV;
+
+const base64UrlFromBytes = (bytes) =>
+  btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+
+const base64UrlFromString = (value) => base64UrlFromBytes(textEncoder.encode(value));
+
+const base64UrlToBytes = (value) => {
+  const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+  return Uint8Array.from(atob(padded), (char) => char.charCodeAt(0));
+};
+
+const base64UrlJSON = (value) => base64UrlFromString(JSON.stringify(value));
+
+const plusBundleID = (env) => normalizeSecret(env.PUSULA_IOS_BUNDLE_ID) || normalizeSecret(env.APPLE_BUNDLE_ID) || plusDefaultBundleID;
+
+const plusAccountTokenForEmail = async (email) => {
+  const normalized = String(email || "").trim().toLowerCase();
+  if (!isValidEmail(normalized)) {
+    return "";
+  }
+
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", textEncoder.encode(`pusula-plus:v2:${normalized}`))).slice(0, 16);
+  digest[6] = (digest[6] & 0x0f) | 0x50;
+  digest[8] = (digest[8] & 0x3f) | 0x80;
+  const hex = [...digest].map((byte) => byte.toString(16).padStart(2, "0"));
+  return `${hex.slice(0, 4).join("")}-${hex.slice(4, 6).join("")}-${hex.slice(6, 8).join("")}-${hex.slice(8, 10).join("")}-${hex.slice(10, 16).join("")}`;
+};
+
+const normalizePlusIdentity = async (payload) => {
+  const email = String(payload?.email || "").trim().toLowerCase();
+  const accountToken = String(payload?.accountToken || "").trim().toLowerCase();
+  const expectedAccountToken = await plusAccountTokenForEmail(email);
+  if (!expectedAccountToken || accountToken !== expectedAccountToken) {
+    return null;
+  }
+  return { email, accountToken };
+};
+
+const plusUsageKey = (accountToken) => `plus:usage:${accountToken}`;
+const plusEntitlementKey = (accountToken) => `plus:entitlements:${accountToken}`;
+
+const readJsonPayload = async (request, maxBytes, headers) => {
+  const contentLength = Number.parseInt(request.headers.get("Content-Length") || "0", 10);
+  if (Number.isFinite(contentLength) && contentLength > maxBytes) {
+    return { response: apiJson({ error: "Payload too large" }, 413, headers) };
+  }
+
+  let rawBody;
+  try {
+    rawBody = await request.text();
+  } catch {
+    return { response: apiJson({ error: "Invalid request body" }, 400, headers) };
+  }
+
+  if (textEncoder.encode(rawBody).byteLength > maxBytes) {
+    return { response: apiJson({ error: "Payload too large" }, 413, headers) };
+  }
+
+  try {
+    return { payload: JSON.parse(rawBody || "{}") };
+  } catch {
+    return { response: apiJson({ error: "Invalid JSON body" }, 400, headers) };
+  }
+};
+
+const readPlusUsageCounts = async (kv, accountToken) => {
+  if (!kv) {
+    return {};
+  }
+  const record = await kv.get(plusUsageKey(accountToken), "json").catch(() => null);
+  return record?.counts || record || {};
+};
+
+const activePlusProductIDs = (record, now = Date.now()) => {
+  const entitlements = Array.isArray(record?.entitlements) ? record.entitlements : [];
+  return entitlements
+    .filter((entitlement) =>
+      entitlement.active === true &&
+      plusProductIDs.has(entitlement.productID) &&
+      (!entitlement.expiresDate || Number(entitlement.expiresDate) > now)
+    )
+    .map((entitlement) => entitlement.productID);
+};
+
+const plusStatusBody = async (env, accountToken, extras = {}) => {
+  const kv = plusKV(env);
+  if (!kv || typeof kv.get !== "function" || typeof kv.put !== "function") {
+    return {
+      ok: true,
+      backendAvailable: false,
+      serverVerified: false,
+      plusActive: false,
+      verifiedProductIDs: [],
+      usageCounts: {},
+      ...extras
+    };
+  }
+
+  const [usageCounts, entitlementRecord] = await Promise.all([
+    readPlusUsageCounts(kv, accountToken),
+    kv.get(plusEntitlementKey(accountToken), "json").catch(() => null)
+  ]);
+  const verifiedProductIDs = activePlusProductIDs(entitlementRecord);
+  return {
+    ok: true,
+    backendAvailable: true,
+    serverVerified: Boolean(entitlementRecord?.serverVerifiedAt),
+    plusActive: verifiedProductIDs.length > 0,
+    verifiedProductIDs,
+    usageCounts,
+    ...extras
+  };
+};
+
+const handlePlusStatus = async (request, env) => {
+  if (request.method === "OPTIONS") {
+    return apiJson({ ok: true }, 200);
+  }
+
+  if (request.method !== "POST") {
+    return apiJson({ error: "Method not allowed" }, 405);
+  }
+
+  const rateLimit = await enforceKVRateLimit(request, env, "plus-status", {
+    limit: 60,
+    windowSeconds: 3600,
+    limitEnvKey: "PLUS_API_RATE_LIMIT",
+    windowEnvKey: "PLUS_API_RATE_LIMIT_WINDOW_SECONDS"
+  });
+  if (!rateLimit.allowed) {
+    return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
+  }
+
+  const { payload, response } = await readJsonPayload(request, 2048, rateLimit.headers);
+  if (response) {
+    return response;
+  }
+
+  const identity = await normalizePlusIdentity(payload);
+  if (!identity) {
+    return apiJson({ error: "Invalid account identity" }, 400, rateLimit.headers);
+  }
+
+  return apiJson(await plusStatusBody(env, identity.accountToken), 200, rateLimit.headers);
+};
+
+const handlePlusUsage = async (request, env) => {
+  if (request.method === "OPTIONS") {
+    return apiJson({ ok: true }, 200);
+  }
+
+  if (request.method !== "POST") {
+    return apiJson({ error: "Method not allowed" }, 405);
+  }
+
+  const rateLimit = await enforceKVRateLimit(request, env, "plus-usage", {
+    limit: 120,
+    windowSeconds: 3600,
+    limitEnvKey: "PLUS_API_RATE_LIMIT",
+    windowEnvKey: "PLUS_API_RATE_LIMIT_WINDOW_SECONDS"
+  });
+  if (!rateLimit.allowed) {
+    return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
+  }
+
+  const { payload, response } = await readJsonPayload(request, 2048, rateLimit.headers);
+  if (response) {
+    return response;
+  }
+
+  const identity = await normalizePlusIdentity(payload);
+  if (!identity) {
+    return apiJson({ error: "Invalid account identity" }, 400, rateLimit.headers);
+  }
+
+  const feature = String(payload.feature || "");
+  const count = Number.parseInt(String(payload.count || "0"), 10);
+  if (!plusFeatureIDs.has(feature) || !Number.isFinite(count) || count < 0 || count > 100000) {
+    return apiJson({ error: "Invalid usage payload" }, 400, rateLimit.headers);
+  }
+
+  const kv = plusKV(env);
+  if (!kv || typeof kv.get !== "function" || typeof kv.put !== "function") {
+    return apiJson(await plusStatusBody(env, identity.accountToken), 200, rateLimit.headers);
+  }
+
+  const current = await kv.get(plusUsageKey(identity.accountToken), "json").catch(() => null);
+  const counts = { ...(current?.counts || current || {}) };
+  counts[feature] = Math.max(Number.parseInt(String(counts[feature] || "0"), 10) || 0, count);
+  await kv.put(
+    plusUsageKey(identity.accountToken),
+    JSON.stringify({ counts, updatedAt: new Date().toISOString() })
+  );
+
+  return apiJson(await plusStatusBody(env, identity.accountToken), 200, rateLimit.headers);
+};
+
+const appleIAPConfig = (env) => {
+  const issuerID = normalizeSecret(env.APPLE_IAP_ISSUER_ID || env.APP_STORE_CONNECT_ISSUER_ID);
+  const keyID = normalizeSecret(env.APPLE_IAP_KEY_ID || env.APP_STORE_CONNECT_KEY_ID);
+  const privateKey = normalizeSecret(env.APPLE_IAP_PRIVATE_KEY || env.APP_STORE_CONNECT_PRIVATE_KEY).replace(/\\n/g, "\n");
+  return { issuerID, keyID, privateKey };
+};
+
+const appleIAPConfigured = (env) => {
+  const config = appleIAPConfig(env);
+  return Boolean(config.issuerID && config.keyID && config.privateKey);
+};
+
+const pemToArrayBuffer = (pem) => {
+  const base64 = String(pem || "")
+    .replace(/-----BEGIN PRIVATE KEY-----/g, "")
+    .replace(/-----END PRIVATE KEY-----/g, "")
+    .replace(/\s+/g, "");
+  return base64UrlToBytes(base64.replace(/\+/g, "-").replace(/\//g, "_")).buffer;
+};
+
+const appleServerJWT = async (env, bundleID) => {
+  const { issuerID, keyID, privateKey } = appleIAPConfig(env);
+  const issuedAt = Math.floor(Date.now() / 1000);
+  const header = { alg: "ES256", kid: keyID, typ: "JWT" };
+  const payload = {
+    iss: issuerID,
+    iat: issuedAt,
+    exp: issuedAt + 900,
+    aud: "appstoreconnect-v1",
+    bid: bundleID
+  };
+  const signingInput = `${base64UrlJSON(header)}.${base64UrlJSON(payload)}`;
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    pemToArrayBuffer(privateKey),
+    { name: "ECDSA", namedCurve: "P-256" },
+    false,
+    ["sign"]
+  );
+  const signature = new Uint8Array(await crypto.subtle.sign(
+    { name: "ECDSA", hash: "SHA-256" },
+    key,
+    textEncoder.encode(signingInput)
+  ));
+  return `${signingInput}.${base64UrlFromBytes(signature)}`;
+};
+
+const decodeJWSPayload = (jws) => {
+  const parts = String(jws || "").split(".");
+  if (parts.length < 2) {
+    return null;
+  }
+  try {
+    return JSON.parse(new TextDecoder().decode(base64UrlToBytes(parts[1])));
+  } catch {
+    return null;
+  }
+};
+
+const fetchAppleTransaction = async (env, bundleID, transactionID) => {
+  const token = await appleServerJWT(env, bundleID);
+  const hosts = [
+    "https://api.storekit.itunes.apple.com",
+    "https://api.storekit-sandbox.itunes.apple.com"
+  ];
+
+  for (const host of hosts) {
+    const response = await fetch(`${host}/inApps/v1/transactions/${encodeURIComponent(transactionID)}`, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      return { data: await response.json(), environment: host.includes("sandbox") ? "Sandbox" : "Production" };
+    }
+
+    if (response.status === 404) {
+      continue;
+    }
+
+    throw new Error("Apple transaction lookup failed");
+  }
+
+  return null;
+};
+
+const verifyPlusTransactionsWithApple = async (env, identity, bundleID, transactions) => {
+  const entitlements = [];
+  const now = Date.now();
+
+  for (const transaction of transactions) {
+    const transactionID = String(transaction.transactionID || "").trim();
+    const requestedProductID = String(transaction.productID || "").trim();
+    if (!transactionID || !plusProductIDs.has(requestedProductID)) {
+      continue;
+    }
+
+    const appleTransaction = await fetchAppleTransaction(env, bundleID, transactionID);
+    const payload = decodeJWSPayload(appleTransaction?.data?.signedTransactionInfo);
+    if (!payload) {
+      continue;
+    }
+
+    const payloadProductID = String(payload.productId || "");
+    const payloadBundleID = String(payload.bundleId || "");
+    const payloadTransactionID = String(payload.transactionId || "");
+    const payloadAccountToken = String(payload.appAccountToken || "").trim().toLowerCase();
+    if (
+      payloadBundleID !== bundleID ||
+      payloadProductID !== requestedProductID ||
+      payloadTransactionID !== transactionID ||
+      payloadAccountToken !== identity.accountToken
+    ) {
+      continue;
+    }
+
+    const revocationDate = Number(payload.revocationDate || 0);
+    const expiresDate = Number(payload.expiresDate || 0);
+    const active = !revocationDate && (
+      payloadProductID === "pusula.plus.lifetime" ||
+      (payloadProductID === "pusula.plus.monthly" && expiresDate > now)
+    );
+
+    entitlements.push({
+      productID: payloadProductID,
+      transactionID: payloadTransactionID,
+      originalTransactionID: String(payload.originalTransactionId || transaction.originalTransactionID || ""),
+      environment: appleTransaction.environment,
+      expiresDate: expiresDate || null,
+      active,
+      verifiedAt: new Date().toISOString()
+    });
+  }
+
+  return entitlements;
+};
+
+const handlePlusTransactionSync = async (request, env) => {
+  if (request.method === "OPTIONS") {
+    return apiJson({ ok: true }, 200);
+  }
+
+  if (request.method !== "POST") {
+    return apiJson({ error: "Method not allowed" }, 405);
+  }
+
+  const rateLimit = await enforceKVRateLimit(request, env, "plus-transactions", {
+    limit: 60,
+    windowSeconds: 3600,
+    limitEnvKey: "PLUS_API_RATE_LIMIT",
+    windowEnvKey: "PLUS_API_RATE_LIMIT_WINDOW_SECONDS"
+  });
+  if (!rateLimit.allowed) {
+    return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
+  }
+
+  const { payload, response } = await readJsonPayload(request, 16384, rateLimit.headers);
+  if (response) {
+    return response;
+  }
+
+  const identity = await normalizePlusIdentity(payload);
+  if (!identity) {
+    return apiJson({ error: "Invalid account identity" }, 400, rateLimit.headers);
+  }
+
+  const bundleID = plusBundleID(env);
+  if (String(payload.bundleID || "") !== bundleID) {
+    return apiJson({ error: "Invalid bundle ID" }, 400, rateLimit.headers);
+  }
+
+  const transactions = Array.isArray(payload.transactions) ? payload.transactions.slice(0, 10) : [];
+  const kv = plusKV(env);
+  if (!kv || typeof kv.get !== "function" || typeof kv.put !== "function") {
+    return apiJson(await plusStatusBody(env, identity.accountToken), 200, rateLimit.headers);
+  }
+
+  if (!appleIAPConfigured(env)) {
+    return apiJson(await plusStatusBody(env, identity.accountToken, {
+      serverVerified: false,
+      verificationMode: "apple-server-api-not-configured"
+    }), 200, rateLimit.headers);
+  }
+
+  let entitlements = [];
+  try {
+    entitlements = await verifyPlusTransactionsWithApple(env, identity, bundleID, transactions);
+  } catch {
+    return apiJson(await plusStatusBody(env, identity.accountToken, {
+      serverVerified: false,
+      verificationMode: "apple-server-api-error"
+    }), 200, rateLimit.headers);
+  }
+
+  await kv.put(
+    plusEntitlementKey(identity.accountToken),
+    JSON.stringify({
+      accountToken: identity.accountToken,
+      serverVerifiedAt: new Date().toISOString(),
+      bundleID,
+      entitlements
+    })
+  );
+
+  return apiJson(await plusStatusBody(env, identity.accountToken, {
+    verificationMode: "apple-server-api"
+  }), 200, rateLimit.headers);
+};
+
+const handleAccountEmail = async (request, env) => {
+  if (request.method === "OPTIONS") {
+    return apiJson({ ok: true }, 200);
+  }
+
+  if (request.method !== "POST") {
+    return apiJson({ error: "Method not allowed" }, 405);
+  }
+
+  const rateLimit = await enforceKVRateLimit(request, env, "account-email", {
+    limit: 30,
+    windowSeconds: 3600,
+    limitEnvKey: "ACCOUNT_EMAIL_RATE_LIMIT",
+    windowEnvKey: "ACCOUNT_EMAIL_RATE_LIMIT_WINDOW_SECONDS"
+  });
+  if (!rateLimit.allowed) {
+    return apiJson({ error: "Rate limit exceeded" }, 429, rateLimit.headers);
+  }
+
+  const contentLength = Number.parseInt(request.headers.get("Content-Length") || "0", 10);
+  if (Number.isFinite(contentLength) && contentLength > 1024) {
+    return apiJson({ error: "Payload too large" }, 413, rateLimit.headers);
+  }
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return apiJson({ error: "Invalid JSON body" }, 400, rateLimit.headers);
+  }
+
+  const email = String(payload.email || "").trim().toLowerCase();
+  if (!isValidEmail(email)) {
+    return apiJson({ error: "Invalid email" }, 400, rateLimit.headers);
+  }
+
+  const supabaseURL = normalizeSecret(env.SUPABASE_URL);
+  const serviceRoleKey = normalizeSecret(env.SUPABASE_SERVICE_ROLE_KEY);
+  if (!supabaseURL || !serviceRoleKey) {
+    return apiJson({ error: "Supabase env missing" }, 503, rateLimit.headers);
+  }
+
+  const tableName = normalizeSecret(env.SUPABASE_USERS_TABLE) || "pusula_users";
+  const upsertURL = `${supabaseURL.replace(/\/+$/, "")}/rest/v1/${encodeURIComponent(tableName)}?on_conflict=email`;
+  const now = new Date().toISOString();
+  const response = await fetch(upsertURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      apikey: serviceRoleKey,
+      Authorization: `Bearer ${serviceRoleKey}`,
+      Prefer: "resolution=merge-duplicates,return=minimal"
+    },
+    body: JSON.stringify({
+      email,
+      last_seen_at: now,
+      created_source: "pusula_app"
+    })
+  });
+
+  if (!response.ok) {
+    return apiJson({ error: "Supabase write failed" }, 502, rateLimit.headers);
+  }
+
+  return apiJson({ ok: true }, 200, rateLimit.headers);
 };
 
 export default {
@@ -722,6 +1213,22 @@ export default {
 
     if (url.pathname === "/api/natal-chart") {
       return handleNatalChart(request, env);
+    }
+
+    if (url.pathname === "/api/account-email") {
+      return handleAccountEmail(request, env);
+    }
+
+    if (url.pathname === "/api/plus/status") {
+      return handlePlusStatus(request, env);
+    }
+
+    if (url.pathname === "/api/plus/usage") {
+      return handlePlusUsage(request, env);
+    }
+
+    if (url.pathname === "/api/plus/transactions/sync") {
+      return handlePlusTransactionSync(request, env);
     }
 
     return env.ASSETS.fetch(request);

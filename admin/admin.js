@@ -22,6 +22,12 @@
         ["hero.lead", "Hero açıklaması", "textarea"],
         ["product.title", "Ürün başlığı", "textarea"],
         ["product.description", "Ürün açıklaması", "textarea"],
+        ["developerNote.eyebrow", "Geliştirici notu üst etiketi", "input"],
+        ["developerNote.quote", "Geliştirici notu", "textarea"],
+        ["developerNote.name", "Geliştirici adı", "input"],
+        ["developerNote.title", "Geliştirici unvanı", "input"],
+        ["developerNote.image", "Geliştirici görsel yolu", "input"],
+        ["developerNote.alt", "Geliştirici görsel alt metni", "input"],
         ["cards.title", "Kartlar başlığı", "textarea"],
         ["changelog.title", "Changelog başlığı", "input"],
         ["footer.description", "Footer açıklaması", "textarea"]
@@ -122,8 +128,8 @@
     appContent: {
       title: "Uygulama içerikleri",
       kicker: "Remote app feed",
-      description: "iOS ve Android uygulamadaki uzaktan güncellenebilir metinleri, rüya/astro copy alanlarını ve kart override'larını yönetir.",
-      stats: ["Rüya modu", "Astro/plan", "Kart override"],
+      description: "iOS ve Android uygulamadaki uzaktan güncellenebilir metinleri, Plus paywall copy alanlarını ve kart override'larını yönetir.",
+      stats: ["Rüya modu", "Plus copy", "Kart override"],
       path: "app-content-feed.json",
       mode: "appContent"
     },
@@ -287,6 +293,22 @@
         ["support.accountSignedOutBody", "Hesap çıkış açıklaması", "textarea"],
         ["support.accountLocalFirstNote", "Local-first notu", "textarea"],
         ["support.syncSubtitle", "Senkronizasyon notu", "textarea"]
+      ]
+    },
+    {
+      title: "Pusula Plus",
+      description: "Astro, rüya, fal, tarot ve journal kilitlerinde görünen paywall başlık ve açıklamaları.",
+      keys: [
+        ["plus.astroPremium.title", "Astro paywall başlığı", "input"],
+        ["plus.astroPremium.message", "Astro paywall açıklaması", "textarea"],
+        ["plus.dreamInterpretation.title", "Rüya paywall başlığı", "input"],
+        ["plus.dreamInterpretation.message", "Rüya paywall açıklaması", "textarea"],
+        ["plus.coffeeFortune.title", "Fal paywall başlığı", "input"],
+        ["plus.coffeeFortune.message", "Fal paywall açıklaması", "textarea"],
+        ["plus.tarotReading.title", "Tarot paywall başlığı", "input"],
+        ["plus.tarotReading.message", "Tarot paywall açıklaması", "textarea"],
+        ["plus.journalArchive.title", "Journal paywall başlığı", "input"],
+        ["plus.journalArchive.message", "Journal paywall açıklaması", "textarea"]
       ]
     },
     {

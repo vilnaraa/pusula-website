@@ -2,11 +2,11 @@ window.PUSULA_GALLERY = {
   "slides": [
     {
       "title": "Güven veren bir başlangıç. ",
-      "description": "Pusula, kullanıcıyı ilk ekranda baskısız bir şekilde karşılar. Uygulamanın ücretsiz olduğunu, hesap açmanın zorunlu olmadığını ve kişisel cevapların varsayılan olarak cihazda kaldığını açık bir dille anlatır.",
+      "description": "Pusula, kullanıcıyı ilk ekranda net bir güven çerçevesiyle karşılar. Uygulamanın temel kullanımının ücretsiz olduğunu, Apple veya Google ile giriş gerektiğini ve kişisel cevapların varsayılan olarak cihazda kaldığını açık bir dille anlatır.",
       "image": "assets/screens/pusula-current-01.png",
       "alt": "Pusula onboarding ekranı",
       "points": [
-        "Apple ve Google girişi, sadece kullanıcı isterse devreye giren isteğe bağlı bir seçenektir.",
+        "Apple veya Google girişi zorunludur; sunucu tarafında yalnız e-posta kaydı tutulur.",
         "Kişisel cevaplar güven hissi veren bir ilke olarak değil, ürünün çalışma biçimi olarak cihazda kalır.",
         "Onboarding akışı hesap açtırmaya değil, kullanıcının gününü ve ihtiyaç tonunu anlamaya odaklanır."
       ]
@@ -56,10 +56,10 @@ window.PUSULA_GALLERY = {
       ]
     },
     {
-      "title": "Destek: sakinleşme araçları ve net sınırlar",
-      "description": "Destek alanı, kullanıcının ihtiyaç anında hızlıca erişebileceği sakinleşme ve güven kaynaklarını toplar. Pusula terapi veya klinik destek iddiası taşımaz; bu sınır ekranda açık ve sorumlu bir şekilde korunur.",
+      "title": "Ayarlar: hesap, sürüm ve güvenli sınırlar",
+      "description": "Ayarlar alanı, hesap bağlantısını, bildirimleri, sürüm bilgisini, changelog ve website geçişlerini tek yerde toplar. Pusula terapi veya klinik destek iddiası taşımaz; bu sınır ekranda açık ve sorumlu bir şekilde korunur.",
       "image": "assets/screens/pusula-current-01.png",
-      "alt": "Destek ekranı",
+      "alt": "Ayarlar ekranı",
       "points": [
         "3 dakikalık sakinleşme seansı düşük volümlü esinti sesiyle daha yumuşak bir deneyim sunar.",
         "112 araması gibi kritik aksiyonlarda yanlış dokunmaları önlemek için açık onay alınır.",
@@ -67,14 +67,14 @@ window.PUSULA_GALLERY = {
       ]
     },
     {
-      "title": "Hesap: isteğe bağlı süreklilik",
-      "description": "Pusula’nın temel deneyimi hesapsız çalışır. Apple ve Google ile giriş, yalnızca verilerini ileride cihazlar arasında taşımak isteyen kullanıcılar için isteğe bağlı bir süreklilik katmanı olarak tasarlanır.",
+      "title": "Hesap: zorunlu ama dar kapsamlı",
+      "description": "Pusula’yı kullanmak için Apple veya Google ile giriş gerekir. Supabase tarafında kullanıcıyı tanımak için yalnız e-posta kaydı tutulur; günlük, rüya, fal ve tarot içerikleri local-first kalır.",
       "image": "assets/screens/pusula-current-01.png",
       "alt": "Hesap ve senkronizasyon ekranı",
       "points": [
-        "Destek ekranında Hesabım alanı ve hesap bağlantısını kaldırma akışı bulunur.",
-        "Senkronizasyon kapsamı; günlük ritim, tercihler ve kart hafızası gibi anlaşılır başlıklarla açıklanır.",
-        "Kullanıcı hesap bağlamadan da Pusula’nın ana deneyimine eksiksiz şekilde erişebilir."
+        "Ayarlar ekranında Hesabım alanı ve hesap bağlantısını kaldırma akışı bulunur.",
+        "Sunucu kapsamı e-posta ile sınırlıdır; kişisel içerikler cihazda kalır.",
+        "Giriş kapısı, ileride abonelik ve cihazlar arası süreklilik için güvenli temel oluşturur."
       ]
     }
   ]
