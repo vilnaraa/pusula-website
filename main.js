@@ -219,7 +219,9 @@
 
   const renderSiteContent = () => {
     const hero = siteData.hero || {};
+    const focus = siteData.focus || {};
     const product = siteData.product || {};
+    const plus = siteData.plus || {};
     const cards = siteData.cards || {};
     const changelog = siteData.changelog || {};
     const footer = siteData.footer || {};
@@ -247,6 +249,28 @@
       }
     }
 
+    setText("[data-site='focus-eyebrow']", focus.eyebrow);
+    setText("[data-site='focus-title']", focus.title);
+    setText("[data-site='focus-description']", focus.description);
+
+    if (Array.isArray(focus.items) && focus.items.length > 0) {
+      const focusGrid = document.querySelector(".focus-grid");
+      if (focusGrid) {
+        focusGrid.innerHTML = focus.items
+          .map(
+            (item) => `
+              <article>
+                <span>${escapeHtml(item.number)}</span>
+                <small>${escapeHtml(item.label)}</small>
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.description)}</p>
+              </article>
+            `
+          )
+          .join("");
+      }
+    }
+
     setText("[data-site='product-eyebrow']", product.eyebrow);
     setText("[data-site='product-title']", product.title);
     setText("[data-site='product-description']", product.description);
@@ -267,6 +291,28 @@
           )
           .join("");
       }
+    }
+
+    setText("[data-site='plus-eyebrow']", plus.eyebrow);
+    setText("[data-site='plus-title']", plus.title);
+    setText("[data-site='plus-description']", plus.description);
+    setText("[data-site='plus-free-title']", plus.freeTitle);
+    setText("[data-site='plus-paid-title']", plus.plusTitle);
+
+    const plusCta = document.querySelector("[data-site='plus-cta']");
+    if (plusCta && plus.ctaLabel && plus.ctaHref) {
+      plusCta.textContent = plus.ctaLabel;
+      plusCta.setAttribute("href", plus.ctaHref);
+    }
+
+    const freeItems = document.querySelector("[data-site-list='plus-free-items']");
+    if (freeItems && Array.isArray(plus.freeItems)) {
+      freeItems.innerHTML = plus.freeItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    }
+
+    const paidItems = document.querySelector("[data-site-list='plus-paid-items']");
+    if (paidItems && Array.isArray(plus.plusItems)) {
+      paidItems.innerHTML = plus.plusItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
     }
 
     setText("[data-site='cards-eyebrow']", cards.eyebrow);
@@ -367,7 +413,7 @@
   const list = document.getElementById("changelog-list");
   const lastUpdated = document.getElementById("last-updated");
   const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
-  const changelogPreviewLimit = 3;
+  const changelogPreviewLimit = 1;
   let currentChangelogFilter = "Tumu";
   let changelogDialog = null;
   let lastFocusedBeforeDialog = null;

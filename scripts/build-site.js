@@ -82,7 +82,7 @@ const buildNav = (cards) => `
           <span>Pusula</span>
         </a>
         <div class="nav-links">
-          <a href="/#product">Ürün</a>
+          <a href="/#focus">Odak</a>
           <a href="/ruya-pusulasi/">Rüya Pusulası</a>
           <div class="nav-dropdown">
             <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -93,8 +93,8 @@ const buildNav = (cards) => `
             </div>
           </div>
           <a href="/astro-haritan/">Astro Haritan</a>
+          <a href="/#plus">Plus</a>
           <a href="/app-store/">App Store</a>
-          <a href="/faq/">FAQ</a>
           <a href="/changelog/">Changelog</a>
         </div>
       </nav>
@@ -115,10 +115,11 @@ const buildFooter = () => `
         </section>
         <nav class="footer-column" aria-label="Ürün bağlantıları">
           <strong>Ürün</strong>
-          <a href="/#product">Ürün</a>
+          <a href="/#focus">Odak</a>
           <a href="/ruya-pusulasi/">Rüya Pusulası</a>
           <a href="/#cards">Kartlar</a>
           <a href="/astro-haritan/">Astro Haritan</a>
+          <a href="/#plus">Pusula Plus</a>
           <a href="/app-store/">App Store</a>
           <a href="/changelog/">Changelog</a>
           <a href="/faq/">FAQ</a>

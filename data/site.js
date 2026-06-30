@@ -1,93 +1,147 @@
 window.PUSULA_SITE = {
   "seo": {
     "title": "Pusula | App Store'da yayında",
-    "description": "Pusula, App Store'da yayında olan ücretsiz ve günlük rehber uygulamasıdır. ",
+    "description": "Pusula, App Store'da yayında olan günlük kart, rüya tabiri, fal, tarot ve astro harita odaklı kişisel rehber uygulamasıdır.",
     "canonicalUrl": "https://pusulamobil.com.tr/",
     "appStoreUrl": "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957",
     "ogTitle": "Pusula",
-    "ogDescription": "Günün tonuna göre küçük, kişisel bir yön. App Store'dan ücretsiz indir.",
+    "ogDescription": "Günlük kartını al, rüyanı yorumlat, astro haritana bak ve Pusula Plus ile derin okuma geçmişini aç.",
     "ogImage": "https://pusulamobil.com.tr/assets/hero-pusula.png",
     "themeColor": "#101622"
   },
   "hero": {
-    "eyebrow": "Günlük mobil rehberiniz",
+    "eyebrow": "App Store'da yayında",
     "title": "Pusula",
-    "tagline": "Günün gidişatına göre küçük, kişisel bir yön.",
-    "lead": "Pusula; ruh halini, günün ritmini ve ihtiyacını kısa seçimlerle anlar. Sana stoik, astrolojik, sosyal veya kariyer odaklı uygulanabilir bir kart verir.",
+    "tagline": "Günlük kart, rüya, fal, tarot ve astro harita tek sakin deneyimde.",
+    "lead": "Pusula, gün içinde kendine dönebileceğin kısa bir alan açar. İlk adımı ücretsiz al; derin okuma, kayıt geçmişi ve sınırsız yorum için Pusula Plus'a geç.",
     "primaryCta": {
       "label": "App Store'dan indir",
       "href": "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957"
     },
     "secondaryCta": {
-      "label": "Ürün akışını gör",
-      "href": "#product"
+      "label": "Neler ücretsiz?",
+      "href": "#plus"
     }
   },
   "trust": [
     {
-      "label": "Ücret",
-      "value": "Temel kullanım ücretsiz"
+      "label": "Başlangıç",
+      "value": "Ücretsiz başla"
     },
     {
-      "label": "Giriş",
-      "value": "Apple veya Google"
+      "label": "Plus",
+      "value": "Derin okuma ve geçmiş"
     },
     {
-      "label": "Veri",
-      "value": "Cihazda kalır"
+      "label": "Gizlilik",
+      "value": "Kişisel kayıtlar cihazında"
     },
     {
-      "label": "Durum",
-      "value": "App Store'da yayında"
+      "label": "Güven",
+      "value": "Klinik iddia yok"
     }
   ],
-  "product": {
-    "eyebrow": "Ürün omurgası",
-    "title": "Kişisel rehberlik hissini sade, güvenli ve tekrar edilebilir bir mobil deneyime çeviriyoruz.",
-    "description": "Pusula; günlük ruh hali sinyalini, kişisel kart üretimini, gün planını ve destek araçlarını tek bir sakin ürün ritminde toplar. Amaç kullanıcıyı analiz etmek değil, o gün için uygulanabilir, kişisel ve yormayan bir yön vermektir.",
-    "badge": "App Store v1.0",
-    "highlights": [
+  "focus": {
+    "eyebrow": "Ana akış",
+    "title": "Pusula'yı açınca önce tek bir şeye karar verirsin: bugün neye ihtiyacın var?",
+    "description": "Ana sayfa artık özelliği anlatmak yerine kullanıcıyı doğru kapıya taşır. Günlük yön, merak ettiğin semboller, astro harita ya da kayıt geçmişi aynı ürün ritminde çalışır.",
+    "items": [
       {
         "number": "01",
-        "title": "Bugünün tonunu seç.",
-        "description": "Uzun günlük yazmadan, tek dokunuşla mod ve ihtiyaç sinyali verilir."
+        "title": "Bugünün yönü",
+        "description": "Ruh halini seç, günlük kartını al ve günü tek küçük adımla başlat.",
+        "label": "Her gün"
       },
       {
         "number": "02",
-        "title": "Pusula kartın yenilenir.",
-        "description": "Kart motoru ruh hali, ton, tercih ve yakın geçmişe göre tekrarları azaltır."
+        "title": "Rüya, fal ve tarot",
+        "description": "Merak ettiğin rüyayı, fincanı veya kart açılımını bekletmeden yorumlat.",
+        "label": "Hızlı yorum"
       },
       {
         "number": "03",
-        "title": "Planım günü somutlaştırır.",
-        "description": "Kahve, restoran, etkinlik ve şehir destekli küçük rota fikirleri tek bölümde toplanır."
+        "title": "Astro Haritan",
+        "description": "Harita özetini gör; daha derin katmanları Plus ile aç.",
+        "label": "Özet ücretsiz"
       },
       {
         "number": "04",
-        "title": "Destek sınırı net kalır.",
-        "description": "Pusula terapi iddiası taşımaz; kriz halinde resmi kaynaklara yönlendirir."
+        "title": "Geçmiş ve kayıt",
+        "description": "Yorumlarını daha sonra tekrar görmek istersen journal geçmişini Plus ile tut.",
+        "label": "Plus"
       }
     ]
   },
+  "product": {
+    "eyebrow": "Ürün deneyimi",
+    "title": "Pusula'yı açınca sıradaki küçük adım netleşir.",
+    "description": "Günlük kart, rüya tabiri, fal, tarot ve astro harita aynı sakin dilde birleşir. Ürün, kullanıcıyı uzun formlara boğmadan merak ettiği şeyi yorumlar; kayıt tutmak isteyenlere geçmiş alanı açar.",
+    "badge": "App Store v1.0.7",
+    "highlights": [
+      {
+        "number": "01",
+        "title": "Günlük kartını al.",
+        "description": "Ruh halini ve ihtiyacını seçersin; Pusula o güne uygun kısa bir yön verir."
+      },
+      {
+        "number": "02",
+        "title": "Merak ettiğini yorumlat.",
+        "description": "Rüya, fal ve tarot akışları önce sonucu verir; kaydetmek istersen detay sorar."
+      },
+      {
+        "number": "03",
+        "title": "Astro özetini gör.",
+        "description": "Harita özeti açık kalır; daha derin katmanlar Pusula Plus ile açılır."
+      },
+      {
+        "number": "04",
+        "title": "İstersen geçmişe kaydet.",
+        "description": "Journal alanları günlük yorumları daha sonra tekrar okumak isteyenler için çalışır."
+      }
+    ]
+  },
+  "plus": {
+    "eyebrow": "Pusula Plus",
+    "title": "Temel kullanım ücretsiz; derin okuma ve geçmiş Plus ile açılır.",
+    "description": "Pusula'yı denemek için ödeme gerekmez. Limitler dolduğunda veya yorum geçmişini saklamak istediğinde aylık Plus ya da tek seferlik lifetime erişim devreye girer.",
+    "freeTitle": "Ücretsiz başla",
+    "plusTitle": "Plus ile aç",
+    "freeItems": [
+      "Günlük kart ve temel yönlendirme",
+      "Astro harita özeti",
+      "İlk 5 rüya tabiri",
+      "İlk 3 fal yorumu",
+      "İlk 1 tarot okuması"
+    ],
+    "plusItems": [
+      "Sınırsız rüya tabiri, fal ve tarot yorumu",
+      "Rüya, fal ve tarot geçmişi",
+      "Derin astro harita katmanları",
+      "Satın alımları geri getir desteği",
+      "Aylık abonelik veya lifetime erişim"
+    ],
+    "ctaLabel": "App Store'da Plus'ı gör",
+    "ctaHref": "https://apps.apple.com/us/app/pusula-g%C3%BCnl%C3%BCk-rehber/id6777686957"
+  },
   "cards": {
     "eyebrow": "Görsel dil",
-    "title": "Kartlar, tamamen uygulama yaratıcısının özgün evreninden geliyor."
+    "title": "Kartlar, tarot ve günlük ton aynı özgün görsel evrenden geliyor."
   },
   "principles": [
     {
       "number": "01",
-      "title": "Local-first",
+      "title": "Kişisel alan",
       "description": "Rüya, fal, tarot ve günlük seçimler cihazda tutulur. Hesap tarafında yalnız e-posta kaydı hedeflenir."
     },
     {
       "number": "02",
-      "title": "Klinik iddia yok",
+      "title": "Sınırı net",
       "description": "Pusula terapi yerine refleksiyon ve küçük adım dili kullanır. Kriz durumlarında resmi kaynaklara yönlendirir."
     },
     {
       "number": "03",
-      "title": "Özgün içerik",
-      "description": "Görseller bize ait üretilir. Stoik ve astrolojik metinler kopya çeviri yerine dikkatli, özgün yorum olarak yazılır."
+      "title": "Bize ait içerik",
+      "description": "Görseller bize ait üretilir. Metinler kopya çeviri yerine dikkatli, özgün yorum olarak yazılır."
     }
   ],
   "developerNote": {
@@ -100,8 +154,8 @@ window.PUSULA_SITE = {
   },
   "changelog": {
     "eyebrow": "Public changelog",
-    "title": "Uygulamada neler değişti?",
-    "description": "Eklenen, değişen ve kaldırılan parçaları burada ürün günlüğü gibi tutuyoruz. App Store yayını sonrası ürün gelişimini şeffaf şekilde paylaşacağız."
+    "title": "Son ürün güncellemesi",
+    "description": "Ana sayfada sadece son durumu gösteriyoruz. Tüm tarihli değişiklikler ayrı changelog sayfasında tutulur."
   },
   "footer": {
     "title": "Pusula",
