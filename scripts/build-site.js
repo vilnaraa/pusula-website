@@ -402,11 +402,19 @@ const renderDreamHomeSection = (dream) => {
               <a class="text-link" href="/ruya-pusulasi/#ruya-akis">${escapeHtml(home.secondaryCta || "Akış nasıl çalışıyor?")}</a>
             </div>
           </div>
-          <div class="dream-home-visual">
-            <img src="assets/dream-flow-symbols.svg" width="960" height="540" alt="Rüya Pusulası yaz, tabir et ve kaydet akışını gösteren görsel">
-            <div class="dream-mini-result" aria-label="${escapeAttr(demo.resultTitle || "Rüya tabiri")}">
-              <span>${escapeHtml(demo.resultTitle || "Rüya tabiri")}</span>
-              <strong>${escapeHtml(demo.questionBody || "Bugün hangi kapıyı sadece bir adım aralayabilirsin?")}</strong>
+          <div class="dream-home-visual" aria-label="Rüya tabiri örneği">
+            <article class="dream-reading-card">
+              <span>${escapeHtml(demo.inputLabel || "Rüya metni")}</span>
+              <p>${escapeHtml(demo.inputText || "")}</p>
+              <div>
+                <strong>${escapeHtml(demo.resultTitle || "Rüya tabiri")}</strong>
+                <p>${escapeHtml(demo.questionBody || "Bugün hangi kapıyı sadece bir adım aralayabilirsin?")}</p>
+              </div>
+            </article>
+            <div class="dream-step-pills" aria-hidden="true">
+              <span>Yaz</span>
+              <span>Yorumla</span>
+              <span>İstersen kaydet</span>
             </div>
           </div>
         </div>

@@ -102,8 +102,8 @@ window.PUSULA_SITE = {
   },
   "plus": {
     "eyebrow": "Pusula Plus",
-    "title": "Temel kullanım ücretsiz; derin okuma ve geçmiş Plus ile açılır.",
-    "description": "Pusula'yı denemek için ödeme gerekmez. Limitler dolduğunda veya yorum geçmişini saklamak istediğinde aylık Plus ya da tek seferlik lifetime erişim devreye girer.",
+    "title": "Ücretsiz başla. Plus ile derinleş.",
+    "description": "İlk kullanım hakların açık kalır. Daha fazla yorum, astro katmanı ve geçmiş kaydı istediğinde Plus devreye girer.",
     "freeTitle": "Ücretsiz başla",
     "plusTitle": "Plus ile aç",
     "freeItems": [
@@ -153,9 +153,9 @@ window.PUSULA_SITE = {
     "alt": "Ferruh Can Çetinkol portresi"
   },
   "changelog": {
-    "eyebrow": "Public changelog",
+    "eyebrow": "Yenilikler",
     "title": "Son ürün güncellemesi",
-    "description": "Ana sayfada sadece son durumu gösteriyoruz. Tüm tarihli değişiklikler ayrı changelog sayfasında tutulur."
+    "description": "Burada yalnızca kullanıcının fark edeceği yenilikleri kısa biçimde paylaşıyoruz."
   },
   "footer": {
     "title": "Pusula",

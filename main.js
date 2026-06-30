@@ -89,7 +89,10 @@
   const galleryDots = document.getElementById("gallery-dots");
   const galleryPrev = document.querySelector("[data-slider-prev]");
   const galleryNext = document.querySelector("[data-slider-next]");
+  const gallerySlider = document.querySelector(".product-slider");
   let galleryIndex = 0;
+  let galleryTouchStart = null;
+  let galleryPointerStart = null;
   const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
   const initScrollMotion = () => {
@@ -335,6 +338,7 @@
 
       if (cardGallery) {
         cardGallery.innerHTML = cardData.cards
+          .filter((card) => card.slug !== "destek")
           .map(
             (card) => `
               <a class="visual-card" href="/kartlar/${escapeHtml(card.slug)}/" aria-label="${escapeHtml(card.title)} kart sayfası">
@@ -547,6 +551,74 @@
 
   galleryPrev?.addEventListener("click", () => setGalleryIndex(galleryIndex - 1));
   galleryNext?.addEventListener("click", () => setGalleryIndex(galleryIndex + 1));
+
+  const handleGallerySwipe = (start, end) => {
+    if (!start || !end) return;
+    const deltaX = end.x - start.x;
+    const deltaY = end.y - start.y;
+    if (Math.abs(deltaX) < 42 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+    setGalleryIndex(deltaX < 0 ? galleryIndex + 1 : galleryIndex - 1);
+  };
+
+  gallerySlider?.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.touches[0] ?? event.changedTouches[0];
+      if (!touch) return;
+      galleryTouchStart = {
+        x: touch.clientX,
+        y: touch.clientY
+      };
+    },
+    { passive: true }
+  );
+
+  gallerySlider?.addEventListener(
+    "touchend",
+    (event) => {
+      if (!galleryTouchStart) return;
+      const touch = event.changedTouches[0];
+      if (!touch) {
+        galleryTouchStart = null;
+        return;
+      }
+
+      const deltaX = touch.clientX - galleryTouchStart.x;
+      const deltaY = touch.clientY - galleryTouchStart.y;
+      const touchStart = galleryTouchStart;
+      galleryTouchStart = null;
+
+      handleGallerySwipe(touchStart, {
+        x: touchStart.x + deltaX,
+        y: touchStart.y + deltaY
+      });
+    },
+    { passive: true }
+  );
+
+  gallerySlider?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    galleryPointerStart = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      y: event.clientY
+    };
+  });
+
+  gallerySlider?.addEventListener("pointerup", (event) => {
+    if (!galleryPointerStart || galleryPointerStart.pointerId !== event.pointerId) return;
+    const start = galleryPointerStart;
+    galleryPointerStart = null;
+    handleGallerySwipe(start, {
+      x: event.clientX,
+      y: event.clientY
+    });
+  });
+
+  gallerySlider?.addEventListener("pointercancel", () => {
+    galleryPointerStart = null;
+  });
+
   galleryDots?.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) return;
@@ -609,8 +681,8 @@
       <div class="changelog-dialog-shell" role="document">
         <header class="changelog-dialog-header">
           <div>
-            <p class="eyebrow dark">Public changelog</p>
-            <h2 id="changelog-dialog-title">Ürün günlüğü</h2>
+            <p class="eyebrow dark">Yenilikler</p>
+            <h2 id="changelog-dialog-title">Ürün yenilikleri</h2>
             <p data-changelog-dialog-count></p>
           </div>
           <button class="changelog-dialog-close" type="button" data-changelog-close aria-label="Changelog penceresini kapat">×</button>

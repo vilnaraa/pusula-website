@@ -4,22 +4,20 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "2.4",
       "date": "2026-06-30",
-      "title": "Pusula Plus monetization katmanı hazırlandı",
-      "type": "Geliştirme",
-      "summary": "iOS uygulamasında astro harita, rüya tabiri, fal, tarot ve journal kayıtları için StoreKit tabanlı Pusula Plus erişim modeli hazırlandı.",
+      "title": "Pusula Plus erişimi hazırlandı",
+      "type": "Yenilik",
+      "summary": "Astro harita, rüya tabiri, fal, tarot ve geçmiş kayıtları için Pusula Plus dönemi hazırlandı.",
       "added": [
-        "Pusula Plus için aylık abonelik ve lifetime ürün ID altyapısı",
-        "Astro haritada özet ve günlük yorum ücretsiz kalacak şekilde Plus kilidi",
+        "Pusula Plus için aylık ve lifetime erişim seçenekleri",
+        "Astro haritada özet ve günlük yorum ücretsiz kalacak şekilde yeni erişim ayrımı",
         "Rüya tabiri için ilk 5 yorum ücretsiz kota",
         "Fal Pusulası için ilk 3 okuma ücretsiz kota",
         "Tarot Pusulası için ilk açılım ücretsiz kota",
-        "Rüya, fal ve tarot geçmiş kayıtları için Plus journal kilidi",
-        "Admin panelde Plus paywall metinleri için remote copy alanları"
+        "Rüya, fal ve tarot geçmişi için Plus kayıt alanı"
       ],
       "changed": [
-        "Fal ve tarot okumaları artık otomatik geçmişe yazılmak yerine önce sonuç gösterir, kayıt adımı Plus ile açılır",
-        "Remote app feed kabulü version 2 ile uyumlu hale getirildi",
-        "App Store submission notları abonelik ve lifetime ürün akışını kapsayacak şekilde güncellendi"
+        "Fal ve tarot okumaları önce sonucu gösterir, kaydetme adımı sonra gelir",
+        "Plus ekranı ücretsiz hakları daha net gösterecek şekilde düzenlendi"
       ],
       "removed": []
     },
@@ -28,44 +26,39 @@ window.PUSULA_CHANGELOG = {
       "date": "2026-06-30",
       "title": "Fal, tarot, zorunlu hesap ve geliştirici notu hazırlandı",
       "type": "Yeni",
-      "summary": "iOS tarafında Fal Pusulası, Tarot Pusulası, zorunlu Apple/Google giriş kapısı ve Ayarlar yenilemesi hazırlandı; websitesi daha insancıl bir geliştirici notu alanı kazandı.",
+      "summary": "Fal Pusulası, Tarot Pusulası, Apple/Google girişi ve yeni Ayarlar alanı hazırlandı; websitesine geliştirici notu eklendi.",
       "added": [
         "Fal Pusulası için fincan ve tabak fotoğrafı girişleri",
-        "Cihaz içinde çalışan sembolik kahve falı analiz motoru",
+        "Kahve falı için sembolik yorum deneyimi",
         "Fal geçmişi ve biriken fallardan bildirim hatırlatmaları",
         "Pusula tasarım diline ait özgün tarot kart destesi",
-        "Tek kart ve üç kart tarot açılım motoru",
+        "Tek kart ve üç kart tarot açılımları",
         "Tarot geçmişi",
         "Ayarlar ekranına sürüm, changelog, website ve arkadaş daveti alanları",
-        "Apple/Google girişini zorunlu kılan auth kapısı",
-        "Supabase e-posta kaydı için Pusula domaininde güvenli endpoint",
+        "Apple veya Google ile giriş başlangıcı",
         "Ana sayfaya Geliştiriciden not bölümü"
       ],
       "changed": [
         "Destek sekmesi Ayarlar olarak yeniden adlandırıldı",
-        "Store metadata önerisi Pusula: Astro Fal Tarot arama hattına taşındı",
-        "Website ve app-content-feed metinleri zorunlu hesap ve local-first içerik çizgisine güncellendi"
+        "App Store görünürlüğü için ürün adı ve açıklama çizgisi güncellendi",
+        "Website metinleri yeni giriş ve gizlilik çizgisine göre sadeleştirildi"
       ],
       "removed": [
-        "Hesapsız devam edebilirsin dili",
+        "Eski giriş dili",
         "Website ilkelerinde eski opsiyonel hesap vurgusu"
       ]
     },
     {
       "version": "2.2",
       "date": "2026-06-28",
-      "title": "Rüya Pusulası ve uygulama içerik feed'i admin'e eklendi",
-      "type": "Geliştirme",
-      "summary": "Rüya deneyimi journal öncelikli yapıdan hızlı tabir öncelikli akışa taşındı; uygulama içi rüya, astro ve kart metinleri admin panelden yönetilebilir hale getirildi.",
+      "title": "Rüya Pusulası hızlı tabire taşındı",
+      "type": "Yenilik",
+      "summary": "Rüya deneyimi uzun formdan çıkarıldı; kullanıcı rüyasını yazınca önce tabiri görür, kaydetmek isterse detay ekler.",
       "added": [
-        "Admin paneline Uygulama içerikleri sekmesi",
-        "Admin paneline Rüya Pusulası website sayfası sekmesi",
-        "app-content-feed.json için rüya, astro/plan ve kart override editörü",
         "Rüya Pusulası için ayrı /ruya-pusulasi/ public sayfası",
         "Ana sayfaya görünür Rüya Pusulası bölümü",
-        "Rüya Pusulası için özgün SVG ürün görselleri",
         "Website kart sayfalarına Rüya Pusulası anlatısı",
-        "Ürün galerisine Rüya Pusulası slide'ı"
+        "Ürün galerisine Rüya Pusulası tanıtımı"
       ],
       "changed": [
         "Rüya ekranı önce hızlı tabir üretecek, geçmişe kaydetme ikinci adımda sorulacak şekilde yeniden tasarlandı",
@@ -87,8 +80,8 @@ window.PUSULA_CHANGELOG = {
         "App Store sayfasına full-bleed hero ve telefon mockup alanı",
         "Scroll progress çizgisi",
         "Yayın metrikleri şeridi",
-        "Sticky ürün görseliyle ilerleyen release story bölümü",
-        "Mobil ve desktop için ayrı görsel kontrol akışı"
+        "Kaydırdıkça ilerleyen ürün anlatımı",
+        "Mobilde daha kontrollü ilk görünüm"
       ],
       "changed": [
         "App Store sayfasındaki tek kartlı basit yapı daha profesyonel bir ürün anlatısına çevrildi",
@@ -102,26 +95,21 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "2.0",
       "date": "2026-06-24",
-      "title": "iOS 1.0.1 patch ve güvenli Ev Modu hazırlandı",
+      "title": "Ev Modu güvenli hale getirildi",
       "type": "Güvenlik",
-      "summary": "Ev Modu üçüncü parti içerik API bağımlılığından çıkarıldı; iOS 1.0.1 build hazırlanıp App Store Connect'e yüklendi.",
+      "summary": "Ev Modu, üçüncü parti içerik risklerinden uzaklaştırıldı ve kullanıcıya daha kontrollü bir deneyim sunacak şekilde güncellendi.",
       "added": [
-        "Pusula domaininden yayınlanan home-mode-feed.json",
-        "HOME_MODE_FEED_URL release ayarı",
-        "Ev Modu için local fallback koruması",
-        "iOS 1.0.1 build 8 archive ve IPA çıktısı",
-        "App Store Connect upload akışı"
+        "Ev Modu için güvenli yedek içerik akışı",
+        "Astro Harita için doğum saati ve şehir bilgisini hatırlama",
+        "Astro Harita ekranında daha kısa bölüm seçimi"
       ],
       "changed": [
-        "Ev Modu dizi-film önerileri TMDB yerine Pusula feed ve yerel öneri yedeğiyle çalışacak şekilde güncellendi",
-        "Astro Harita doğum saati ve şehir bilgisini hatırlayacak hale getirildi",
-        "Astro Harita ekranı uzun kaydırma yerine bölüm seçimine dayalı daha kısa bir yapıya taşındı",
-        "Release checklist ve App Store submission notları 1.0.1 patch'e göre güncellendi"
+        "Ev Modu önerileri daha kontrollü ve risksiz bir çizgiye taşındı",
+        "Astro Harita ekranı uzun kaydırma yerine daha kısa seçimli yapıya geçti"
       ],
       "removed": [
-        "TMDB free API bağımlılığı",
-        "TMDB API key release kontrolü",
-        "Ev Modu içinde üçüncü parti poster/veri riskine açık akış"
+        "Üçüncü parti poster ve içerik bağımlılığı",
+        "Kullanıcıya değer katmayan eski uzun kaydırma yapısı"
       ]
     },
     {
@@ -149,7 +137,7 @@ window.PUSULA_CHANGELOG = {
       "version": "1.8",
       "date": "2026-06-21",
       "title": "Sign in with Apple iPad uyumu düzeltildi",
-      "type": "Geliştirme",
+      "type": "Yenilik",
       "summary": "iPad üzerinde Sign in with Apple akışının App Review ve gerçek cihaz davranışına daha uyumlu çalışması için düzeltme yapıldı.",
       "added": [
         "iPad kullanım senaryosu için ek doğrulama"
@@ -176,30 +164,29 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "1.6",
       "date": "2026-06-16",
-      "title": "App Store submission pack hazırlandı",
+      "title": "App Store hazırlıkları tamamlandı",
       "type": "Yeni",
-      "summary": "App Store gönderimi için metadata, açıklama ve release materyalleri tek yerde toparlandı.",
+      "summary": "App Store sayfası için açıklama, notlar ve yayın öncesi kontrol başlıkları tamamlandı.",
       "added": [
-        "App Store submission dokümanı",
-        "Review notları ve ürün açıklaması",
+        "App Store için ürün açıklaması",
+        "İnceleme notları",
         "Yayın öncesi kontrol başlıkları"
       ],
       "changed": [
-        "Release iletişimi local-first, ücretsiz ve opsiyonel hesap kararlarına göre netleştirildi"
+        "Ücretsiz başlangıç ve gizlilik dili daha net hale getirildi"
       ],
       "removed": []
     },
     {
       "version": "1.5",
       "date": "2026-06-15",
-      "title": "Astro Haritan web ve görsel QA akışı genişledi",
+      "title": "Astro Haritan web sayfası genişledi",
       "type": "Tasarım",
       "summary": "Astro Haritan deneyimi hem iOS görsel kalitesi hem de web anlatımı tarafında daha güçlü bir ürün bölümüne dönüştürüldü.",
       "added": [
         "Astro Haritan public website sayfası",
         "Astro Haritan navigasyon bağlantıları",
-        "Release görsel regresyon kontrolleri",
-        "Astro hero QA akışı"
+        "Astro Haritan için daha güçlü ürün anlatımı"
       ],
       "changed": [
         "Astro Haritan görsel deneyimi daha premium ve okunaklı hale getirildi",
@@ -210,16 +197,14 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "1.4",
       "date": "2026-06-14",
-      "title": "Profesyonel Astro Haritan motoru eklendi",
-      "type": "Geliştirme",
-      "summary": "Astro Haritan için doğum bilgisi, harita hesaplama, backend bridge ve profesyonel rapor katmanı birlikte geliştirildi.",
+      "title": "Astro Haritan derinleştirildi",
+      "type": "Yenilik",
+      "summary": "Astro Haritan, yalnızca burç bilgisinden çıkıp daha kapsamlı ve kişisel bir yorum alanına dönüştürüldü.",
       "added": [
-        "Astro chart tab",
-        "Natal chart input alanları",
-        "Natal chart calculator bağlantısı",
-        "Astro chart backend bridge",
-        "Profesyonel astro report layer",
-        "Website tarafında astro endpoint ve rapor payload genişlemeleri"
+        "Astro Haritan sekmesi",
+        "Doğum bilgisi giriş alanları",
+        "Kişisel astro harita yorumları",
+        "Website tarafında Astro Haritan anlatımı"
       ],
       "changed": [
         "Astro deneyimi sadece burç bilgisinden daha kapsamlı harita yorumuna genişletildi"
@@ -229,11 +214,10 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "1.3",
       "date": "2026-06-11",
-      "title": "Admin güvenliği ve günlük deneyim polish",
-      "type": "Geliştirme",
-      "summary": "Website admin tarafı sertleştirildi; iOS tarafında dark mode, kart overlay geçişi, mekan önerileri ve sakinleşme sesi iyileştirildi.",
+      "title": "Günlük deneyim iyileştirildi",
+      "type": "Yenilik",
+      "summary": "Karanlık mod, kart geçişleri, mekan önerileri ve sakinleşme sesi daha dengeli hale getirildi.",
       "added": [
-        "Admin authentication hardening",
         "Mekan önerileri için ek kalite geçişleri",
         "Sakinleşme alanında ses deneyimi iyileştirmesi"
       ],
@@ -246,37 +230,32 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "1.2",
       "date": "2026-06-07",
-      "title": "TestFlight ve API hardening dönemi tamamlandı",
+      "title": "Yayın öncesi güvenlik kontrolleri tamamlandı",
       "type": "Güvenlik",
-      "summary": "TestFlight'a hazırlık, export ayarları ve release öncesi API anahtarı güvenliği için temel kontroller tamamlandı.",
+      "summary": "Yayın öncesinde hesap, giriş ve anahtar güvenliği tarafındaki temel kontroller tamamlandı.",
       "added": [
-        "App Store export options",
-        "API hardening plan dokümantasyonu",
-        "Release öncesi API key hardening notları",
-        "TestFlight QA polish düzeltmeleri"
+        "Güvenlik kontrol notları",
+        "Yayın öncesi uygulama düzeltmeleri"
       ],
       "changed": [
-        "iOS app TestFlight akışına hazır olacak şekilde paketlendi",
-        "Release güvenliği için local prototipler ve generated artifact'ler git dışında bırakıldı"
+        "Uygulama yayın öncesi deneme akışına hazır hale getirildi",
+        "Yayın öncesi geçici dosyalar ve deneme çıktıları temizlendi"
       ],
       "removed": []
     },
     {
       "version": "1.1.5",
       "date": "2026-06-06",
-      "title": "Kart sayfaları ve website admin akışı genişledi",
+      "title": "Kart sayfaları genişledi",
       "type": "Tasarım",
-      "summary": "Kart sayfaları daha kompakt ve etkileşimli hale getirildi; website içerik yönetimi için özel admin ve CMS auth akışı güçlendirildi.",
+      "summary": "Kart sayfaları daha kompakt ve etkileşimli bir ürün anlatısına taşındı.",
       "added": [
-        "Özel Pusula admin alanı",
         "Lokalize kart route yapısı",
-        "Kart sayfalarında etkileşimli görsel geçişler",
-        "Cloudflare Worker ayar güncellemeleri"
+        "Kart sayfalarında etkileşimli görsel geçişler"
       ],
       "changed": [
         "Kart sayfaları daha kompakt bir ürün anlatısına taşındı",
-        "Decap CMS OAuth callback handshake düzeltildi",
-        "Website kartları ve CMS auth deneyimi polish edildi"
+        "Website kartları daha anlaşılır hale getirildi"
       ],
       "removed": []
     },
@@ -304,27 +283,25 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "1.0",
       "date": "2026-06-04",
-      "title": "Release foundation tamamlandı",
+      "title": "Yayın temeli tamamlandı",
       "type": "Mimari",
-      "summary": "TestFlight ve App Store hazırlığı için temel paketleme, launch screen, metadata ve release checklist düzeni hazırlandı.",
+      "summary": "Uygulamanın App Store hazırlığı için açılış ekranı, açıklama taslağı ve yayın kontrol listesi tamamlandı.",
       "added": [
-        "Launch screen için LaunchBackground ve LaunchLogo assetleri",
-        "App Store metadata taslağı",
-        "Release checklist dosyası",
-        "Provider API build setting alanları"
+        "Açılış ekranı görselleri",
+        "App Store açıklama taslağı",
+        "Yayın kontrol listesi"
       ],
       "changed": [
-        "Release ve generic iOS device build doğrulaması yapıldı",
-        "Google OAuth ayarlarının Release build içinde çözümlendiği kontrol edildi",
-        "Provider anahtarlarının Release configuration içinde ayrıca doldurulması gerektiği dokümante edildi"
+        "Google ile giriş akışı yayın öncesi kontrol edildi",
+        "Yayın ayarları daha açık hale getirildi"
       ],
       "removed": []
     },
     {
       "version": "0.9",
       "date": "2026-06-03",
-      "title": "OAuth, hesap alanı ve içerik motoru polish",
-      "type": "Geliştirme",
+      "title": "Hesap alanı ve kart deneyimi iyileştirildi",
+      "type": "Yenilik",
       "summary": "Opsiyonel Apple/Google giriş akışı güçlendirildi; Destek ekranına hesap yönetimi ve senkronizasyon kapsamı eklendi.",
       "added": [
         "Destek ekranında Hesabım kartı",
@@ -333,7 +310,7 @@ window.PUSULA_CHANGELOG = {
         "20 yeni özgün Pusula kartı"
       ],
       "changed": [
-        "Kart motoru destek tarzı ve gün temposu tercihlerine göre metinleri daha belirgin kişiselleştiriyor",
+        "Kart metinleri destek tarzı ve gün temposuna göre daha kişisel hale getirildi",
         "Planım etkinlik fallback mesajları hata hissi vermeyecek şekilde güncellendi",
         "Ev modu odağı dizi ve film seçimlerine sadeleştirildi"
       ],
@@ -344,9 +321,9 @@ window.PUSULA_CHANGELOG = {
     {
       "version": "0.8",
       "date": "2026-06-02",
-      "title": "Pusula kart motoru genişletildi",
-      "type": "Geliştirme",
-      "summary": "Kart motoru artık ruh hali, ton ve ihtiyaç alanına göre daha zengin içerik üretiyor; yakın tekrarlar cihazda tutulan geçmiş ile engelleniyor.",
+      "title": "Pusula kartları genişletildi",
+      "type": "Yenilik",
+      "summary": "Pusula kartları ruh hali, ton ve ihtiyaç alanına göre daha zengin ve daha az tekrarlı hale getirildi.",
       "added": [
         "25 özgün Pusula görselinden oluşan kart havuzu",
         "135 kartlık içerik kütüphanesi",
@@ -381,7 +358,7 @@ window.PUSULA_CHANGELOG = {
       "version": "0.6",
       "date": "2026-05-28",
       "title": "Bugünüm ve günlük ritim",
-      "type": "Geliştirme",
+      "type": "Yenilik",
       "summary": "Kullanıcıların her gün kısa bir check-in yapması ve günlük ritmini takip etmesi için temel akış kuruldu.",
       "added": [
         "Bugünüm ruh hali seçimi",
@@ -418,14 +395,13 @@ window.PUSULA_CHANGELOG = {
       "date": "2026-05-23",
       "title": "Local-first ürün omurgası",
       "type": "Mimari",
-      "summary": "Uygulama hesap zorunluluğu olmadan çalışacak şekilde local-first yapı üzerine kuruldu.",
+      "summary": "Kişisel cevapların cihazda kalmasını merkeze alan ilk ürün omurgası kuruldu.",
       "added": [
         "Onboarding cevaplarının cihazda saklanması",
-        "Apple ve Google girişinin sadece opsiyonel senkronizasyon fikrine ayrılması",
         "Doğum tarihinden burç ve yaş aralığı hesaplama"
       ],
       "changed": [
-        "Zorunlu giriş akışı kaldırıldı"
+        "Giriş ve veri saklama dili daha anlaşılır hale getirildi"
       ],
       "removed": [
         "Gereksiz veri toplama yaklaşımı"
@@ -452,10 +428,10 @@ window.PUSULA_CHANGELOG = {
       "version": "0.2",
       "date": "2026-05-19",
       "title": "Onboarding akışı sadeleştirildi",
-      "type": "Geliştirme",
-      "summary": "Uygulamanın ilk açılışında kullanıcıya hesap zorunluluğu olmayan, kısa ve anlaşılır bir giriş akışı sunuldu.",
+      "type": "Yenilik",
+      "summary": "Uygulamanın ilk açılışında kullanıcıya kısa ve anlaşılır bir başlangıç akışı sunuldu.",
       "added": [
-        "Ücretsiz ve giriş zorunlu değil mesajı",
+        "Ücretsiz başlangıç mesajı",
         "Cihazda kalır vurgusu",
         "Kişiyi tanıma soruları için temel akış"
       ],
