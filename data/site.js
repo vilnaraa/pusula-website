@@ -95,8 +95,8 @@ window.PUSULA_SITE = {
     "quote": "Pusula'yı bir uygulamadan çok, insanın gün içinde kendine dönebileceği küçük ve sakin bir alan gibi tasarlıyorum. Cevap vermekten önce yavaşlatan, büyütmeden yön gösteren bir ürün olmasını istiyorum.",
     "name": "Ferruh Can Çetinkol",
     "title": "NLP Uzmanı, Mentör",
-    "image": "assets/developer-note-portrait.svg",
-    "alt": "Ferruh Can Çetinkol portre alanı"
+    "image": "assets/ferruh-can-cetinkol-portrait.jpg",
+    "alt": "Ferruh Can Çetinkol portresi"
   },
   "changelog": {
     "eyebrow": "Public changelog",
