@@ -2537,8 +2537,9 @@ body.motion-ready .release-step.is-active.is-visible {
 .card-gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 920px;
+  gap: clamp(18px, 2.4vw, 28px);
+  width: 100%;
+  max-width: none;
 }
 
 .visual-card {
